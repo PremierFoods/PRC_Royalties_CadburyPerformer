@@ -114,13 +114,34 @@
       "Path": "Workflows/PopulateExchangeRates.xaml",
       "SortBy": 0,
       "VariablesSectionElementsOrder": [
-        "dateLastFriday&Sequence_1",
         "dtExchangeRates&Sequence_1",
+        "dtYahooExchangeRates&Sequence_1",
+        "capture&Sequence_1",
+        "dateLastFriday&Sequence_1",
         "boolPopup&Sequence_1"
       ],
       "ArgumentsSectionElementsOrder": [
         "in_TransactionItem",
         "in_Config"
+      ],
+      "ConstantsSectionElementsOrder": [],
+      "AddedNamespaces": null
+    },
+    {
+      "Path": "Framework/SetTransactionStatus.xaml",
+      "SortBy": 0,
+      "VariablesSectionElementsOrder": [
+        "QueueRetry&Sequence_17",
+        "ScreenshotPath&Sequence_17"
+      ],
+      "ArgumentsSectionElementsOrder": [
+        "in_BusinessException",
+        "in_SystemException",
+        "in_Config",
+        "in_TransactionItem",
+        "io_RetryNumber",
+        "io_TransactionNumber",
+        "io_ConsecutiveSystemExceptions"
       ],
       "ConstantsSectionElementsOrder": [],
       "AddedNamespaces": null
