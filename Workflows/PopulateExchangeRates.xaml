@@ -6,7 +6,7 @@
   <VisualBasic.Settings>
     <x:Null />
   </VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>620.8,3181.6</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1130.4,3307.2</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>PopulateExchangeRates_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -120,7 +120,7 @@
       <AssemblyReference>System.Windows.Forms</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="PopulateExchangeRates" sap:VirtualizedContainerService.HintSize="631.2,3116.8" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="PopulateExchangeRates" sap:VirtualizedContainerService.HintSize="631.2,3242.4" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="sd:DataTable" Default="[New System.Data.DataTable]" Name="dtYahooExchangeRates" />
       <Variable x:TypeArguments="x:Boolean" Name="boolPopup" />
@@ -133,7 +133,7 @@
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <uix:NApplicationCard AttachMode="ByInstance" DisplayName="Use Application/Browser" sap:VirtualizedContainerService.HintSize="568.8,1172" sap2010:WorkflowViewState.IdRef="NApplicationCard_1" InteractionMode="DebuggerApi" ScopeGuid="18c6374b-d2c9-4521-ae76-a3a4ce77e666" Version="V2">
+    <uix:NApplicationCard AttachMode="ByInstance" CloseMode="Never" DisplayName="Use Application/Browser" sap:VirtualizedContainerService.HintSize="568.8,1172" sap2010:WorkflowViewState.IdRef="NApplicationCard_1" InteractionMode="DebuggerApi" ScopeGuid="18c6374b-d2c9-4521-ae76-a3a4ce77e666" Version="V2">
       <uix:NApplicationCard.Body>
         <ActivityAction x:TypeArguments="x:Object">
           <ActivityAction.Argument>
@@ -218,13 +218,17 @@
         <uix:TargetApp Area="0, 0, 0, 0" BrowserType="Chrome" IconBase64="iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAAAJdSURBVFhHY0hgvPR/IPGoA0YdMHwdUKN36/+TK99R8Lq6FxjqaOaAY0ve/UcHzZZ3MNTRxAEF0tf+//71D2otBDw49w2rWpo4YEvHK6i1CDAz5hFWtVR3QBr35f9f3v2BWgsB757++p/Mil09VgfcPvYFqhUCDs55i6FmfcMLqCwE3DnxFSy+OOcpVAQBVlU8x9APw1gdMCXkAVQrBPz4+vd/psAVuHwSyyWwr5DBtIiH/xOZLv1/cfsHVAQCfnz5+z9L8CqK+cgYqwMSmS/9f33/J9QICFia/xQuj+7Ad09+gR01MQBVHAT2THmDYjY6xpkGlhagBuWz69/hctf2fYaKQsDqSkgQ3ziEGnV///77X6ZyA64PG8bpgAzeK/+/fURNTB2Od/9Xat6E8iDg57e//7OFr/5P5bwMDn5kfGAWZtpBxzgdAMLbe1Cz06nVH/7vnvQayoMAZEtAjk5hv4xiBiGM1wFFctf///mNKFBA7G+fUEOlSvvm/xyRq/8v7fj0/9+/f2A1IEdiMw8bxusAED6x4j3UKkxwedcnsJojCzGL3emRDzHMwoYJOqDR7DbUSEzQ530frObJ1e9QEQTY2IRZ8WDDBB0AwreOoKZuEHh+8wdcfs/UN1BRCABFRYs1ZsWDDRPlgMlBmPl7UfYTuDyo+N077c3/Nw9//n94/hu4UELWjw8T5YB+n/tQayHg64c//9N5ECUjJZgoB6AXPKDsiU0dOZigA2oNbkGthYC/f/79L1a4jlUtOZigA44uQs1ip9d+wKqOXExUFNASjzpg1AED7IBL/wEEb/bMxqNS/AAAAABJRU5ErkJggg==" InformativeScreenshot="98b845fa6f2c2d961758883c36cf4986.jpg" Selector="&lt;html app='chrome.exe' title='GBP/EUR (GBPEUR=X) Stock Historical Prices &amp;amp; Data - Yahoo Finance' /&gt;" Title="GBP/EUR (GBPEUR=X) Stock Historical Prices &amp; Data - Yahoo Finance" Url="[in_Config(&quot;Royalties_YahooFinance_URL&quot;).ToString]" />
       </uix:NApplicationCard.TargetApp>
     </uix:NApplicationCard>
-    <ui:InvokeCode ContinueOnError="{x:Null}" Code="Dim lastDayOfMonth As DateTime= New DateTime(in_currentDate.Year, in_currentDate.Month, DateTime.DaysInMonth(in_currentDate.Year, in_currentDate.Month))&#xA;&#xA;out_dateLastFriday = lastDayOfMonth.AddDays(-((lastDayOfMonth.DayOfWeek + 2) Mod 7))" DisplayName="Get last friday of the month" sap:VirtualizedContainerService.HintSize="568.8,164.8" sap2010:WorkflowViewState.IdRef="InvokeCode_1">
+    <ui:InvokeCode ContinueOnError="{x:Null}" Code="Dim lastDayOfMonth As DateTime= New DateTime(in_currentDate.Year, in_currentDate.Month, DateTime.DaysInMonth(in_currentDate.Year, in_currentDate.Month))&#xD;&#xA;&#xD;&#xA;out_dateLastFriday = lastDayOfMonth.AddDays(-((lastDayOfMonth.DayOfWeek + 2) Mod 7))" DisplayName="Get last friday of the month" sap:VirtualizedContainerService.HintSize="568.8,164.8" sap2010:WorkflowViewState.IdRef="InvokeCode_1">
       <ui:InvokeCode.Arguments>
-        <InArgument x:TypeArguments="s:DateTime" x:Key="in_currentDate">[convert.ToDateTime(in_TransactionItem.SpecificContent("periodRun").ToString)]</InArgument>
-        <OutArgument x:TypeArguments="s:DateTime" x:Key="out_dateLastFriday">[dateLastFriday]</OutArgument>
+        <InArgument x:TypeArguments="s:DateTime" x:Key="in_currentDate">
+          <VisualBasicValue x:TypeArguments="s:DateTime" ExpressionText="convert.ToDateTime(convert.ToDateTime(in_TransactionItem.SpecificContent(&quot;periodRun&quot;).ToString).AddMonths(-1).ToString)" />
+        </InArgument>
+        <OutArgument x:TypeArguments="s:DateTime" x:Key="out_dateLastFriday">
+          <VisualBasicReference x:TypeArguments="s:DateTime" ExpressionText="dateLastFriday" />
+        </OutArgument>
       </ui:InvokeCode.Arguments>
     </ui:InvokeCode>
-    <Assign sap:VirtualizedContainerService.HintSize="568.8,81.6" sap2010:WorkflowViewState.IdRef="Assign_2">
+    <Assign sap:VirtualizedContainerService.HintSize="568.8,80.8" sap2010:WorkflowViewState.IdRef="Assign_2">
       <Assign.To>
         <OutArgument x:TypeArguments="sd:DataTable">[dtYahooExchangeRates]</OutArgument>
       </Assign.To>
@@ -234,7 +238,7 @@
     </Assign>
     <ui:SetFocus DelayBefore="{x:Null}" DelayMS="{x:Null}" DisplayName="Set Focus 'TD'" sap:VirtualizedContainerService.HintSize="568.8,107.2" sap2010:WorkflowViewState.IdRef="SetFocus_1">
       <ui:SetFocus.Target>
-        <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="60222935-217a-4eab-890b-cb70cf7b95cf" InformativeScreenshot="41449a42c6b463cc26051a08e22de83f" Selector="[&quot;&lt;html app='chrome.exe' title='GBP/EUR (GBPEUR=X) Stock Historical Prices &amp;amp; Data - Yahoo Finance' /&gt;&lt;webctrl tag='TABLE' /&gt;&lt;webctrl tableRow='2' tag='TD' aaname='&quot;+dtYahooExchangeRates.rows(0)(0).ToString+&quot;' /&gt;&quot;]">
+        <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="60222935-217a-4eab-890b-cb70cf7b95cf" InformativeScreenshot="41449a42c6b463cc26051a08e22de83f" Selector="[&quot;&lt;html app='chrome.exe' title='GBP/EUR (GBPEUR=X) Stock Historical Prices &amp;amp; Data - Yahoo Finance' /&gt;&lt;webctrl tag='TABLE' /&gt;&lt;webctrl tag='TD' aaname='&quot;+dtYahooExchangeRates.rows(0)(0).ToString+&quot;' /&gt;&quot;]">
           <ui:Target.TimeoutMS>
             <InArgument x:TypeArguments="x:Int32" />
           </ui:Target.TimeoutMS>
@@ -244,6 +248,28 @@
         </ui:Target>
       </ui:SetFocus.Target>
     </ui:SetFocus>
+    <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" ClickType="CLICK_SINGLE" CursorMotionType="Instant" sap:VirtualizedContainerService.HintSize="568.8,86.4" sap2010:WorkflowViewState.IdRef="Click_2" KeyModifiers="None" MouseButton="BTN_LEFT">
+      <ui:Click.CursorPosition>
+        <ui:CursorPosition Position="Center">
+          <ui:CursorPosition.OffsetX>
+            <InArgument x:TypeArguments="x:Int32" />
+          </ui:CursorPosition.OffsetX>
+          <ui:CursorPosition.OffsetY>
+            <InArgument x:TypeArguments="x:Int32" />
+          </ui:CursorPosition.OffsetY>
+        </ui:CursorPosition>
+      </ui:Click.CursorPosition>
+      <ui:Click.Target>
+        <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="1ef4e584-6dac-4ec4-8fec-f3fe67964bca" Selector="[&quot;&lt;html app='chrome.exe' title='GBP/EUR (GBPEUR=X) Stock Historical Prices &amp;amp; Data - Yahoo Finance' /&gt;&lt;webctrl tag='TABLE' /&gt;&lt;webctrl tag='TD' aaname='&quot;+dtYahooExchangeRates.rows(0)(0).ToString+&quot;' /&gt;&quot;]">
+          <ui:Target.TimeoutMS>
+            <InArgument x:TypeArguments="x:Int32" />
+          </ui:Target.TimeoutMS>
+          <ui:Target.WaitForReady>
+            <InArgument x:TypeArguments="ui:WaitForReady" />
+          </ui:Target.WaitForReady>
+        </ui:Target>
+      </ui:Click.Target>
+    </ui:Click>
     <ui:TakeScreenshot WaitBefore="{x:Null}" DisplayName="Take Screenshot 'document GBP/EUR'" sap:VirtualizedContainerService.HintSize="568.8,107.2" sap2010:WorkflowViewState.IdRef="TakeScreenshot_1" Screenshot="[capture]">
       <ui:TakeScreenshot.Target>
         <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="5d47e862-787c-4197-8dad-46fbe99ac98e" InformativeScreenshot="d4d0306d4ee327559677d21d20139daf" Selector="&lt;html app='chrome.exe' title='GBP/EUR (GBPEUR=X) Stock Historical Prices &amp;amp; Data - Yahoo Finance' /&gt;&lt;webctrl tag='ARTICLE' /&gt;">
@@ -258,9 +284,7 @@
     </ui:TakeScreenshot>
     <ui:InvokeCode ContinueOnError="{x:Null}" Code="Clipboard.SetImage(in_image)" DisplayName="Invoke Code" sap:VirtualizedContainerService.HintSize="568.8,164.8" sap2010:WorkflowViewState.IdRef="InvokeCode_2">
       <ui:InvokeCode.Arguments>
-        <InArgument x:TypeArguments="sd1:Image" x:Key="in_image">
-          <VisualBasicValue x:TypeArguments="sd1:Image" ExpressionText="capture" />
-        </InArgument>
+        <InArgument x:TypeArguments="sd1:Image" x:Key="in_image">[capture]</InArgument>
       </ui:InvokeCode.Arguments>
     </ui:InvokeCode>
     <ui:ExcelApplicationScope Password="{x:Null}" DisplayName="Excel Application Scope" sap:VirtualizedContainerService.HintSize="568.8,967.2" sap2010:WorkflowViewState.IdRef="ExcelApplicationScope_1" InstanceCachePeriod="3000" WorkbookPath="[in_TransactionItem.SpecificContent(&quot;currentMasterRoyaltyFilePath&quot;).ToString]">
@@ -275,11 +299,11 @@
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
-            <ui:ExcelWriteCell Cell="[string.Format(in_Config(&quot;Royalties_ExchangeRatesTab_cellRange1&quot;).ToString,convert.ToDateTime(in_TransactionItem.SpecificContent(&quot;periodRun&quot;).ToString).AddMonths(-1).ToString(&quot;M&quot;))]" DisplayName="Write C[month-1]" sap:VirtualizedContainerService.HintSize="387.2,88" sap2010:WorkflowViewState.IdRef="ExcelWriteCell_1" SheetName="[in_Config(&quot;Royalties_ExchangeRatesTab&quot;).ToString]" Text="[dtYahooExchangeRates.Rows(0)(4).ToString]" />
-            <ui:ExcelWriteCell Cell="[in_Config(&quot;Royalties_ExchangeRatesTab_cellRange2&quot;).ToString]" DisplayName="Write G20" sap:VirtualizedContainerService.HintSize="387.2,88" sap2010:WorkflowViewState.IdRef="ExcelWriteCell_2" SheetName="[in_Config(&quot;Royalties_ExchangeRatesTab&quot;).ToString]" Text="[string.Format(in_Config(&quot;Royalties_ExchangeRatesTab_Value1&quot;).ToString,convert.ToDateTime(in_TransactionItem.SpecificContent(&quot;periodRun&quot;).ToString).AddMonths(-4).ToString(&quot;MM&quot;),convert.ToDateTime(in_TransactionItem.SpecificContent(&quot;periodRun&quot;).ToString).AddMonths(-1).ToString(&quot;MMMM yy&quot;))]" />
-            <ui:ExcelWriteCell Cell="[in_Config(&quot;Royalties_ExchangeRatesTab_cellRange3&quot;).ToString]" DisplayName="Write H20" sap:VirtualizedContainerService.HintSize="387.2,88" sap2010:WorkflowViewState.IdRef="ExcelWriteCell_3" SheetName="[in_Config(&quot;Royalties_ExchangeRatesTab&quot;).ToString]" Text="[now.ToString(&quot;M/d/yyyy&quot;)]" />
-            <ui:ExcelWriteCell Cell="[in_Config(&quot;Royalties_ExchangeRatesTab_cellRange4&quot;).ToString]" DisplayName="Write I20" sap:VirtualizedContainerService.HintSize="387.2,88" sap2010:WorkflowViewState.IdRef="ExcelWriteCell_4" SheetName="[in_Config(&quot;Royalties_ExchangeRatesTab&quot;).ToString]" Text="[now.ToString(&quot;hh:mm a&quot;)]" />
-            <ui:ExcelSelectRange DisplayName="Select Range" sap:VirtualizedContainerService.HintSize="387.2,60" sap2010:WorkflowViewState.IdRef="ExcelSelectRange_1" Range="[in_Config(&quot;Royalties_ExchangeRatesTab_cellRange5&quot;).ToString]" SheetName="[in_Config(&quot;Royalties_ExchangeRatesTab&quot;).ToString]" />
+            <ui:ExcelWriteCell Cell="[string.Format(in_Config(&quot;Royalties_ExchangeRatesTab_CellRange1&quot;).ToString,(cint(convert.ToDateTime(in_TransactionItem.SpecificContent(&quot;periodRun&quot;).ToString).AddMonths(-1).ToString(&quot;MM&quot;))+3).ToString)]" DisplayName="Write C[month-1]" sap:VirtualizedContainerService.HintSize="387.2,88" sap2010:WorkflowViewState.IdRef="ExcelWriteCell_1" SheetName="[in_Config(&quot;Royalties_ExchangeRatesTab&quot;).ToString]" Text="[dtYahooExchangeRates.Rows(0)(4).ToString]" />
+            <ui:ExcelWriteCell Cell="[in_Config(&quot;Royalties_ExchangeRatesTab_CellRange2&quot;).ToString]" DisplayName="Write G20" sap:VirtualizedContainerService.HintSize="387.2,88" sap2010:WorkflowViewState.IdRef="ExcelWriteCell_2" SheetName="[in_Config(&quot;Royalties_ExchangeRatesTab&quot;).ToString]" Text="[string.Format(in_Config(&quot;Royalties_ExchangeRatesTab_Value1&quot;).ToString,convert.ToDateTime(in_TransactionItem.SpecificContent(&quot;periodRun&quot;).ToString).AddMonths(-4).ToString(&quot;MM&quot;),convert.ToDateTime(in_TransactionItem.SpecificContent(&quot;periodRun&quot;).ToString).AddMonths(-1).ToString(&quot;MMMM yy&quot;))]" />
+            <ui:ExcelWriteCell Cell="[in_Config(&quot;Royalties_ExchangeRatesTab_CellRange3&quot;).ToString]" DisplayName="Write H20" sap:VirtualizedContainerService.HintSize="387.2,88" sap2010:WorkflowViewState.IdRef="ExcelWriteCell_3" SheetName="[in_Config(&quot;Royalties_ExchangeRatesTab&quot;).ToString]" Text="[now.ToString(&quot;M/d/yyyy&quot;)]" />
+            <ui:ExcelWriteCell Cell="[in_Config(&quot;Royalties_ExchangeRatesTab_CellRange4&quot;).ToString]" DisplayName="Write I20" sap:VirtualizedContainerService.HintSize="387.2,88" sap2010:WorkflowViewState.IdRef="ExcelWriteCell_4" SheetName="[in_Config(&quot;Royalties_ExchangeRatesTab&quot;).ToString]" Text="[now.ToString(&quot;hh:mm a&quot;)]" />
+            <ui:ExcelSelectRange DisplayName="Select Range" sap:VirtualizedContainerService.HintSize="387.2,60" sap2010:WorkflowViewState.IdRef="ExcelSelectRange_1" Range="[in_Config(&quot;Royalties_ExchangeRatesTab_CellRange5&quot;).ToString]" SheetName="[in_Config(&quot;Royalties_ExchangeRatesTab&quot;).ToString]" />
             <ui:SendHotkey ClickBeforeTyping="{x:Null}" DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" EmptyField="{x:Null}" SendWindowMessages="{x:Null}" SpecialKey="{x:Null}" Activate="True" DisplayName="Paste capture in excel" sap:VirtualizedContainerService.HintSize="387.2,133.6" sap2010:WorkflowViewState.IdRef="SendHotkey_1" Key="v" KeyModifiers="Ctrl">
               <ui:SendHotkey.Target>
                 <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Selector="{x:Null}" Id="26ede665-ea63-4e40-924e-5dcec6ba53fd">

@@ -6,7 +6,7 @@
   <VisualBasic.Settings>
     <x:Null />
   </VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>1130.4,2163.2</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1130.4,4999.2</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>PopulateBobJIntTab_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -96,9 +96,14 @@
       <AssemblyReference>System.Linq.Async</AssemblyReference>
       <AssemblyReference>Microsoft.VisualBasic.Forms</AssemblyReference>
       <AssemblyReference>Microsoft.VisualBasic.Core</AssemblyReference>
+      <AssemblyReference>System.Linq.Async.Queryable</AssemblyReference>
+      <AssemblyReference>System.Linq.Expressions</AssemblyReference>
+      <AssemblyReference>System.Linq.Parallel</AssemblyReference>
+      <AssemblyReference>System.Collections.Immutable</AssemblyReference>
+      <AssemblyReference>System.Linq.Queryable</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="PopulateBobJIntTab" sap:VirtualizedContainerService.HintSize="545.6,2098.4" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="PopulateBobJIntTab" sap:VirtualizedContainerService.HintSize="622.4,4934.4" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="sd:DataTable" Name="dtBobJIIReport" />
       <Variable x:TypeArguments="sd:DataTable" Name="dtBrandHL4ReclassTemplate" />
@@ -110,7 +115,7 @@
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:ExcelApplicationScope Password="{x:Null}" DisplayName="Open BobJ I&amp;I Actuals Report" sap:VirtualizedContainerService.HintSize="483.2,281.6" sap2010:WorkflowViewState.IdRef="ExcelApplicationScope_1" InstanceCachePeriod="3000" WorkbookPath="[in_TransactionItem.SpecificContent(&quot;bobjIIReportPath&quot;).ToString]">
+    <ui:ExcelApplicationScope Password="{x:Null}" DisplayName="Open BobJ I&amp;I Actuals Report" sap:VirtualizedContainerService.HintSize="560,281.6" sap2010:WorkflowViewState.IdRef="ExcelApplicationScope_1" InstanceCachePeriod="3000" WorkbookPath="[in_TransactionItem.SpecificContent(&quot;bobjIIReportPath&quot;).ToString]">
       <ui:ExcelApplicationScope.Body>
         <ActivityAction x:TypeArguments="ui:WorkbookApplication">
           <ActivityAction.Argument>
@@ -127,13 +132,13 @@
         </ActivityAction>
       </ui:ExcelApplicationScope.Body>
     </ui:ExcelApplicationScope>
-    <ui:InvokeCode ContinueOnError="{x:Null}" Code="'If number of columns from BobJ I&amp;I Actuals report &lt;&gt; 5 + (datePeriod-1)&#xA;If io_dtBobJIIReport.Columns.Count &lt;&gt; 5 + CInt(Convert.ToDateTime(in_TransactionItem.SpecificContent(&quot;datePeriod&quot;).ToString).AddMonths(-1).ToString(&quot;MM&quot;))&#xA; &#x9;io_dtBobJIIReport.Columns.RemoveAt(io_dtBobJIIReport.Columns.Count - 8 + CInt(Convert.ToDateTime(in_TransactionItem.SpecificContent(&quot;datePeriod&quot;).ToString).AddMonths(-1).ToString(&quot;MM&quot;)))&#xA;End If&#xA;" DisplayName="Remove last row if necesssary" sap:VirtualizedContainerService.HintSize="483.2,164.8" sap2010:WorkflowViewState.IdRef="InvokeCode_1">
+    <ui:InvokeCode ContinueOnError="{x:Null}" Code="'If number of columns from BobJ I&amp;I Actuals report &lt;&gt; 5 + (periodRun-1)&#xD;&#xA;If io_dtBobJIIReport.Columns.Count &lt;&gt; 5 + CInt(Convert.ToDateTime(in_TransactionItem.SpecificContent(&quot;periodRun&quot;).ToString).AddMonths(-1).ToString(&quot;MM&quot;))&#xD;&#xA; &#x9;io_dtBobJIIReport.Columns.RemoveAt(io_dtBobJIIReport.Columns.Count - 8 + CInt(Convert.ToDateTime(in_TransactionItem.SpecificContent(&quot;periodRun&quot;).ToString).AddMonths(-1).ToString(&quot;MM&quot;)))&#xD;&#xA;End If&#xD;&#xA;" DisplayName="Remove last row if necesssary" sap:VirtualizedContainerService.HintSize="560,164.8" sap2010:WorkflowViewState.IdRef="InvokeCode_1">
       <ui:InvokeCode.Arguments>
         <InOutArgument x:TypeArguments="sd:DataTable" x:Key="io_dtBobJIIReport">[dtBobJIIReport]</InOutArgument>
         <InArgument x:TypeArguments="ui:QueueItem" x:Key="in_TransactionItem">[in_TransactionItem]</InArgument>
       </ui:InvokeCode.Arguments>
     </ui:InvokeCode>
-    <ui:ExcelApplicationScope Password="{x:Null}" DisplayName="Open Current Master Royalty file" sap:VirtualizedContainerService.HintSize="483.2,409.6" sap2010:WorkflowViewState.IdRef="ExcelApplicationScope_2" InstanceCachePeriod="3000" WorkbookPath="[in_TransactionItem.SpecificContent(&quot;currentMasterRoyaltyFilePath&quot;).ToString]">
+    <ui:ExcelApplicationScope Password="{x:Null}" DisplayName="Open Current Master Royalty file" sap:VirtualizedContainerService.HintSize="560,409.6" sap2010:WorkflowViewState.IdRef="ExcelApplicationScope_2" InstanceCachePeriod="3000" WorkbookPath="[in_TransactionItem.SpecificContent(&quot;currentMasterRoyaltyFilePath&quot;).ToString]">
       <ui:ExcelApplicationScope.Body>
         <ActivityAction x:TypeArguments="ui:WorkbookApplication">
           <ActivityAction.Argument>
@@ -157,7 +162,7 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:ExcelApplicationScope>
-    <ui:ExcelApplicationScope Password="{x:Null}" DisplayName="Open Royalty Master Template" sap:VirtualizedContainerService.HintSize="483.2,381.6" sap2010:WorkflowViewState.IdRef="ExcelApplicationScope_3" InstanceCachePeriod="3000" WorkbookPath="[in_TransactionItem.SpecificContent(&quot;royaltyMasterTemplate&quot;).ToString]">
+    <ui:ExcelApplicationScope Password="{x:Null}" DisplayName="Open Royalty Master Template" sap:VirtualizedContainerService.HintSize="560,381.6" sap2010:WorkflowViewState.IdRef="ExcelApplicationScope_3" InstanceCachePeriod="3000" WorkbookPath="[in_TransactionItem.SpecificContent(&quot;royaltyMasterTemplate&quot;).ToString]">
       <ui:ExcelApplicationScope.Body>
         <ActivityAction x:TypeArguments="ui:WorkbookApplication">
           <ActivityAction.Argument>
@@ -170,7 +175,7 @@
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
             <ui:ExcelReadRange AddHeaders="True" DataTable="[dtBrandHL4ReclassTemplate]" DisplayName="Read Brand HL4 Reclasss tab" sap:VirtualizedContainerService.HintSize="387.2,60" sap2010:WorkflowViewState.IdRef="ExcelReadRange_3" Range="[in_Config(&quot;Royalties_BrandHL4ReclassTab_CellRange&quot;).ToString]" SheetName="[in_Config(&quot;Royalties_BrandHL4ReclassTab&quot;).ToString]" />
-            <ui:ExcelReadRange AddHeaders="True" DataTable="[dtLookups]" DisplayName="Read Lookups tab" sap:VirtualizedContainerService.HintSize="387.2,60" sap2010:WorkflowViewState.IdRef="ExcelReadRange_4" Range="[in_Config(&quot;Royalties_LookupTab_CellRange&quot;).ToString]" SheetName="[in_Config(&quot;Royalties_LookupTab&quot;).ToString]" />
+            <ui:ExcelReadRange AddHeaders="False" DataTable="[dtLookups]" DisplayName="Read Lookups tab" sap:VirtualizedContainerService.HintSize="387.2,60" sap2010:WorkflowViewState.IdRef="ExcelReadRange_4" Range="[in_Config(&quot;Royalties_LookupTab_CellRange&quot;).ToString]" SheetName="[in_Config(&quot;Royalties_LookupTab&quot;).ToString]" />
           </Sequence>
         </ActivityAction>
       </ui:ExcelApplicationScope.Body>
@@ -181,7 +186,7 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:ExcelApplicationScope>
-    <Assign DisplayName="Remove empty entries" sap:VirtualizedContainerService.HintSize="483.2,81.6" sap2010:WorkflowViewState.IdRef="Assign_1">
+    <Assign DisplayName="Remove empty entries" sap:VirtualizedContainerService.HintSize="560,80.8" sap2010:WorkflowViewState.IdRef="Assign_1">
       <Assign.To>
         <OutArgument x:TypeArguments="sd:DataTable">[dtBrandHL4Reclass]</OutArgument>
       </Assign.To>
@@ -189,21 +194,21 @@
         <InArgument x:TypeArguments="sd:DataTable">[dtBrandHL4Reclass.AsEnumerable.Where(function(x) x(0).ToString &lt;&gt; "0").CopyToDataTable]</InArgument>
       </Assign.Value>
     </Assign>
-    <If Condition="[dtBrandHL4Reclass.AsEnumerable.Where(Function(x) x(0).ToString.Contains(in_Config(&quot;Royalties_BobJInt_NAValue1&quot;).ToString)).CopyToDataTable.Rows.count &lt;&gt; 0 = true]" DisplayName="If nf values found on column A" sap:VirtualizedContainerService.HintSize="483.2,52.8" sap2010:WorkflowViewState.IdRef="If_1">
+    <If Condition="[dtBrandHL4Reclass.AsEnumerable.Where(Function(x) x(0).ToString.Contains(in_Config(&quot;Royalties_BobJInt_NAValue1&quot;).ToString)).Any = true]" DisplayName="If nf values found on column A" sap:VirtualizedContainerService.HintSize="560,1410.4" sap2010:WorkflowViewState.IdRef="If_1">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
-          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           <x:Boolean x:Key="IsPinned">False</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
       <If.Then>
-        <Sequence sap:VirtualizedContainerService.HintSize="526.4,1228.8" sap2010:WorkflowViewState.IdRef="Sequence_7">
+        <Sequence sap:VirtualizedContainerService.HintSize="526.4,1227.2" sap2010:WorkflowViewState.IdRef="Sequence_7">
           <sap:WorkflowViewStateService.ViewState>
             <scg:Dictionary x:TypeArguments="x:String, x:Object">
               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
-          <Assign DisplayName="Filter on nf values" sap:VirtualizedContainerService.HintSize="483.2,81.6" sap2010:WorkflowViewState.IdRef="Assign_2">
+          <Assign DisplayName="Filter on nf values" sap:VirtualizedContainerService.HintSize="483.2,80.8" sap2010:WorkflowViewState.IdRef="Assign_2">
             <Assign.To>
               <OutArgument x:TypeArguments="sd:DataTable">[dtBrandHL4Reclass]</OutArgument>
             </Assign.To>
@@ -211,12 +216,12 @@
               <InArgument x:TypeArguments="sd:DataTable">[dtBrandHL4Reclass.AsEnumerable.Where(function(x) x(0).ToString = in_Config("Royalties_BobJInt_NAValue1").ToString).CopyToDataTable]</InArgument>
             </Assign.Value>
           </Assign>
-          <Assign DisplayName="Keep unique lines" sap:VirtualizedContainerService.HintSize="483.2,81.6" sap2010:WorkflowViewState.IdRef="Assign_3">
+          <Assign DisplayName="Keep unique lines" sap:VirtualizedContainerService.HintSize="483.2,80.8" sap2010:WorkflowViewState.IdRef="Assign_3">
             <Assign.To>
               <OutArgument x:TypeArguments="sd:DataTable">[dtBrandHL4Reclass]</OutArgument>
             </Assign.To>
             <Assign.Value>
-              <InArgument x:TypeArguments="sd:DataTable">[dtBrandHL4Reclass.DefaultView.ToTable(True,"Brand HL4 - IBP Sub Brand")]</InArgument>
+              <InArgument x:TypeArguments="sd:DataTable">[dtBrandHL4Reclass.DefaultView.ToTable(True,"Column6")]</InArgument>
             </Assign.Value>
           </Assign>
           <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" DataTable="[dtBrandHL4Reclass]" DisplayName="For Each Row in dtBrandHL4Reclass" sap:VirtualizedContainerService.HintSize="483.2,416" sap2010:WorkflowViewState.IdRef="ForEachRow_1">
@@ -272,7 +277,7 @@
         <Sequence sap2010:WorkflowViewState.IdRef="Sequence_8" />
       </If.Else>
     </If>
-    <ui:ExcelApplicationScope Password="{x:Null}" DisplayName="Open Current Master Royalty file" sap:VirtualizedContainerService.HintSize="483.2,281.6" sap2010:WorkflowViewState.IdRef="ExcelApplicationScope_5" InstanceCachePeriod="3000" WorkbookPath="[in_TransactionItem.SpecificContent(&quot;currentMasterRoyaltyFilePath&quot;).ToString]">
+    <ui:ExcelApplicationScope Password="{x:Null}" DisplayName="Open Current Master Royalty file" sap:VirtualizedContainerService.HintSize="560,281.6" sap2010:WorkflowViewState.IdRef="ExcelApplicationScope_5" InstanceCachePeriod="3000" WorkbookPath="[in_TransactionItem.SpecificContent(&quot;currentMasterRoyaltyFilePath&quot;).ToString]">
       <ui:ExcelApplicationScope.Body>
         <ActivityAction x:TypeArguments="ui:WorkbookApplication">
           <ActivityAction.Argument>
@@ -295,21 +300,29 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:ExcelApplicationScope>
-    <If Condition="[dtBrandHL4Reclass.AsEnumerable.Where(Function(x) x(1).ToString.Contains(in_Config(&quot;Royalties_BobJInt_NAValue2&quot;).ToString)).CopyToDataTable.Rows.count &lt;&gt; 0 = true]" DisplayName="If N/A values found on column B" sap:VirtualizedContainerService.HintSize="483.2,52.8" sap2010:WorkflowViewState.IdRef="If_2">
+    <Assign DisplayName="Remove empty entries" sap:VirtualizedContainerService.HintSize="560,81.6" sap2010:WorkflowViewState.IdRef="Assign_6">
+      <Assign.To>
+        <OutArgument x:TypeArguments="sd:DataTable">[dtBrandHL4Reclass]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="sd:DataTable">[dtBrandHL4Reclass.AsEnumerable.Where(function(x) x(0).ToString &lt;&gt; "0").CopyToDataTable]</InArgument>
+      </Assign.Value>
+    </Assign>
+    <If Condition="[dtBrandHL4Reclass.AsEnumerable.Where(Function(x) x(1).ToString.Contains(in_Config(&quot;Royalties_BobJInt_NAValue2&quot;).ToString)).Any = true]" DisplayName="If N/A values found on column B" sap:VirtualizedContainerService.HintSize="560,1410.4" sap2010:WorkflowViewState.IdRef="If_2">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
-          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           <x:Boolean x:Key="IsPinned">False</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
       <If.Then>
-        <Sequence sap:VirtualizedContainerService.HintSize="526.4,1228.8" sap2010:WorkflowViewState.IdRef="Sequence_12">
+        <Sequence sap:VirtualizedContainerService.HintSize="526.4,1227.2" sap2010:WorkflowViewState.IdRef="Sequence_12">
           <sap:WorkflowViewStateService.ViewState>
             <scg:Dictionary x:TypeArguments="x:String, x:Object">
               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
-          <Assign DisplayName="Filter on nf values" sap:VirtualizedContainerService.HintSize="483.2,81.6" sap2010:WorkflowViewState.IdRef="Assign_4">
+          <Assign DisplayName="Filter on nf values" sap:VirtualizedContainerService.HintSize="483.2,80.8" sap2010:WorkflowViewState.IdRef="Assign_4">
             <Assign.To>
               <OutArgument x:TypeArguments="sd:DataTable">[dtBrandHL4Reclass]</OutArgument>
             </Assign.To>
@@ -317,12 +330,12 @@
               <InArgument x:TypeArguments="sd:DataTable">[dtBrandHL4Reclass.AsEnumerable.Where(function(x) x(1).ToString.Contains(in_Config("Royalties_BobJInt_NAValue2").ToString)).CopyToDataTable]</InArgument>
             </Assign.Value>
           </Assign>
-          <Assign DisplayName="Keep unique lines" sap:VirtualizedContainerService.HintSize="483.2,81.6" sap2010:WorkflowViewState.IdRef="Assign_5">
+          <Assign DisplayName="Keep unique lines" sap:VirtualizedContainerService.HintSize="483.2,80.8" sap2010:WorkflowViewState.IdRef="Assign_5">
             <Assign.To>
               <OutArgument x:TypeArguments="sd:DataTable">[dtBrandHL4Reclass]</OutArgument>
             </Assign.To>
             <Assign.Value>
-              <InArgument x:TypeArguments="sd:DataTable">[dtBrandHL4Reclass.DefaultView.ToTable(True,"Customer HL6 - Customer Level 6")]</InArgument>
+              <InArgument x:TypeArguments="sd:DataTable">[dtBrandHL4Reclass.DefaultView.ToTable(True,"Column5")]</InArgument>
             </Assign.Value>
           </Assign>
           <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" DataTable="[dtBrandHL4Reclass]" DisplayName="For Each Row in dtBrandHL4Reclass" sap:VirtualizedContainerService.HintSize="483.2,416" sap2010:WorkflowViewState.IdRef="ForEachRow_2">
@@ -337,7 +350,7 @@
                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                     </scg:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
-                  <ui:AddDataRow DataRow="{x:Null}" ArrayRow="[{CurrentRow(0).ToString}]" DataTable="[dtLookups]" DisplayName="Add Data Row" sap:VirtualizedContainerService.HintSize="387.2,188" sap2010:WorkflowViewState.IdRef="AddDataRow_2" />
+                  <ui:AddDataRow DataRow="{x:Null}" ArrayRow="[{CurrentRow(0).ToString,&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;}]" DataTable="[dtLookups]" DisplayName="Add Data Row" sap:VirtualizedContainerService.HintSize="387.2,188" sap2010:WorkflowViewState.IdRef="AddDataRow_2" />
                 </Sequence>
               </ActivityAction>
             </ui:ForEachRow.Body>
@@ -360,7 +373,7 @@
                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                     </scg:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
-                  <ui:ExcelWriteRange AddHeaders="True" DataTable="[dtLookups]" DisplayName="Write Lookup Tab" sap:VirtualizedContainerService.HintSize="387.2,88" sap2010:WorkflowViewState.IdRef="ExcelWriteRange_3" SheetName="[in_Config(&quot;Royalties_LookupTab&quot;).ToString]" StartingCell="[in_Config(&quot;Royalties_LookupTab_CellRange&quot;).ToString]" />
+                  <ui:ExcelWriteRange AddHeaders="False" DataTable="[dtLookups]" DisplayName="Write Lookup Tab" sap:VirtualizedContainerService.HintSize="387.2,88" sap2010:WorkflowViewState.IdRef="ExcelWriteRange_3" SheetName="[in_Config(&quot;Royalties_LookupTab&quot;).ToString]" StartingCell="[in_Config(&quot;Royalties_LookupTab_CellRange&quot;).ToString]" />
                 </Sequence>
               </ActivityAction>
             </ui:ExcelApplicationScope.Body>

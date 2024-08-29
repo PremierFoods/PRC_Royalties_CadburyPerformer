@@ -101,7 +101,7 @@
       "Path": "Workflows/CheckAmountDifference.xaml",
       "SortBy": 0,
       "VariablesSectionElementsOrder": [
-        "dtPaymentSchedule&Sequence_1"
+        "dtTotalPremierFoods&Sequence_1"
       ],
       "ArgumentsSectionElementsOrder": [
         "in_TransactionItem",
@@ -142,6 +142,47 @@
         "io_RetryNumber",
         "io_TransactionNumber",
         "io_ConsecutiveSystemExceptions"
+      ],
+      "ConstantsSectionElementsOrder": [],
+      "AddedNamespaces": null
+    },
+    {
+      "Path": "Workflows/Check2Errors.xaml",
+      "SortBy": 0,
+      "VariablesSectionElementsOrder": [
+        "dtTotalPremierFoods&Sequence_1",
+        "dtPrevTotalPremierFoods&Sequence_1",
+        "dtCheck2&Sequence_1",
+        "boolDifferencesFound&Sequence_1"
+      ],
+      "ArgumentsSectionElementsOrder": [
+        "in_Config",
+        "in_TransactionItem"
+      ],
+      "ConstantsSectionElementsOrder": [],
+      "AddedNamespaces": null
+    },
+    {
+      "Path": "Workflows/PopulateUKInternationalRoyaltyStatement.xaml",
+      "SortBy": 0,
+      "VariablesSectionElementsOrder": [
+        "listWorksheets&Sequence_1"
+      ],
+      "ArgumentsSectionElementsOrder": [
+        "in_Config",
+        "in_TransactionItem"
+      ],
+      "ConstantsSectionElementsOrder": [],
+      "AddedNamespaces": null
+    },
+    {
+      "Path": "Framework/GetTransactionData.xaml",
+      "SortBy": 0,
+      "VariablesSectionElementsOrder": [],
+      "ArgumentsSectionElementsOrder": [
+        "in_TransactionNumber",
+        "in_Config",
+        "out_TransactionItem"
       ],
       "ConstantsSectionElementsOrder": [],
       "AddedNamespaces": null
