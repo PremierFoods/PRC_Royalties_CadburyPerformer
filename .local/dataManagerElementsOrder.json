@@ -186,6 +186,23 @@
       ],
       "ConstantsSectionElementsOrder": [],
       "AddedNamespaces": null
+    },
+    {
+      "Path": "Workflows/O365_SendEmail.xaml",
+      "SortBy": 0,
+      "VariablesSectionElementsOrder": [
+        "strAppID&Sequence_1",
+        "sstrSecret&Sequence_1"
+      ],
+      "ArgumentsSectionElementsOrder": [
+        "in_arrFilePaths",
+        "in_Config",
+        "in_strMailTo",
+        "in_strMailBody",
+        "in_strMailSubject"
+      ],
+      "ConstantsSectionElementsOrder": [],
+      "AddedNamespaces": null
     }
   ]
 }
