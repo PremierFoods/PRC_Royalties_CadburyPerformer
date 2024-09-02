@@ -1,0 +1,22 @@
+Public Sub DeleteSheet(strWorksheet as string)
+	ThisWorkbook.Sheets(strWorksheet).Delete
+End Sub
+
+Public Sub InsertPicture(strWorksheet as string,strRange as string,strImgPath as string)
+    Dim ws As Worksheet
+    Dim rng As Range
+    Dim shape As Shape
+    
+    ' Set the worksheet and range
+    Set ws = ThisWorkbook.Sheets(strWorksheet)
+    Set rng = ws.Range(strRange)
+    
+    ' Insert the picture and set the shape object
+    Set shape = ws.Shapes.AddPicture(Filename:=strImgPath, _
+                                     LinkToFile:=msoFalse, _
+                                     SaveWithDocument:=msoCTrue, _
+                                     Left:=rng.Left, _
+                                     Top:=rng.Top, _
+                                     Width:=-1, _
+                                     Height:=-1)
+End Sub

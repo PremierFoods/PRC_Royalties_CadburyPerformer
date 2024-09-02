@@ -165,9 +165,7 @@
     {
       "Path": "Workflows/PopulateUKInternationalRoyaltyStatement.xaml",
       "SortBy": 0,
-      "VariablesSectionElementsOrder": [
-        "listWorksheets&Sequence_1"
-      ],
+      "VariablesSectionElementsOrder": [],
       "ArgumentsSectionElementsOrder": [
         "in_Config",
         "in_TransactionItem"
@@ -200,6 +198,37 @@
         "in_strMailTo",
         "in_strMailBody",
         "in_strMailSubject"
+      ],
+      "ConstantsSectionElementsOrder": [],
+      "AddedNamespaces": null
+    },
+    {
+      "Path": "Framework/InitAllSettings.xaml",
+      "SortBy": 0,
+      "VariablesSectionElementsOrder": [
+        "dt_SettingsAndConstants&Sequence_5",
+        "dt_Assets&Sequence_6",
+        "AssetValue&Sequence_11"
+      ],
+      "ArgumentsSectionElementsOrder": [
+        "in_ConfigFile",
+        "in_ConfigSheets",
+        "out_Config"
+      ],
+      "ConstantsSectionElementsOrder": [],
+      "AddedNamespaces": null
+    },
+    {
+      "Path": "Workflows/PopulateLLWorkings.xaml",
+      "SortBy": 0,
+      "VariablesSectionElementsOrder": [
+        "strVariance&Sequence_1",
+        "dtTotalPremierFoods&Sequence_1",
+        "dtBobjLL&Sequence_1"
+      ],
+      "ArgumentsSectionElementsOrder": [
+        "in_TransactionItem",
+        "in_Config"
       ],
       "ConstantsSectionElementsOrder": [],
       "AddedNamespaces": null

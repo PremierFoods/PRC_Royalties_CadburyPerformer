@@ -11,7 +11,7 @@
   <VisualBasic.Settings>
     <x:Null />
   </VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>1130.4,1290.4</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>825.6,1290.4</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>SetTransactionStatus_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <scg:List x:TypeArguments="x:String" Capacity="52">
@@ -237,7 +237,7 @@
                   <VisualBasicValue x:TypeArguments="x:String" ExpressionText="string.Format(in_Config(&quot;Royalties_Success_Mail_Subject&quot;).ToString,convert.ToDateTime(in_TransactionItem.SpecificContent(&quot;periodRun&quot;).ToString).AddMonths(-1).ToString(&quot;MMMM yyyy&quot;))" />
                 </InArgument>
                 <InArgument x:TypeArguments="s:String[]" x:Key="in_arrFilePaths">
-                  <VisualBasicValue x:TypeArguments="s:String[]" ExpressionText="{}{in_TransactionItem.SpecificContent(&quot;currentMasterRoyaltyFilePath&quot;).ToString,String.Format(in_Config(&quot;Royalties_CadburyFolderPath&quot;).ToString,&#xD;&#xA;If(convert.ToDateTime(in_TransactionItem.SpecificContent(&quot;periodRun&quot;).ToString).ToString(&quot;MM&quot;) = &quot;01&quot;,convert.ToDateTime(in_TransactionItem.SpecificContent(&quot;periodRun&quot;).ToString).AddYears(-1).ToString(&quot;yy&quot;), convert.ToDateTime(in_TransactionItem.SpecificContent(&quot;periodRun&quot;).ToString).ToString(&quot;yy&quot;)),&#xD;&#xA;If(convert.ToDateTime(in_TransactionItem.SpecificContent(&quot;periodRun&quot;).ToString).ToString(&quot;MM&quot;) = &quot;01&quot;,convert.ToDateTime(in_TransactionItem.SpecificContent(&quot;periodRun&quot;).ToString).ToString(&quot;yy&quot;),convert.ToDateTime(in_TransactionItem.SpecificContent(&quot;periodRun&quot;).ToString).AddYears(1).tostring(&quot;yy&quot;)),&#xD;&#xA;convert.ToDateTime(in_TransactionItem.SpecificContent(&quot;periodRun&quot;).ToString).AddMonths(-4).ToString(&quot;MM&quot;),&#xD;&#xA;convert.ToDateTime(in_TransactionItem.SpecificContent(&quot;periodRun&quot;).ToString).AddMonths(-1).ToString(&quot;MMMM&quot;))+&quot;\&quot;+&#xD;&#xA;String.Format(in_Config(&quot;Royalties_UKINternationalRoyaltyStatementFileName&quot;).ToString,&#xD;&#xA;convert.ToDateTime(in_TransactionItem.SpecificContent(&quot;periodRun&quot;).ToString).AddMonths(-1).ToString(&quot;MMMM yyyy&quot;))}" />
+                  <VisualBasicValue x:TypeArguments="s:String[]" ExpressionText="{}{in_TransactionItem.SpecificContent(&quot;currentMasterRoyaltyFilePath&quot;).ToString,String.Format(in_Config(&quot;Royalties_CadburyFolderPath&quot;).ToString,&#xD;&#xA;If(convert.todatetime(in_transactionItem.specificContent(&quot;periodRun&quot;).tostring).ToString(&quot;MM&quot;) = &quot;01&quot;,convert.todatetime(in_transactionItem.specificContent(&quot;periodRun&quot;).tostring).AddYears(-1).ToString(&quot;yy&quot;), convert.todatetime(in_transactionItem.specificContent(&quot;periodRun&quot;).tostring).ToString(&quot;yy&quot;)),&#xD;&#xA;If(convert.todatetime(in_transactionItem.specificContent(&quot;periodRun&quot;).tostring).ToString(&quot;MM&quot;) = &quot;01&quot;,convert.todatetime(in_transactionItem.specificContent(&quot;periodRun&quot;).tostring).ToString(&quot;yy&quot;),convert.todatetime(in_transactionItem.specificContent(&quot;periodRun&quot;).tostring).AddYears(1).tostring(&quot;yy&quot;)),&#xD;&#xA;convert.todatetime(in_transactionItem.specificContent(&quot;periodRun&quot;).tostring).AddMonths(-4).ToString(&quot;MM&quot;),&#xD;&#xA;convert.todatetime(in_transactionItem.specificContent(&quot;periodRun&quot;).tostring).AddMonths(-1).ToString(&quot;MMMM&quot;))+&quot;\&quot;+&#xD;&#xA;String.Format(in_Config(&quot;Royalties_UKInternationalRoyaltyStatementFileName&quot;).ToString,&#xD;&#xA;convert.todatetime(in_transactionItem.specificContent(&quot;periodRun&quot;).tostring).AddMonths(-1).ToString(&quot;MMMM&quot;),&#xD;&#xA;If(convert.todatetime(in_transactionItem.specificContent(&quot;periodRun&quot;).tostring).ToString(&quot;MM&quot;) =&quot;01&quot;,convert.todatetime(in_transactionItem.specificContent(&quot;periodRun&quot;).tostring).AddMonths(-1).ToString(&quot;yyyy&quot;),convert.todatetime(in_transactionItem.specificContent(&quot;periodRun&quot;).tostring).ToString(&quot;yyyy&quot;)))}" />
                 </InArgument>
               </ui:InvokeWorkflowFile.Arguments>
             </ui:InvokeWorkflowFile>
@@ -412,18 +412,10 @@
                 </Sequence>
                 <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Workflows\O365_SendEmail.xaml - Invoke Workflow File" sap:VirtualizedContainerService.HintSize="512,113.6" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_10" UnSafe="False" WorkflowFileName="Workflows\O365_SendEmail.xaml">
                   <ui:InvokeWorkflowFile.Arguments>
-                    <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_Config">
-                      <VisualBasicValue x:TypeArguments="scg:Dictionary(x:String, x:Object)" ExpressionText="in_Config" />
-                    </InArgument>
-                    <InArgument x:TypeArguments="x:String" x:Key="in_strMailTo">
-                      <VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_Config(&quot;Royalties_Mail_To&quot;).ToString" />
-                    </InArgument>
-                    <InArgument x:TypeArguments="x:String" x:Key="in_strMailBody">
-                      <VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_Config(&quot;Royalties_&quot;+in_BusinessException.Message.Split(&quot;:&quot;c)(0)+&quot;_Mail_Body&quot;).ToString" />
-                    </InArgument>
-                    <InArgument x:TypeArguments="x:String" x:Key="in_strMailSubject">
-                      <VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_Config(&quot;Royalties_&quot;+in_BusinessException.Message.Split(&quot;:&quot;c)(0)+&quot;_Mail_Subject&quot;).ToString" />
-                    </InArgument>
+                    <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_Config">[in_Config]</InArgument>
+                    <InArgument x:TypeArguments="x:String" x:Key="in_strMailTo">[in_Config("Royalties_Mail_To").ToString]</InArgument>
+                    <InArgument x:TypeArguments="x:String" x:Key="in_strMailBody">[in_Config("Royalties_"+in_BusinessException.Message.Split(":"c)(0)+"_Mail_Body").ToString]</InArgument>
+                    <InArgument x:TypeArguments="x:String" x:Key="in_strMailSubject">[in_Config("Royalties_"+in_BusinessException.Message.Split(":"c)(0)+"_Mail_Subject").ToString]</InArgument>
                     <InArgument x:TypeArguments="s:String[]" x:Key="in_arrFilePaths" />
                   </ui:InvokeWorkflowFile.Arguments>
                 </ui:InvokeWorkflowFile>

@@ -6,7 +6,7 @@
   <VisualBasic.Settings>
     <x:Null />
   </VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>1130.4,1665.6</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1130.4,959.2</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>PopulateUKInternationalRoyaltyStatement_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -116,79 +116,41 @@
       <AssemblyReference>netstandard</AssemblyReference>
       <AssemblyReference>Microsoft.Graph</AssemblyReference>
       <AssemblyReference>Microsoft.Graph.Core</AssemblyReference>
+      <AssemblyReference>System.Linq.Async</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="PopulateUKInternationalRoyaltyStatement" sap:VirtualizedContainerService.HintSize="645.6,1600.8" sap2010:WorkflowViewState.IdRef="Sequence_1">
-    <Sequence.Variables>
-      <Variable x:TypeArguments="scg:List(x:String)" Name="listWorksheets" />
-    </Sequence.Variables>
+  <Sequence DisplayName="PopulateUKInternationalRoyaltyStatement" sap:VirtualizedContainerService.HintSize="622.4,894.4" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:ExcelApplicationScope Password="{x:Null}" CreateNewFile="False" DisplayName="Open Current Master Royalty file" sap:VirtualizedContainerService.HintSize="583.2,246.4" sap2010:WorkflowViewState.IdRef="ExcelApplicationScope_3" InstanceCachePeriod="3000" WorkbookPath="[in_TransactionItem.SpecificContent(&quot;currentMasterRoyaltyFilePath&quot;).ToString]">
-      <ui:ExcelApplicationScope.Body>
-        <ActivityAction x:TypeArguments="ui:WorkbookApplication">
-          <ActivityAction.Argument>
-            <DelegateInArgument x:TypeArguments="ui:WorkbookApplication" Name="ExcelWorkbookScope" />
-          </ActivityAction.Argument>
-          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="449.6,136.8" sap2010:WorkflowViewState.IdRef="Sequence_6">
-            <sap:WorkflowViewStateService.ViewState>
-              <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-              </scg:Dictionary>
-            </sap:WorkflowViewStateService.ViewState>
-            <ui:ExcelGetWorkbookSheets DisplayName="Get Workbook Sheets" sap:VirtualizedContainerService.HintSize="387.2,24.8" sap2010:WorkflowViewState.IdRef="ExcelGetWorkbookSheets_1" Sheets="[listWorksheets]" />
-          </Sequence>
-        </ActivityAction>
-      </ui:ExcelApplicationScope.Body>
-      <sap:WorkflowViewStateService.ViewState>
-        <scg:Dictionary x:TypeArguments="x:String, x:Object">
-          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-          <x:Boolean x:Key="IsPinned">False</x:Boolean>
-        </scg:Dictionary>
-      </sap:WorkflowViewStateService.ViewState>
-    </ui:ExcelApplicationScope>
-    <ui:ForEach x:TypeArguments="x:String" CurrentIndex="{x:Null}" DisplayName="For Each" sap:VirtualizedContainerService.HintSize="583.2,1202.4" sap2010:WorkflowViewState.IdRef="ForEach`1_1" Values="[listWorksheets]">
+    <ui:CopyFile ContinueOnError="{x:Null}" Destination="[String.Format(in_Config(&quot;Royalties_CadburyFolderPath&quot;).ToString,&#xD;&#xA;If(convert.todatetime(in_transactionItem.specificContent(&quot;periodRun&quot;).tostring).ToString(&quot;MM&quot;) = &quot;01&quot;,convert.todatetime(in_transactionItem.specificContent(&quot;periodRun&quot;).tostring).AddYears(-1).ToString(&quot;yy&quot;), convert.todatetime(in_transactionItem.specificContent(&quot;periodRun&quot;).tostring).ToString(&quot;yy&quot;)),&#xD;&#xA;If(convert.todatetime(in_transactionItem.specificContent(&quot;periodRun&quot;).tostring).ToString(&quot;MM&quot;) = &quot;01&quot;,convert.todatetime(in_transactionItem.specificContent(&quot;periodRun&quot;).tostring).ToString(&quot;yy&quot;),convert.todatetime(in_transactionItem.specificContent(&quot;periodRun&quot;).tostring).AddYears(1).tostring(&quot;yy&quot;)),&#xD;&#xA;convert.todatetime(in_transactionItem.specificContent(&quot;periodRun&quot;).tostring).AddMonths(-4).ToString(&quot;MM&quot;),&#xD;&#xA;convert.todatetime(in_transactionItem.specificContent(&quot;periodRun&quot;).tostring).AddMonths(-1).ToString(&quot;MMMM&quot;))+&quot;\&quot;+&#xD;&#xA;String.Format(in_Config(&quot;Royalties_UKInternationalRoyaltyStatementFileName&quot;).ToString,&#xD;&#xA;convert.todatetime(in_transactionItem.specificContent(&quot;periodRun&quot;).tostring).AddMonths(-1).ToString(&quot;MMMM&quot;),&#xD;&#xA;If(convert.todatetime(in_transactionItem.specificContent(&quot;periodRun&quot;).tostring).ToString(&quot;MM&quot;) =&quot;01&quot;,convert.todatetime(in_transactionItem.specificContent(&quot;periodRun&quot;).tostring).AddMonths(-1).ToString(&quot;yyyy&quot;),convert.todatetime(in_transactionItem.specificContent(&quot;periodRun&quot;).tostring).ToString(&quot;yyyy&quot;)))]" DisplayName="Copy File" sap:VirtualizedContainerService.HintSize="560,155.2" sap2010:WorkflowViewState.IdRef="CopyFile_1" Overwrite="True" Path="[in_TransactionItem.SpecificContent(&quot;currentMasterRoyaltyFilePath&quot;).ToString]" />
+    <ui:ForEach x:TypeArguments="x:String" CurrentIndex="{x:Null}" DisplayName="For each worksheet" sap:VirtualizedContainerService.HintSize="560,587.2" sap2010:WorkflowViewState.IdRef="ForEach`1_2" Values="[in_Config(&quot;Royalties_UKINternationalRoyaltyStatement_ExcludedWorksheets&quot;).ToString.split(&quot;,&quot;c)]">
       <ui:ForEach.Body>
         <ActivityAction x:TypeArguments="x:String">
           <ActivityAction.Argument>
-            <DelegateInArgument x:TypeArguments="x:String" Name="ws" />
+            <DelegateInArgument x:TypeArguments="x:String" Name="worksheet" />
           </ActivityAction.Argument>
-          <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="549.6,1014.4" sap2010:WorkflowViewState.IdRef="Sequence_4">
+          <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="526.4,399.2" sap2010:WorkflowViewState.IdRef="Sequence_14">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
-            <ui:ExcelApplicationScope Password="{x:Null}" DisplayName="Create UK and International Royalty Statement" sap:VirtualizedContainerService.HintSize="506.4,582.4" sap2010:WorkflowViewState.IdRef="ExcelApplicationScope_1" InstanceCachePeriod="3000" WorkbookPath="[String.Format(in_Config(&quot;Royalties_CadburyFolderPath&quot;).ToString,&#xD;&#xA;If(convert.ToDateTime(in_TransactionItem.SpecificContent(&quot;periodRun&quot;).ToString).ToString(&quot;MM&quot;) = &quot;01&quot;,convert.ToDateTime(in_TransactionItem.SpecificContent(&quot;periodRun&quot;).ToString).AddYears(-1).ToString(&quot;yy&quot;), convert.ToDateTime(in_TransactionItem.SpecificContent(&quot;periodRun&quot;).ToString).ToString(&quot;yy&quot;)),&#xD;&#xA;If(convert.ToDateTime(in_TransactionItem.SpecificContent(&quot;periodRun&quot;).ToString).ToString(&quot;MM&quot;) = &quot;01&quot;,convert.ToDateTime(in_TransactionItem.SpecificContent(&quot;periodRun&quot;).ToString).ToString(&quot;yy&quot;),convert.ToDateTime(in_TransactionItem.SpecificContent(&quot;periodRun&quot;).ToString).AddYears(1).tostring(&quot;yy&quot;)),&#xD;&#xA;convert.ToDateTime(in_TransactionItem.SpecificContent(&quot;periodRun&quot;).ToString).AddMonths(-4).ToString(&quot;MM&quot;),&#xD;&#xA;convert.ToDateTime(in_TransactionItem.SpecificContent(&quot;periodRun&quot;).ToString).AddMonths(-1).ToString(&quot;MMMM&quot;))+&quot;\&quot;+&#xD;&#xA;String.Format(in_Config(&quot;Royalties_UKINternationalRoyaltyStatementFileName&quot;).ToString,&#xD;&#xA;convert.ToDateTime(in_TransactionItem.SpecificContent(&quot;periodRun&quot;).ToString).AddMonths(-1).ToString(&quot;MMMM yyyy&quot;))]">
+            <ui:ExcelApplicationScope Password="{x:Null}" DisplayName="Open UK &amp; International file" sap:VirtualizedContainerService.HintSize="483.2,309.6" sap2010:WorkflowViewState.IdRef="ExcelApplicationScope_5" InstanceCachePeriod="3000" WorkbookPath="[String.Format(in_Config(&quot;Royalties_CadburyFolderPath&quot;).ToString,&#xD;&#xA;If(convert.todatetime(in_transactionItem.specificContent(&quot;periodRun&quot;).tostring).ToString(&quot;MM&quot;) = &quot;01&quot;,convert.todatetime(in_transactionItem.specificContent(&quot;periodRun&quot;).tostring).AddYears(-1).ToString(&quot;yy&quot;), convert.todatetime(in_transactionItem.specificContent(&quot;periodRun&quot;).tostring).ToString(&quot;yy&quot;)),&#xD;&#xA;If(convert.todatetime(in_transactionItem.specificContent(&quot;periodRun&quot;).tostring).ToString(&quot;MM&quot;) = &quot;01&quot;,convert.todatetime(in_transactionItem.specificContent(&quot;periodRun&quot;).tostring).ToString(&quot;yy&quot;),convert.todatetime(in_transactionItem.specificContent(&quot;periodRun&quot;).tostring).AddYears(1).tostring(&quot;yy&quot;)),&#xD;&#xA;convert.todatetime(in_transactionItem.specificContent(&quot;periodRun&quot;).tostring).AddMonths(-4).ToString(&quot;MM&quot;),&#xD;&#xA;convert.todatetime(in_transactionItem.specificContent(&quot;periodRun&quot;).tostring).AddMonths(-1).ToString(&quot;MMMM&quot;))+&quot;\&quot;+&#xD;&#xA;String.Format(in_Config(&quot;Royalties_UKInternationalRoyaltyStatementFileName&quot;).ToString,&#xD;&#xA;convert.todatetime(in_transactionItem.specificContent(&quot;periodRun&quot;).tostring).AddMonths(-1).ToString(&quot;MMMM&quot;),&#xD;&#xA;If(convert.todatetime(in_transactionItem.specificContent(&quot;periodRun&quot;).tostring).ToString(&quot;MM&quot;) =&quot;01&quot;,convert.todatetime(in_transactionItem.specificContent(&quot;periodRun&quot;).tostring).AddMonths(-1).ToString(&quot;yyyy&quot;),convert.todatetime(in_transactionItem.specificContent(&quot;periodRun&quot;).tostring).ToString(&quot;yyyy&quot;)))]">
               <ui:ExcelApplicationScope.Body>
                 <ActivityAction x:TypeArguments="ui:WorkbookApplication">
                   <ActivityAction.Argument>
                     <DelegateInArgument x:TypeArguments="ui:WorkbookApplication" Name="ExcelWorkbookScope" />
                   </ActivityAction.Argument>
-                  <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="472.8,472.8" sap2010:WorkflowViewState.IdRef="Sequence_2">
+                  <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="449.6,200" sap2010:WorkflowViewState.IdRef="Sequence_13">
                     <sap:WorkflowViewStateService.ViewState>
                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
                         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                       </scg:Dictionary>
                     </sap:WorkflowViewStateService.ViewState>
-                    <If Condition="[not in_Config(&quot;Royalties_UKINternationalRoyaltyStatement_ExcludedWorksheets&quot;).ToString.Contains(ws)]" DisplayName="If ws is not part of the excluded worksheets" sap:VirtualizedContainerService.HintSize="410.4,360.8" sap2010:WorkflowViewState.IdRef="If_1">
-                      <If.Then>
-                        <Sequence sap:VirtualizedContainerService.HintSize="376.8,177.6" sap2010:WorkflowViewState.IdRef="Sequence_7">
-                          <sap:WorkflowViewStateService.ViewState>
-                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                            </scg:Dictionary>
-                          </sap:WorkflowViewStateService.ViewState>
-                          <ui:ExcelWriteRange AddHeaders="False" DataTable="[New DataTable]" DisplayName="Write Range" sap:VirtualizedContainerService.HintSize="333.6,88" sap2010:WorkflowViewState.IdRef="ExcelWriteRange_3" SheetName="[ws]" StartingCell="A1" />
-                        </Sequence>
-                      </If.Then>
-                      <If.Else>
-                        <Sequence sap2010:WorkflowViewState.IdRef="Sequence_8" />
-                      </If.Else>
-                    </If>
+                    <ui:InvokeVBA OutputValue="{x:Null}" CodeFilePath="[in_Config(&quot;Royalties_VBACodes&quot;).ToString]" DisplayName="Invoke DeleteSheet" EntryMethodName="[in_Config(&quot;Royalties_VBAFunction_DeleteSheet&quot;).ToString]" EntryMethodParameters="[{worksheet}]" sap:VirtualizedContainerService.HintSize="387.2,88" sap2010:WorkflowViewState.IdRef="InvokeVBA_1" />
                   </Sequence>
                 </ActivityAction>
               </ui:ExcelApplicationScope.Body>
@@ -198,23 +160,6 @@
                   <x:Boolean x:Key="IsPinned">False</x:Boolean>
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
-            </ui:ExcelApplicationScope>
-            <ui:ExcelApplicationScope Password="{x:Null}" CreateNewFile="False" DisplayName="Create UK and International Royalty Statement" sap:VirtualizedContainerService.HintSize="506.4,302.4" sap2010:WorkflowViewState.IdRef="ExcelApplicationScope_4" InstanceCachePeriod="3000" WorkbookPath="[String.Format(in_Config(&quot;Royalties_CadburyFolderPath&quot;).ToString,&#xA;If(convert.ToDateTime(in_TransactionItem.SpecificContent(&quot;periodRun&quot;).ToString).ToString(&quot;MM&quot;) = &quot;01&quot;,convert.ToDateTime(in_TransactionItem.SpecificContent(&quot;periodRun&quot;).ToString).AddYears(-1).ToString(&quot;yy&quot;), convert.ToDateTime(in_TransactionItem.SpecificContent(&quot;periodRun&quot;).ToString).ToString(&quot;yy&quot;)),&#xA;If(convert.ToDateTime(in_TransactionItem.SpecificContent(&quot;periodRun&quot;).ToString).ToString(&quot;MM&quot;) = &quot;01&quot;,convert.ToDateTime(in_TransactionItem.SpecificContent(&quot;periodRun&quot;).ToString).ToString(&quot;yy&quot;),convert.ToDateTime(in_TransactionItem.SpecificContent(&quot;periodRun&quot;).ToString).AddYears(1).tostring(&quot;yy&quot;)),&#xA;convert.ToDateTime(in_TransactionItem.SpecificContent(&quot;periodRun&quot;).ToString).AddMonths(-4).ToString(&quot;MM&quot;),&#xA;convert.ToDateTime(in_TransactionItem.SpecificContent(&quot;periodRun&quot;).ToString).AddMonths(-1).ToString(&quot;MMMM&quot;))+&quot;\&quot;+&#xA;String.Format(in_Config(&quot;Royalties_UKINternationalRoyaltyStatementFileName&quot;).ToString,&#xA;convert.ToDateTime(in_TransactionItem.SpecificContent(&quot;periodRun&quot;).ToString).AddMonths(-1).ToString(&quot;MMMM yyyy&quot;))]">
-              <ui:ExcelApplicationScope.Body>
-                <ActivityAction x:TypeArguments="ui:WorkbookApplication">
-                  <ActivityAction.Argument>
-                    <DelegateInArgument x:TypeArguments="ui:WorkbookApplication" Name="ExcelWorkbookScope" />
-                  </ActivityAction.Argument>
-                  <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="449.6,192.8" sap2010:WorkflowViewState.IdRef="Sequence_12">
-                    <sap:WorkflowViewStateService.ViewState>
-                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                      </scg:Dictionary>
-                    </sap:WorkflowViewStateService.ViewState>
-                    <ui:ExcelCopySheet DestinationFilePath="[String.Format(in_Config(&quot;Royalties_CadburyFolderPath&quot;).ToString,&#xA;If(convert.ToDateTime(in_TransactionItem.SpecificContent(&quot;periodRun&quot;).ToString).ToString(&quot;MM&quot;) = &quot;01&quot;,convert.ToDateTime(in_TransactionItem.SpecificContent(&quot;periodRun&quot;).ToString).AddYears(-1).ToString(&quot;yy&quot;), convert.ToDateTime(in_TransactionItem.SpecificContent(&quot;periodRun&quot;).ToString).ToString(&quot;yy&quot;)),&#xA;If(convert.ToDateTime(in_TransactionItem.SpecificContent(&quot;periodRun&quot;).ToString).ToString(&quot;MM&quot;) = &quot;01&quot;,convert.ToDateTime(in_TransactionItem.SpecificContent(&quot;periodRun&quot;).ToString).ToString(&quot;yy&quot;),convert.ToDateTime(in_TransactionItem.SpecificContent(&quot;periodRun&quot;).ToString).AddYears(1).tostring(&quot;yy&quot;)),&#xA;convert.ToDateTime(in_TransactionItem.SpecificContent(&quot;periodRun&quot;).ToString).AddMonths(-4).ToString(&quot;MM&quot;),&#xA;convert.ToDateTime(in_TransactionItem.SpecificContent(&quot;periodRun&quot;).ToString).AddMonths(-1).ToString(&quot;MMMM&quot;))+&quot;\&quot;+&#xA;String.Format(in_Config(&quot;Royalties_UKINternationalRoyaltyStatementFileName&quot;).ToString,&#xA;convert.ToDateTime(in_TransactionItem.SpecificContent(&quot;periodRun&quot;).ToString).AddMonths(-1).ToString(&quot;MMMM yyyy&quot;))]" DestinationSheetName="[ws]" DisplayName="Copy Sheet" sap:VirtualizedContainerService.HintSize="387.2,80.8" sap2010:WorkflowViewState.IdRef="ExcelCopySheet_2" SheetName="[ws]" />
-                  </Sequence>
-                </ActivityAction>
-              </ui:ExcelApplicationScope.Body>
             </ui:ExcelApplicationScope>
           </Sequence>
         </ActivityAction>
