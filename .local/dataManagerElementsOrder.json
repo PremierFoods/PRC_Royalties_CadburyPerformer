@@ -222,7 +222,7 @@
       "Path": "Workflows/PopulateLLWorkings.xaml",
       "SortBy": 0,
       "VariablesSectionElementsOrder": [
-        "strVariance&Sequence_1",
+        "objVariance&Sequence_1",
         "dtTotalPremierFoods&Sequence_1",
         "dtBobjLL&Sequence_1"
       ],

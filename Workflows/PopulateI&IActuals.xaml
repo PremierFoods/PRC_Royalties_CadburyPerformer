@@ -6,7 +6,7 @@
   <VisualBasic.Settings>
     <x:Null />
   </VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>1130.4,1012.8</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1130.4,1516</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>PopulateI_IActuals_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -91,11 +91,18 @@
       <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
       <AssemblyReference>UiPath.Workflow</AssemblyReference>
       <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>System.Linq.Async</AssemblyReference>
+      <AssemblyReference>System.Linq.Async.Queryable</AssemblyReference>
+      <AssemblyReference>System.Linq.Expressions</AssemblyReference>
+      <AssemblyReference>System.Linq.Parallel</AssemblyReference>
+      <AssemblyReference>System.Collections.Immutable</AssemblyReference>
+      <AssemblyReference>System.Linq.Queryable</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="PopulateI&amp;IActuals" sap:VirtualizedContainerService.HintSize="545.6,948" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="PopulateI&amp;IActuals" sap:VirtualizedContainerService.HintSize="545.6,1451.2" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="sd:DataTable" Name="dtBobJIIReport" />
+      <Variable x:TypeArguments="sd:DataTable" Name="dtDataDump" />
     </Sequence.Variables>
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -119,25 +126,26 @@
         </ActivityAction>
       </ui:ExcelApplicationScope.Body>
     </ui:ExcelApplicationScope>
-    <ui:InvokeCode ContinueOnError="{x:Null}" Code="'If number of columns from BobJ I&amp;I Actuals report &lt;&gt; 5 + (periodRun-1)&#xD;&#xA;If io_dtBobJIIReport.Columns.Count &lt;&gt; 5 + CInt(Convert.ToDateTime(in_TransactionItem.SpecificContent(&quot;periodRun&quot;).ToString).AddMonths(-1).ToString(&quot;MM&quot;))&#xD;&#xA; &#x9;Dim difference As Integer = If(io_dtBobJIIReport.Columns.Count &gt; 5 + CInt(Convert.ToDateTime(in_TransactionItem.SpecificContent(&quot;periodRun&quot;).ToString).AddMonths(-1).ToString(&quot;MM&quot;)), io_dtBobJIIReport.Columns.Count - (5 + CInt(Convert.ToDateTime(in_TransactionItem.SpecificContent(&quot;periodRun&quot;).ToString).AddMonths(-1).ToString(&quot;MM&quot;))), (5 + CInt(Convert.ToDateTime(in_TransactionItem.SpecificContent(&quot;periodRun&quot;).ToString).AddMonths(-1).ToString(&quot;MM&quot;))) - io_dtBobJIIReport.Columns.Count)&#xD;&#xA;&#x9;While difference &lt;&gt; 0&#xD;&#xA;&#x9;&#x9; io_dtBobJIIReport.Columns.RemoveAt(io_dtBobJIIReport.columns.Count - 1)&#xD;&#xA;&#x9;&#x9;difference = difference - 1&#xD;&#xA;&#x9;End While&#xD;&#xA;End If&#xD;&#xA;" DisplayName="Remove last row if necesssary" sap:VirtualizedContainerService.HintSize="483.2,164.8" sap2010:WorkflowViewState.IdRef="InvokeCode_1">
+    <ui:InvokeCode ContinueOnError="{x:Null}" Code="'If number of columns from BobJ I&amp;I Actuals report &lt;&gt; 5 + (periodRun-1)&#xA;If io_dtBobJIIReport.Columns.Count &lt;&gt; 5 + CInt(Convert.ToDateTime(in_TransactionItem.SpecificContent(&quot;periodRun&quot;).ToString).AddMonths(-1).ToString(&quot;MM&quot;))&#xA; &#x9;Dim difference As Integer = If(io_dtBobJIIReport.Columns.Count &gt; 5 + CInt(Convert.ToDateTime(in_TransactionItem.SpecificContent(&quot;periodRun&quot;).ToString).AddMonths(-1).ToString(&quot;MM&quot;)), io_dtBobJIIReport.Columns.Count - (5 + CInt(Convert.ToDateTime(in_TransactionItem.SpecificContent(&quot;periodRun&quot;).ToString).AddMonths(-1).ToString(&quot;MM&quot;))), (5 + CInt(Convert.ToDateTime(in_TransactionItem.SpecificContent(&quot;periodRun&quot;).ToString).AddMonths(-1).ToString(&quot;MM&quot;))) - io_dtBobJIIReport.Columns.Count)&#xA;&#x9;While difference &lt;&gt; 0&#xA;&#x9;&#x9; io_dtBobJIIReport.Columns.RemoveAt(io_dtBobJIIReport.columns.Count - 1)&#xA;&#x9;&#x9;difference = difference - 1&#xA;&#x9;End While&#xA;End If&#xA;" DisplayName="Remove last row if necesssary" sap:VirtualizedContainerService.HintSize="483.2,164.8" sap2010:WorkflowViewState.IdRef="InvokeCode_1">
       <ui:InvokeCode.Arguments>
         <InOutArgument x:TypeArguments="sd:DataTable" x:Key="io_dtBobJIIReport">[dtBobJIIReport]</InOutArgument>
         <InArgument x:TypeArguments="ui:QueueItem" x:Key="in_TransactionItem">[in_TransactionItem]</InArgument>
       </ui:InvokeCode.Arguments>
     </ui:InvokeCode>
-    <ui:ExcelApplicationScope Password="{x:Null}" DisplayName="Open Current I&amp;I Actuals file" sap:VirtualizedContainerService.HintSize="483.2,309.6" sap2010:WorkflowViewState.IdRef="ExcelApplicationScope_2" InstanceCachePeriod="3000" WorkbookPath="[in_TransactionItem.SpecificContent(&quot;iiActualsFilePath&quot;).ToString]">
+    <ui:ExcelApplicationScope Password="{x:Null}" DisplayName="Open Current I&amp;I Actuals file" sap:VirtualizedContainerService.HintSize="483.2,409.6" sap2010:WorkflowViewState.IdRef="ExcelApplicationScope_2" InstanceCachePeriod="3000" WorkbookPath="[in_TransactionItem.SpecificContent(&quot;iiActualsFilePath&quot;).ToString]">
       <ui:ExcelApplicationScope.Body>
         <ActivityAction x:TypeArguments="ui:WorkbookApplication">
           <ActivityAction.Argument>
             <DelegateInArgument x:TypeArguments="ui:WorkbookApplication" Name="ExcelWorkbookScope" />
           </ActivityAction.Argument>
-          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="449.6,200" sap2010:WorkflowViewState.IdRef="Sequence_3">
+          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="449.6,300" sap2010:WorkflowViewState.IdRef="Sequence_3">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
-            <ui:ExcelWriteRange AddHeaders="True" DataTable="[dtBobJIIReport]" DisplayName="Write 01 BobJ Analysis Tab" sap:VirtualizedContainerService.HintSize="387.2,88" sap2010:WorkflowViewState.IdRef="ExcelWriteRange_1" SheetName="[in_Config(&quot;Royalties_IIActuals_DataDumpTab&quot;).ToString]" StartingCell="[in_Config(&quot;Royalties_IIActuals_DataDumpTab_CellRange&quot;).ToString]" />
+            <ui:ExcelWriteRange AddHeaders="True" DataTable="[dtBobJIIReport]" DisplayName="Write Data Dump Tab" sap:VirtualizedContainerService.HintSize="387.2,88" sap2010:WorkflowViewState.IdRef="ExcelWriteRange_1" SheetName="[in_Config(&quot;Royalties_IIActuals_DataDumpTab&quot;).ToString]" StartingCell="[in_Config(&quot;Royalties_IIActuals_DataDumpTab_CellRange&quot;).ToString]" />
+            <ui:ExcelReadRange AddHeaders="False" DataTable="[dtDataDump]" DisplayName="Read Data Dump Tab" sap:VirtualizedContainerService.HintSize="387.2,60" sap2010:WorkflowViewState.IdRef="ExcelReadRange_2" Range="[in_Config(&quot;Royalties_IIActuals_DataDumpTab_CellRange1&quot;).ToString]" SheetName="[in_Config(&quot;Royalties_IIActuals_DataDumpTab&quot;).ToString]" />
           </Sequence>
         </ActivityAction>
       </ui:ExcelApplicationScope.Body>
@@ -148,5 +156,20 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:ExcelApplicationScope>
+    <If Condition="[dtDataDump.AsEnumerable.Where(function(x) x(0).ToString.ToString.Contains(in_Config(&quot;Royalties_BobJInt_NAValue2&quot;).ToString) AndAlso not string.IsNullOrWhiteSpace(x(4).ToString)).Any = true]" DisplayName="If missing values in column Country" sap:VirtualizedContainerService.HintSize="483.2,363.2" sap2010:WorkflowViewState.IdRef="If_2">
+      <If.Then>
+        <Sequence sap:VirtualizedContainerService.HintSize="377.6,180" sap2010:WorkflowViewState.IdRef="Sequence_4">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <Throw Exception="[new BusinessRuleException(in_Config(&quot;Royalties_BE008&quot;).ToString)]" sap:VirtualizedContainerService.HintSize="334.4,90.4" sap2010:WorkflowViewState.IdRef="Throw_1" />
+        </Sequence>
+      </If.Then>
+      <If.Else>
+        <Sequence sap2010:WorkflowViewState.IdRef="Sequence_5" />
+      </If.Else>
+    </If>
   </Sequence>
 </Activity>

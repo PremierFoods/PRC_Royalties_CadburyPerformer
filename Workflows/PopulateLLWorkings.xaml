@@ -6,7 +6,7 @@
   <VisualBasic.Settings>
     <x:Null />
   </VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>1130.4,2009.6</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1130.4,2200.8</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>PopulateLLWorkings_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -97,7 +97,7 @@
       <AssemblyReference>System.Collections</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="PopulateLLWorkings" sap:VirtualizedContainerService.HintSize="545.6,1944.8" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="PopulateLLWorkings" sap:VirtualizedContainerService.HintSize="624,2136" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="sd:DataTable" Name="dtBobjLL" />
       <Variable x:TypeArguments="sd:DataTable" Name="dtTotalPremierFoods" />
@@ -108,7 +108,7 @@
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:ExcelApplicationScope Password="{x:Null}" DisplayName="Open BobJ LL Workings report" sap:VirtualizedContainerService.HintSize="483.2,281.6" sap2010:WorkflowViewState.IdRef="ExcelApplicationScope_1" InstanceCachePeriod="3000" WorkbookPath="[in_TransactionItem.SpecificContent(&quot;bobjLLReportPath&quot;).ToString]">
+    <ui:ExcelApplicationScope Password="{x:Null}" DisplayName="Open BobJ LL Workings report" sap:VirtualizedContainerService.HintSize="561.6,281.6" sap2010:WorkflowViewState.IdRef="ExcelApplicationScope_1" InstanceCachePeriod="3000" WorkbookPath="[in_TransactionItem.SpecificContent(&quot;bobjLLReportPath&quot;).ToString]">
       <ui:ExcelApplicationScope.Body>
         <ActivityAction x:TypeArguments="ui:WorkbookApplication">
           <ActivityAction.Argument>
@@ -131,7 +131,7 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:ExcelApplicationScope>
-    <Assign DisplayName="Filter table on populated fields" sap:VirtualizedContainerService.HintSize="483.2,80.8" sap2010:WorkflowViewState.IdRef="Assign_1">
+    <Assign DisplayName="Filter table on populated fields" sap:VirtualizedContainerService.HintSize="561.6,81.6" sap2010:WorkflowViewState.IdRef="Assign_1">
       <Assign.To>
         <OutArgument x:TypeArguments="sd:DataTable">[dtBobjLL]</OutArgument>
       </Assign.To>
@@ -139,7 +139,7 @@
         <InArgument x:TypeArguments="sd:DataTable">[dtBobjLL.AsEnumerable.Where(function(x) not string.IsNullOrWhiteSpace(x(2).ToString)).CopyToDataTable]</InArgument>
       </Assign.Value>
     </Assign>
-    <ui:ExcelApplicationScope Password="{x:Null}" DisplayName="Open Current Master Royalty file" sap:VirtualizedContainerService.HintSize="483.2,281.6" sap2010:WorkflowViewState.IdRef="ExcelApplicationScope_3" InstanceCachePeriod="3000" WorkbookPath="[in_TransactionItem.SpecificContent(&quot;currentMasterRoyaltyFilePath&quot;).ToString]">
+    <ui:ExcelApplicationScope Password="{x:Null}" DisplayName="Open Current Master Royalty file" sap:VirtualizedContainerService.HintSize="561.6,281.6" sap2010:WorkflowViewState.IdRef="ExcelApplicationScope_3" InstanceCachePeriod="3000" WorkbookPath="[in_TransactionItem.SpecificContent(&quot;currentMasterRoyaltyFilePath&quot;).ToString]">
       <ui:ExcelApplicationScope.Body>
         <ActivityAction x:TypeArguments="ui:WorkbookApplication">
           <ActivityAction.Argument>
@@ -162,7 +162,7 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:ExcelApplicationScope>
-    <ui:ExcelApplicationScope Password="{x:Null}" DisplayName="Open LL Workings report" sap:VirtualizedContainerService.HintSize="483.2,665.6" sap2010:WorkflowViewState.IdRef="ExcelApplicationScope_2" InstanceCachePeriod="3000" WorkbookPath="[in_TransactionItem.SpecificContent(&quot;llWorkingsFilePath&quot;).ToString]">
+    <ui:ExcelApplicationScope Password="{x:Null}" DisplayName="Open LL Workings report" sap:VirtualizedContainerService.HintSize="561.6,665.6" sap2010:WorkflowViewState.IdRef="ExcelApplicationScope_2" InstanceCachePeriod="3000" WorkbookPath="[in_TransactionItem.SpecificContent(&quot;llWorkingsFilePath&quot;).ToString]">
       <ui:ExcelApplicationScope.Body>
         <ActivityAction x:TypeArguments="ui:WorkbookApplication">
           <ActivityAction.Argument>
@@ -206,15 +206,26 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:ExcelApplicationScope>
-    <If Condition="[CDbl(objVariance) &lt;&gt; 0]" DisplayName="If variance &lt;&gt; 0" sap:VirtualizedContainerService.HintSize="483.2,363.2" sap2010:WorkflowViewState.IdRef="If_1">
+    <If Condition="[CDbl(objVariance) &lt;&gt; 0]" DisplayName="If variance &lt;&gt; 0" sap:VirtualizedContainerService.HintSize="561.6,553.6" sap2010:WorkflowViewState.IdRef="If_1">
       <If.Then>
-        <Sequence sap:VirtualizedContainerService.HintSize="377.6,180" sap2010:WorkflowViewState.IdRef="Sequence_5">
+        <Sequence sap:VirtualizedContainerService.HintSize="528,370.4" sap2010:WorkflowViewState.IdRef="Sequence_5">
           <sap:WorkflowViewStateService.ViewState>
             <scg:Dictionary x:TypeArguments="x:String, x:Object">
               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
-          <Throw DisplayName="Throw BE003" Exception="[New BusinessRuleException(in_Config(&quot;Royalties_BE006&quot;).ToString)]" sap:VirtualizedContainerService.HintSize="334.4,90.4" sap2010:WorkflowViewState.IdRef="Throw_1" />
+          <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="484.8,280.8" sap2010:WorkflowViewState.IdRef="CommentOut_1">
+            <ui:CommentOut.Body>
+              <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="449.6,202.4" sap2010:WorkflowViewState.IdRef="Sequence_7">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <Throw DisplayName="Throw BE003" Exception="[New BusinessRuleException(in_Config(&quot;Royalties_BE006&quot;).ToString)]" sap:VirtualizedContainerService.HintSize="387.2,90.4" sap2010:WorkflowViewState.IdRef="Throw_1" />
+              </Sequence>
+            </ui:CommentOut.Body>
+          </ui:CommentOut>
         </Sequence>
       </If.Then>
       <If.Else>

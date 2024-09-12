@@ -6,7 +6,7 @@
   <VisualBasic.Settings>
     <x:Null />
   </VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>1130.4,4999.2</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1130.4,3439.2</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>PopulateBobJIntTab_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -103,7 +103,7 @@
       <AssemblyReference>System.Linq.Queryable</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="PopulateBobJIntTab" sap:VirtualizedContainerService.HintSize="622.4,4934.4" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="PopulateBobJIntTab" sap:VirtualizedContainerService.HintSize="622.4,3374.4" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="sd:DataTable" Name="dtBobJIIReport" />
       <Variable x:TypeArguments="sd:DataTable" Name="dtBrandHL4ReclassTemplate" />
@@ -115,7 +115,7 @@
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:ExcelApplicationScope Password="{x:Null}" DisplayName="Open BobJ I&amp;I Actuals Report" sap:VirtualizedContainerService.HintSize="560,281.6" sap2010:WorkflowViewState.IdRef="ExcelApplicationScope_1" InstanceCachePeriod="3000" WorkbookPath="[in_TransactionItem.SpecificContent(&quot;bobjIIReportPath&quot;).ToString]">
+    <ui:ExcelApplicationScope Password="{x:Null}" DisplayName="Open I&amp;I Actuals Report" sap:VirtualizedContainerService.HintSize="560,281.6" sap2010:WorkflowViewState.IdRef="ExcelApplicationScope_1" InstanceCachePeriod="3000" WorkbookPath="[in_TransactionItem.SpecificContent(&quot;iiActualsFilePath&quot;).ToString]">
       <ui:ExcelApplicationScope.Body>
         <ActivityAction x:TypeArguments="ui:WorkbookApplication">
           <ActivityAction.Argument>
@@ -127,17 +127,11 @@
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
-            <ui:ExcelReadRange AddHeaders="True" DataTable="[dtBobJIIReport]" DisplayName="Read Analysis Tab" sap:VirtualizedContainerService.HintSize="387.2,60" sap2010:WorkflowViewState.IdRef="ExcelReadRange_1" Range="[in_Config(&quot;Royalties_BobJIIActuals_AnalysisTab_CellRange&quot;).ToString]" SheetName="[in_Config(&quot;Royalties_BobJIIActuals_AnalysisTab&quot;).ToString]" />
+            <ui:ExcelReadRange AddHeaders="True" DataTable="[dtBobJIIReport]" DisplayName="Read Data Dump Tab" sap:VirtualizedContainerService.HintSize="387.2,60" sap2010:WorkflowViewState.IdRef="ExcelReadRange_1" Range="[in_Config(&quot;Royalties_IIActuals_DataDumpTab_CellRange&quot;).ToString]" SheetName="[in_Config(&quot;Royalties_IIActuals_DataDumpTab&quot;).ToString]" />
           </Sequence>
         </ActivityAction>
       </ui:ExcelApplicationScope.Body>
     </ui:ExcelApplicationScope>
-    <ui:InvokeCode ContinueOnError="{x:Null}" Code="'If number of columns from BobJ I&amp;I Actuals report &lt;&gt; 5 + (periodRun-1)&#xD;&#xA;If io_dtBobJIIReport.Columns.Count &lt;&gt; 5 + CInt(Convert.ToDateTime(in_TransactionItem.SpecificContent(&quot;periodRun&quot;).ToString).AddMonths(-1).ToString(&quot;MM&quot;))&#xD;&#xA; &#x9;io_dtBobJIIReport.Columns.RemoveAt(io_dtBobJIIReport.Columns.Count - CInt(now.ToString(&quot;MM&quot;)) + CInt(Convert.ToDateTime(in_TransactionItem.SpecificContent(&quot;periodRun&quot;).ToString).AddMonths(-1).ToString(&quot;MM&quot;)))&#xD;&#xA;End If&#xD;&#xA;" DisplayName="Remove last row if necesssary" sap:VirtualizedContainerService.HintSize="560,164.8" sap2010:WorkflowViewState.IdRef="InvokeCode_1">
-      <ui:InvokeCode.Arguments>
-        <InOutArgument x:TypeArguments="sd:DataTable" x:Key="io_dtBobJIIReport">[dtBobJIIReport]</InOutArgument>
-        <InArgument x:TypeArguments="ui:QueueItem" x:Key="in_TransactionItem">[in_TransactionItem]</InArgument>
-      </ui:InvokeCode.Arguments>
-    </ui:InvokeCode>
     <ui:ExcelApplicationScope Password="{x:Null}" DisplayName="Open Current Master Royalty file" sap:VirtualizedContainerService.HintSize="560,409.6" sap2010:WorkflowViewState.IdRef="ExcelApplicationScope_2" InstanceCachePeriod="3000" WorkbookPath="[in_TransactionItem.SpecificContent(&quot;currentMasterRoyaltyFilePath&quot;).ToString]">
       <ui:ExcelApplicationScope.Body>
         <ActivityAction x:TypeArguments="ui:WorkbookApplication">
@@ -186,7 +180,7 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:ExcelApplicationScope>
-    <Assign DisplayName="Remove empty entries" sap:VirtualizedContainerService.HintSize="560,80.8" sap2010:WorkflowViewState.IdRef="Assign_1">
+    <Assign DisplayName="Remove empty entries" sap:VirtualizedContainerService.HintSize="560,81.6" sap2010:WorkflowViewState.IdRef="Assign_1">
       <Assign.To>
         <OutArgument x:TypeArguments="sd:DataTable">[dtBrandHL4Reclass]</OutArgument>
       </Assign.To>
@@ -194,21 +188,21 @@
         <InArgument x:TypeArguments="sd:DataTable">[dtBrandHL4Reclass.AsEnumerable.Where(function(x) x(0).ToString &lt;&gt; "0").CopyToDataTable]</InArgument>
       </Assign.Value>
     </Assign>
-    <If Condition="[dtBrandHL4Reclass.AsEnumerable.Where(Function(x) x(0).ToString.Contains(in_Config(&quot;Royalties_BobJInt_NAValue1&quot;).ToString)).Any = true]" DisplayName="If nf values found on column A" sap:VirtualizedContainerService.HintSize="560,1410.4" sap2010:WorkflowViewState.IdRef="If_1">
+    <If Condition="[dtBrandHL4Reclass.AsEnumerable.Where(Function(x) x(0).ToString.Contains(in_Config(&quot;Royalties_BobJInt_NAValue1&quot;).ToString)).Any = true]" DisplayName="If nf values found on column A" sap:VirtualizedContainerService.HintSize="560,52.8" sap2010:WorkflowViewState.IdRef="If_1">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
-          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
           <x:Boolean x:Key="IsPinned">False</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
       <If.Then>
-        <Sequence sap:VirtualizedContainerService.HintSize="526.4,1227.2" sap2010:WorkflowViewState.IdRef="Sequence_7">
+        <Sequence sap:VirtualizedContainerService.HintSize="526.4,1228.8" sap2010:WorkflowViewState.IdRef="Sequence_7">
           <sap:WorkflowViewStateService.ViewState>
             <scg:Dictionary x:TypeArguments="x:String, x:Object">
               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
-          <Assign DisplayName="Filter on nf values" sap:VirtualizedContainerService.HintSize="483.2,80.8" sap2010:WorkflowViewState.IdRef="Assign_2">
+          <Assign DisplayName="Filter on nf values" sap:VirtualizedContainerService.HintSize="483.2,81.6" sap2010:WorkflowViewState.IdRef="Assign_2">
             <Assign.To>
               <OutArgument x:TypeArguments="sd:DataTable">[dtBrandHL4Reclass]</OutArgument>
             </Assign.To>
@@ -216,7 +210,7 @@
               <InArgument x:TypeArguments="sd:DataTable">[dtBrandHL4Reclass.AsEnumerable.Where(function(x) x(0).ToString = in_Config("Royalties_BobJInt_NAValue1").ToString).CopyToDataTable]</InArgument>
             </Assign.Value>
           </Assign>
-          <Assign DisplayName="Keep unique lines" sap:VirtualizedContainerService.HintSize="483.2,80.8" sap2010:WorkflowViewState.IdRef="Assign_3">
+          <Assign DisplayName="Keep unique lines" sap:VirtualizedContainerService.HintSize="483.2,81.6" sap2010:WorkflowViewState.IdRef="Assign_3">
             <Assign.To>
               <OutArgument x:TypeArguments="sd:DataTable">[dtBrandHL4Reclass]</OutArgument>
             </Assign.To>
@@ -308,7 +302,7 @@
         <InArgument x:TypeArguments="sd:DataTable">[dtBrandHL4Reclass.AsEnumerable.Where(function(x) x(0).ToString &lt;&gt; "0").CopyToDataTable]</InArgument>
       </Assign.Value>
     </Assign>
-    <If Condition="[dtBrandHL4Reclass.AsEnumerable.Where(Function(x) x(1).ToString.Contains(in_Config(&quot;Royalties_BobJInt_NAValue2&quot;).ToString)).Any = true]" DisplayName="If N/A values found on column B" sap:VirtualizedContainerService.HintSize="560,1410.4" sap2010:WorkflowViewState.IdRef="If_2">
+    <If Condition="[dtBrandHL4Reclass.AsEnumerable.Where(Function(x) x(1).ToString.Contains(in_Config(&quot;Royalties_BobJInt_NAValue2&quot;).ToString)).Any = true]" DisplayName="If N/A values found on column B" sap:VirtualizedContainerService.HintSize="560,1412" sap2010:WorkflowViewState.IdRef="If_2">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -316,13 +310,13 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
       <If.Then>
-        <Sequence sap:VirtualizedContainerService.HintSize="526.4,1227.2" sap2010:WorkflowViewState.IdRef="Sequence_12">
+        <Sequence sap:VirtualizedContainerService.HintSize="526.4,1228.8" sap2010:WorkflowViewState.IdRef="Sequence_12">
           <sap:WorkflowViewStateService.ViewState>
             <scg:Dictionary x:TypeArguments="x:String, x:Object">
               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
-          <Assign DisplayName="Filter on nf values" sap:VirtualizedContainerService.HintSize="483.2,80.8" sap2010:WorkflowViewState.IdRef="Assign_4">
+          <Assign DisplayName="Filter on nf values" sap:VirtualizedContainerService.HintSize="483.2,81.6" sap2010:WorkflowViewState.IdRef="Assign_4">
             <Assign.To>
               <OutArgument x:TypeArguments="sd:DataTable">[dtBrandHL4Reclass]</OutArgument>
             </Assign.To>
@@ -330,7 +324,7 @@
               <InArgument x:TypeArguments="sd:DataTable">[dtBrandHL4Reclass.AsEnumerable.Where(function(x) x(1).ToString.Contains(in_Config("Royalties_BobJInt_NAValue2").ToString)).CopyToDataTable]</InArgument>
             </Assign.Value>
           </Assign>
-          <Assign DisplayName="Keep unique lines" sap:VirtualizedContainerService.HintSize="483.2,80.8" sap2010:WorkflowViewState.IdRef="Assign_5">
+          <Assign DisplayName="Keep unique lines" sap:VirtualizedContainerService.HintSize="483.2,81.6" sap2010:WorkflowViewState.IdRef="Assign_5">
             <Assign.To>
               <OutArgument x:TypeArguments="sd:DataTable">[dtBrandHL4Reclass]</OutArgument>
             </Assign.To>

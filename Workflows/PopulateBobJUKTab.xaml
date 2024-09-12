@@ -6,7 +6,7 @@
   <VisualBasic.Settings>
     <x:Null />
   </VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>1130.4,3005.6</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1130.4,3008</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>PopulateBobJUKTab_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -103,7 +103,7 @@
       <AssemblyReference>System.Linq.Queryable</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="PopulateBobJUKTab" sap:VirtualizedContainerService.HintSize="622.4,2940.8" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="PopulateBobJUKTab" sap:VirtualizedContainerService.HintSize="622.4,2943.2" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="sd:DataTable" Name="dtBobJUKReport" />
       <Variable x:TypeArguments="sd:DataTable" Name="dtBrandHL4ReclassTemplate" />
@@ -137,7 +137,7 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:ExcelApplicationScope>
-    <ui:InvokeCode ContinueOnError="{x:Null}" Code="'If number of columns from BobJ I&amp;I Actuals report &lt;&gt; 6 + (periodRun-1)&#xD;&#xA;If io_dtBobJUKReport.Columns.Count &lt;&gt; 6 + CInt(Convert.ToDateTime(in_TransactionItem.SpecificContent(&quot;periodRun&quot;).ToString).AddMonths(-1).ToString(&quot;MM&quot;))&#xD;&#xA; &#x9;Dim difference As Integer = If(io_dtBobJUKReport.Columns.Count &gt; 6 + CInt(Convert.ToDateTime(in_TransactionItem.SpecificContent(&quot;periodRun&quot;).ToString).AddMonths(-1).ToString(&quot;MM&quot;)), io_dtBobJUKReport.Columns.Count - (6 + CInt(Convert.ToDateTime(in_TransactionItem.SpecificContent(&quot;periodRun&quot;).ToString).AddMonths(-1).ToString(&quot;MM&quot;))), (6 + CInt(Convert.ToDateTime(in_TransactionItem.SpecificContent(&quot;periodRun&quot;).ToString).AddMonths(-1).ToString(&quot;MM&quot;))) - io_dtBobJUKReport.Columns.Count)&#xD;&#xA;&#x9;While difference &lt;&gt; 0&#xD;&#xA;&#x9;&#x9; io_dtBobJUKReport.Columns.RemoveAt(io_dtBobJUKReport.columns.Count - 1)&#xD;&#xA;&#x9;&#x9;difference = difference - 1&#xD;&#xA;&#x9;End While&#xD;&#xA;End If&#xD;&#xA;" DisplayName="Remove last row if necesssary" sap:VirtualizedContainerService.HintSize="560,164.8" sap2010:WorkflowViewState.IdRef="InvokeCode_1">
+    <ui:InvokeCode ContinueOnError="{x:Null}" Code="'If number of columns from BobJ I&amp;I Actuals report &lt;&gt; 6 + (periodRun-1)&#xA;If io_dtBobJUKReport.Columns.Count &lt;&gt; 6 + CInt(Convert.ToDateTime(in_TransactionItem.SpecificContent(&quot;periodRun&quot;).ToString).AddMonths(-1).ToString(&quot;MM&quot;))&#xA; &#x9;Dim difference As Integer = If(io_dtBobJUKReport.Columns.Count &gt; 6 + CInt(Convert.ToDateTime(in_TransactionItem.SpecificContent(&quot;periodRun&quot;).ToString).AddMonths(-1).ToString(&quot;MM&quot;)), io_dtBobJUKReport.Columns.Count - (6 + CInt(Convert.ToDateTime(in_TransactionItem.SpecificContent(&quot;periodRun&quot;).ToString).AddMonths(-1).ToString(&quot;MM&quot;))), (6 + CInt(Convert.ToDateTime(in_TransactionItem.SpecificContent(&quot;periodRun&quot;).ToString).AddMonths(-1).ToString(&quot;MM&quot;))) - io_dtBobJUKReport.Columns.Count)&#xA;&#x9;While difference &lt;&gt; 0&#xA;&#x9;&#x9; io_dtBobJUKReport.Columns.RemoveAt(io_dtBobJUKReport.columns.Count - 1)&#xA;&#x9;&#x9;difference = difference - 1&#xA;&#x9;End While&#xA;End If&#xA;" DisplayName="Remove last row if necesssary" sap:VirtualizedContainerService.HintSize="560,164.8" sap2010:WorkflowViewState.IdRef="InvokeCode_1">
       <ui:InvokeCode.Arguments>
         <InOutArgument x:TypeArguments="sd:DataTable" x:Key="io_dtBobJUKReport">[dtBobJUKReport]</InOutArgument>
         <InArgument x:TypeArguments="ui:QueueItem" x:Key="in_TransactionItem">[in_TransactionItem]</InArgument>
@@ -179,7 +179,7 @@
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
-            <ui:ExcelReadRange AddHeaders="True" DataTable="[dtBrandHL4ReclassTemplate]" DisplayName="Read Brand HL4 Reclasss tab" sap:VirtualizedContainerService.HintSize="387.2,60" sap2010:WorkflowViewState.IdRef="ExcelReadRange_3" Range="[in_Config(&quot;Royalties_BrandHL4ReclassTab_CellRange&quot;).ToString]" SheetName="[in_Config(&quot;Royalties_BrandHL4ReclassTab&quot;).ToString]" />
+            <ui:ExcelReadRange AddHeaders="True" DataTable="[dtBrandHL4ReclassTemplate]" DisplayName="Read Brand HL4 Reclass tab" sap:VirtualizedContainerService.HintSize="387.2,60" sap2010:WorkflowViewState.IdRef="ExcelReadRange_3" Range="[in_Config(&quot;Royalties_BrandHL4ReclassTab_CellRange&quot;).ToString]" SheetName="[in_Config(&quot;Royalties_BrandHL4ReclassTab&quot;).ToString]" />
           </Sequence>
         </ActivityAction>
       </ui:ExcelApplicationScope.Body>
@@ -190,15 +190,15 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:ExcelApplicationScope>
-    <Assign DisplayName="Remove empty entries" sap:VirtualizedContainerService.HintSize="560,80.8" sap2010:WorkflowViewState.IdRef="Assign_1">
+    <Assign DisplayName="Remove empty entries" sap:VirtualizedContainerService.HintSize="560,81.6" sap2010:WorkflowViewState.IdRef="Assign_1">
       <Assign.To>
         <OutArgument x:TypeArguments="sd:DataTable">[dtBrandHL4Reclass]</OutArgument>
       </Assign.To>
       <Assign.Value>
-        <InArgument x:TypeArguments="sd:DataTable">[dtBrandHL4Reclass.AsEnumerable.Where(function(x) x(0).ToString &lt;&gt; "0").CopyToDataTable]</InArgument>
+        <InArgument x:TypeArguments="sd:DataTable">[dtBrandHL4Reclass.AsEnumerable.Where(function(x) not string.IsNullOrWhiteSpace(x(1).ToString)).CopyToDataTable]</InArgument>
       </Assign.Value>
     </Assign>
-    <If Condition="[dtBrandHL4Reclass.AsEnumerable.Where(Function(x) x(0).ToString.Contains(in_Config(&quot;Royalties_BobJUK_NAValue&quot;).ToString)).Any = true]" DisplayName="If nf values found" sap:VirtualizedContainerService.HintSize="560,1410.4" sap2010:WorkflowViewState.IdRef="If_1">
+    <If Condition="[dtBrandHL4Reclass.AsEnumerable.Where(Function(x) x(0).ToString.Contains(in_Config(&quot;Royalties_BobJUK_NAValue&quot;).ToString)).Any = true]" DisplayName="If nf values found" sap:VirtualizedContainerService.HintSize="560,1412" sap2010:WorkflowViewState.IdRef="If_1">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -206,13 +206,13 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
       <If.Then>
-        <Sequence sap:VirtualizedContainerService.HintSize="526.4,1227.2" sap2010:WorkflowViewState.IdRef="Sequence_5">
+        <Sequence sap:VirtualizedContainerService.HintSize="526.4,1228.8" sap2010:WorkflowViewState.IdRef="Sequence_5">
           <sap:WorkflowViewStateService.ViewState>
             <scg:Dictionary x:TypeArguments="x:String, x:Object">
               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
-          <Assign DisplayName="Filter on nf values" sap:VirtualizedContainerService.HintSize="483.2,80.8" sap2010:WorkflowViewState.IdRef="Assign_2">
+          <Assign DisplayName="Filter on nf values" sap:VirtualizedContainerService.HintSize="483.2,81.6" sap2010:WorkflowViewState.IdRef="Assign_2">
             <Assign.To>
               <OutArgument x:TypeArguments="sd:DataTable">[dtBrandHL4Reclass]</OutArgument>
             </Assign.To>
@@ -220,7 +220,7 @@
               <InArgument x:TypeArguments="sd:DataTable">[dtBrandHL4Reclass.AsEnumerable.Where(function(x) x(0).ToString = in_Config("Royalties_BobJUK_NAValue").ToString).CopyToDataTable]</InArgument>
             </Assign.Value>
           </Assign>
-          <Assign DisplayName="Keep unique lines" sap:VirtualizedContainerService.HintSize="483.2,80.8" sap2010:WorkflowViewState.IdRef="Assign_3">
+          <Assign DisplayName="Keep unique lines" sap:VirtualizedContainerService.HintSize="483.2,81.6" sap2010:WorkflowViewState.IdRef="Assign_3">
             <Assign.To>
               <OutArgument x:TypeArguments="sd:DataTable">[dtBrandHL4Reclass]</OutArgument>
             </Assign.To>

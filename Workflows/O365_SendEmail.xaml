@@ -155,7 +155,7 @@
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
-            <If Condition="[in_arrFilePaths.Count = 0]" DisplayName="If Path is Empty" sap:VirtualizedContainerService.HintSize="510.4,1068" sap2010:WorkflowViewState.IdRef="If_1">
+            <If Condition="[in_arrFilePaths Is Nothing]" DisplayName="If Path is Empty" sap:VirtualizedContainerService.HintSize="510.4,1068" sap2010:WorkflowViewState.IdRef="If_1">
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                   <x:Boolean x:Key="IsExpanded">True</x:Boolean>
