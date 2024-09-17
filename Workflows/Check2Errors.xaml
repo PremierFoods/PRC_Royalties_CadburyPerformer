@@ -6,7 +6,7 @@
   <VisualBasic.Settings>
     <x:Null />
   </VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>1130.4,1983.2</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1130.4,1844</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>Check2Errors_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -94,11 +94,10 @@
       <AssemblyReference>System.Collections.NonGeneric</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="Check2Errors" sap:VirtualizedContainerService.HintSize="649.6,1918.4" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="Check2Errors" sap:VirtualizedContainerService.HintSize="745.6,1779.2" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="sd:DataTable" Name="dtCheck2" />
       <Variable x:TypeArguments="x:Boolean" Name="boolDifferencesFound" />
-      <Variable x:TypeArguments="sd:DataTable" Name="dtPrevTotalPremierFoods" />
       <Variable x:TypeArguments="sd:DataTable" Name="dtTotalPremierFoods" />
     </Sequence.Variables>
     <sap:WorkflowViewStateService.ViewState>
@@ -106,20 +105,77 @@
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:ExcelApplicationScope Password="{x:Null}" DisplayName="Open Current Master Royalty file" sap:VirtualizedContainerService.HintSize="587.2,409.6" sap2010:WorkflowViewState.IdRef="ExcelApplicationScope_3" InstanceCachePeriod="3000" Visible="False" WorkbookPath="[in_TransactionItem.SpecificContent(&quot;currentMasterRoyaltyFilePath&quot;).ToString]">
+    <ui:ExcelApplicationScope Password="{x:Null}" DisplayName="Open Current Master Royalty file" sap:VirtualizedContainerService.HintSize="683.2,1264" sap2010:WorkflowViewState.IdRef="ExcelApplicationScope_3" InstanceCachePeriod="3000" Visible="False" WorkbookPath="[in_TransactionItem.SpecificContent(&quot;currentMasterRoyaltyFilePath&quot;).ToString]">
       <ui:ExcelApplicationScope.Body>
         <ActivityAction x:TypeArguments="ui:WorkbookApplication">
           <ActivityAction.Argument>
             <DelegateInArgument x:TypeArguments="ui:WorkbookApplication" Name="ExcelWorkbookScope" />
           </ActivityAction.Argument>
-          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="449.6,300" sap2010:WorkflowViewState.IdRef="Sequence_7">
+          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="649.6,1154.4" sap2010:WorkflowViewState.IdRef="Sequence_7">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
-            <ui:ExcelReadRange AddHeaders="True" DataTable="[dtTotalPremierFoods]" DisplayName="Read Total Premier Foods tab" sap:VirtualizedContainerService.HintSize="387.2,60" sap2010:WorkflowViewState.IdRef="ExcelReadRange_4" Range="[in_Config(&quot;Royalties_RoyaltyMaster_TotalPremierFoodsTab_CellRange&quot;).ToString]" SheetName="[in_Config(&quot;Royalties_RoyaltyMaster_TotalPremierFoodsTab&quot;).ToString]" />
-            <ui:ExcelWriteRange AddHeaders="True" DataTable="[dtTotalPremierFoods]" DisplayName="Write Check 2 tab" sap:VirtualizedContainerService.HintSize="387.2,88" sap2010:WorkflowViewState.IdRef="ExcelWriteRange_1" SheetName="[in_Config(&quot;Royalties_Check2Tab&quot;).ToString]" StartingCell="A2" />
+            <ui:ExcelReadRange AddHeaders="True" DataTable="[dtTotalPremierFoods]" DisplayName="Read Total Premier Foods tab" sap:VirtualizedContainerService.HintSize="587.2,60" sap2010:WorkflowViewState.IdRef="ExcelReadRange_4" Range="[in_Config(&quot;Royalties_RoyaltyMaster_TotalPremierFoodsTab_CellRange&quot;).ToString]" SheetName="[in_Config(&quot;Royalties_RoyaltyMaster_TotalPremierFoodsTab&quot;).ToString]" />
+            <ui:ExcelWriteRange AddHeaders="True" DataTable="[dtTotalPremierFoods]" DisplayName="Write Check 2 tab" sap:VirtualizedContainerService.HintSize="587.2,88" sap2010:WorkflowViewState.IdRef="ExcelWriteRange_1" SheetName="[in_Config(&quot;Royalties_Check2Tab&quot;).ToString]" StartingCell="A2" />
+            <ui:ForEach x:TypeArguments="x:String" CurrentIndex="{x:Null}" DisplayName="For Each cell range" sap:VirtualizedContainerService.HintSize="587.2,814.4" sap2010:WorkflowViewState.IdRef="ForEach`1_1" Values="[in_Config(&quot;Royalties_Check2Tab_CellRange&quot;).ToString.Split(&quot;,&quot;)]">
+              <ui:ForEach.Body>
+                <ActivityAction x:TypeArguments="x:String">
+                  <ActivityAction.Argument>
+                    <DelegateInArgument x:TypeArguments="x:String" Name="currentText" />
+                  </ActivityAction.Argument>
+                  <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="553.6,626.4" sap2010:WorkflowViewState.IdRef="Sequence_5">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <ui:ExcelReadRange AddHeaders="False" DataTable="[dtCheck2]" DisplayName="Read Check 1 cell range" sap:VirtualizedContainerService.HintSize="510.4,60" sap2010:WorkflowViewState.IdRef="ExcelReadRange_1" Range="[currentText]" SheetName="[in_Config(&quot;Royalties_Check2Tab&quot;).ToString]" />
+                    <If Condition="[not dtCheck2.Rows(0).ItemArray.All(Function(item) item.ToString() = &quot;0&quot; or item.ToString() = &quot;-&quot; or item.ToString() = &quot;1&quot; or item.ToString() = &quot;-1&quot; ) = true]" DisplayName="If Values different than 0 found in specific cell range" sap:VirtualizedContainerService.HintSize="510.4,436.8" sap2010:WorkflowViewState.IdRef="If_1">
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                      <If.Then>
+                        <Sequence sap:VirtualizedContainerService.HintSize="476.8,171.2" sap2010:WorkflowViewState.IdRef="Sequence_3">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                          <Assign DisplayName="Set boolDifferencesFound = True" sap:VirtualizedContainerService.HintSize="433.6,81.6" sap2010:WorkflowViewState.IdRef="Assign_1">
+                            <Assign.To>
+                              <OutArgument x:TypeArguments="x:Boolean">[boolDifferencesFound]</OutArgument>
+                            </Assign.To>
+                            <Assign.Value>
+                              <InArgument x:TypeArguments="x:Boolean">True</InArgument>
+                            </Assign.Value>
+                          </Assign>
+                        </Sequence>
+                      </If.Then>
+                      <If.Else>
+                        <Sequence sap:VirtualizedContainerService.HintSize="300,82.4" sap2010:WorkflowViewState.IdRef="Sequence_4">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                        </Sequence>
+                      </If.Else>
+                    </If>
+                  </Sequence>
+                </ActivityAction>
+              </ui:ForEach.Body>
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+            </ui:ForEach>
           </Sequence>
         </ActivityAction>
       </ui:ExcelApplicationScope.Body>
@@ -130,80 +186,7 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:ExcelApplicationScope>
-    <ui:ForEach x:TypeArguments="x:String" CurrentIndex="{x:Null}" DisplayName="For Each" sap:VirtualizedContainerService.HintSize="587.2,953.6" sap2010:WorkflowViewState.IdRef="ForEach`1_1" Values="[in_Config(&quot;Royalties_Check2Tab_CellRange&quot;).ToString.Split(&quot;,&quot;)]">
-      <ui:ForEach.Body>
-        <ActivityAction x:TypeArguments="x:String">
-          <ActivityAction.Argument>
-            <DelegateInArgument x:TypeArguments="x:String" Name="currentText" />
-          </ActivityAction.Argument>
-          <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="553.6,765.6" sap2010:WorkflowViewState.IdRef="Sequence_5">
-            <sap:WorkflowViewStateService.ViewState>
-              <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-              </scg:Dictionary>
-            </sap:WorkflowViewStateService.ViewState>
-            <ui:ExcelApplicationScope Password="{x:Null}" DisplayName="Open Current Master Royalty file" sap:VirtualizedContainerService.HintSize="510.4,281.6" sap2010:WorkflowViewState.IdRef="ExcelApplicationScope_1" InstanceCachePeriod="3000" WorkbookPath="[in_TransactionItem.SpecificContent(&quot;currentMasterRoyaltyFilePath&quot;).ToString]">
-              <ui:ExcelApplicationScope.Body>
-                <ActivityAction x:TypeArguments="ui:WorkbookApplication">
-                  <ActivityAction.Argument>
-                    <DelegateInArgument x:TypeArguments="ui:WorkbookApplication" Name="ExcelWorkbookScope" />
-                  </ActivityAction.Argument>
-                  <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="449.6,172" sap2010:WorkflowViewState.IdRef="Sequence_2">
-                    <sap:WorkflowViewStateService.ViewState>
-                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                      </scg:Dictionary>
-                    </sap:WorkflowViewStateService.ViewState>
-                    <ui:ExcelReadRange AddHeaders="False" DataTable="[dtCheck2]" DisplayName="Read Check 1 cell range" sap:VirtualizedContainerService.HintSize="387.2,60" sap2010:WorkflowViewState.IdRef="ExcelReadRange_1" Range="[currentText]" SheetName="[in_Config(&quot;Royalties_Check2Tab&quot;).ToString]" />
-                  </Sequence>
-                </ActivityAction>
-              </ui:ExcelApplicationScope.Body>
-              <sap:WorkflowViewStateService.ViewState>
-                <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                </scg:Dictionary>
-              </sap:WorkflowViewStateService.ViewState>
-            </ui:ExcelApplicationScope>
-            <If Condition="[not dtCheck2.Rows(0).ItemArray.All(Function(item) item.ToString() = &quot;0&quot; or item.ToString() = &quot;-&quot; or item.ToString() = &quot;1&quot; or item.ToString() = &quot;-1&quot; ) = true]" DisplayName="If Values different than 0 found in specific cell range" sap:VirtualizedContainerService.HintSize="510.4,354.4" sap2010:WorkflowViewState.IdRef="If_1">
-              <sap:WorkflowViewStateService.ViewState>
-                <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                </scg:Dictionary>
-              </sap:WorkflowViewStateService.ViewState>
-              <If.Then>
-                <Sequence sap:VirtualizedContainerService.HintSize="476.8,171.2" sap2010:WorkflowViewState.IdRef="Sequence_3">
-                  <sap:WorkflowViewStateService.ViewState>
-                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                    </scg:Dictionary>
-                  </sap:WorkflowViewStateService.ViewState>
-                  <Assign DisplayName="Set boolDifferencesFound = True" sap:VirtualizedContainerService.HintSize="433.6,81.6" sap2010:WorkflowViewState.IdRef="Assign_1">
-                    <Assign.To>
-                      <OutArgument x:TypeArguments="x:Boolean">[boolDifferencesFound]</OutArgument>
-                    </Assign.To>
-                    <Assign.Value>
-                      <InArgument x:TypeArguments="x:Boolean">True</InArgument>
-                    </Assign.Value>
-                  </Assign>
-                </Sequence>
-              </If.Then>
-              <If.Else>
-                <Sequence sap:VirtualizedContainerService.HintSize="300,82.4" sap2010:WorkflowViewState.IdRef="Sequence_4">
-                  <sap:WorkflowViewStateService.ViewState>
-                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                    </scg:Dictionary>
-                  </sap:WorkflowViewStateService.ViewState>
-                </Sequence>
-              </If.Else>
-            </If>
-          </Sequence>
-        </ActivityAction>
-      </ui:ForEach.Body>
-    </ui:ForEach>
-    <If Condition="[boolDifferencesFound]" DisplayName="If Differences found" sap:VirtualizedContainerService.HintSize="587.2,363.2" sap2010:WorkflowViewState.IdRef="If_2">
+    <If Condition="[boolDifferencesFound]" DisplayName="If Differences found" sap:VirtualizedContainerService.HintSize="683.2,363.2" sap2010:WorkflowViewState.IdRef="If_2">
       <If.Then>
         <Sequence sap:VirtualizedContainerService.HintSize="377.6,180" sap2010:WorkflowViewState.IdRef="Sequence_9">
           <sap:WorkflowViewStateService.ViewState>

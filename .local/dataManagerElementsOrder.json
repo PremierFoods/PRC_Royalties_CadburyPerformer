@@ -43,6 +43,7 @@
       "Path": "Workflows/PopulateI&IActuals.xaml",
       "SortBy": 0,
       "VariablesSectionElementsOrder": [
+        "dtDataDump&Sequence_1",
         "dtBobJIIReport&Sequence_1"
       ],
       "ArgumentsSectionElementsOrder": [
@@ -114,7 +115,6 @@
       "Path": "Workflows/PopulateExchangeRates.xaml",
       "SortBy": 0,
       "VariablesSectionElementsOrder": [
-        "dtExchangeRates&Sequence_1",
         "dtYahooExchangeRates&Sequence_1",
         "capture&Sequence_1",
         "dateLastFriday&Sequence_1",
@@ -151,7 +151,6 @@
       "SortBy": 0,
       "VariablesSectionElementsOrder": [
         "dtTotalPremierFoods&Sequence_1",
-        "dtPrevTotalPremierFoods&Sequence_1",
         "dtCheck2&Sequence_1",
         "boolDifferencesFound&Sequence_1"
       ],
@@ -229,6 +228,22 @@
       "ArgumentsSectionElementsOrder": [
         "in_TransactionItem",
         "in_Config"
+      ],
+      "ConstantsSectionElementsOrder": [],
+      "AddedNamespaces": null
+    },
+    {
+      "Path": "Framework/TakeScreenshot.xaml",
+      "SortBy": 0,
+      "VariablesSectionElementsOrder": [
+        "Screenshot&Sequence_1",
+        "ScreenshotFileInfo&Sequence_1",
+        "LTimeStamp&Sequence_1"
+      ],
+      "ArgumentsSectionElementsOrder": [
+        "in_Folder",
+        "io_FilePath",
+        "IExceptionStorageBucketName"
       ],
       "ConstantsSectionElementsOrder": [],
       "AddedNamespaces": null

@@ -240,7 +240,7 @@
                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                     </scg:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
-                  <ui:AddDataRow DataRow="{x:Null}" ArrayRow="[{CurrentRow(0).ToString,&quot;&quot;}]" DataTable="[dtBrandHL4ReclassTemplate]" DisplayName="Add Data Row" sap:VirtualizedContainerService.HintSize="387.2,188" sap2010:WorkflowViewState.IdRef="AddDataRow_1" />
+                  <ui:AddDataRow DataRow="{x:Null}" ArrayRow="[{CurrentRow(0).ToString,&quot;&quot;}]" DataTable="[dtBrandHL4ReclassTemplate]" DisplayName="Add Data Row to Brand HL 4 Reclass" sap:VirtualizedContainerService.HintSize="387.2,188" sap2010:WorkflowViewState.IdRef="AddDataRow_1" />
                 </Sequence>
               </ActivityAction>
             </ui:ForEachRow.Body>

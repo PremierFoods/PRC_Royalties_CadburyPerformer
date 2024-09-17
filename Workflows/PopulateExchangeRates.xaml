@@ -6,7 +6,7 @@
   <VisualBasic.Settings>
     <x:Null />
   </VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>1130.4,1115.2</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1130.4,4764.8</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>PopulateExchangeRates_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -55,6 +55,7 @@
       <x:String>UiPath.Platform.Triggers</x:String>
       <x:String>UiPath.Platform.Triggers.Scope</x:String>
       <x:String>UiPath.Platform.ResourceHandling</x:String>
+      <x:String>System.Globalization</x:String>
     </sco:Collection>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
@@ -127,160 +128,187 @@
       <AssemblyReference>System.IO.FileSystem.DriveInfo</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="PopulateExchangeRates" sap:VirtualizedContainerService.HintSize="622.4,1050.4" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="PopulateExchangeRates" sap:VirtualizedContainerService.HintSize="745.6,4700" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="sd:DataTable" Default="[New System.Data.DataTable]" Name="dtYahooExchangeRates" />
       <Variable x:TypeArguments="x:Boolean" Name="boolPopup" />
       <Variable x:TypeArguments="s:DateTime" Name="dateLastFriday" />
       <Variable x:TypeArguments="ui:Image" Name="capture" />
-      <Variable x:TypeArguments="sd:DataTable" Name="dtExchangeRates" />
     </Sequence.Variables>
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <If Condition="[string.IsNullOrWhiteSpace(in_TransactionItem.SpecificContent(&quot;exchangeRate&quot;).ToString)]" sap:VirtualizedContainerService.HintSize="560,938.4" sap2010:WorkflowViewState.IdRef="If_2">
+    <If Condition="[string.IsNullOrWhiteSpace(in_TransactionItem.SpecificContent(&quot;exchangeRate&quot;).ToString)]" DisplayName="If exchange rate provided" sap:VirtualizedContainerService.HintSize="683.2,4588" sap2010:WorkflowViewState.IdRef="If_2">
       <If.Then>
-        <Sequence sap:VirtualizedContainerService.HintSize="376.8,356" sap2010:WorkflowViewState.IdRef="Sequence_8">
+        <Sequence sap:VirtualizedContainerService.HintSize="649.6,3556.8" sap2010:WorkflowViewState.IdRef="Sequence_8">
           <sap:WorkflowViewStateService.ViewState>
             <scg:Dictionary x:TypeArguments="x:String, x:Object">
               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
-          <uix:NApplicationCard AttachMode="ByInstance" CloseMode="Always" DisplayName="Use Application/Browser" sap:VirtualizedContainerService.HintSize="333.6,52.8" sap2010:WorkflowViewState.IdRef="NApplicationCard_1" InteractionMode="DebuggerApi" ScopeGuid="18c6374b-d2c9-4521-ae76-a3a4ce77e666" Version="V2">
+          <uix:NApplicationCard AttachMode="ByInstance" CloseMode="Always" DisplayName="Use Application/Browser Yahoo Finance" sap:VirtualizedContainerService.HintSize="606.4,2484.8" sap2010:WorkflowViewState.IdRef="NApplicationCard_1" InteractionMode="DebuggerApi" ScopeGuid="18c6374b-d2c9-4521-ae76-a3a4ce77e666" Version="V2">
             <uix:NApplicationCard.Body>
               <ActivityAction x:TypeArguments="x:Object">
                 <ActivityAction.Argument>
                   <DelegateInArgument x:TypeArguments="x:Object" Name="WSSessionData" />
                 </ActivityAction.Argument>
-                <Sequence sap:VirtualizedContainerService.HintSize="558.4,1660" sap2010:WorkflowViewState.IdRef="Sequence_6">
+                <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="572.8,2268" sap2010:WorkflowViewState.IdRef="Sequence_5">
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
                     </scg:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
-                  <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="496,1544.8" sap2010:WorkflowViewState.IdRef="Sequence_5">
+                  <ui:UiElementExists DisplayName="Element Exists 'Accept All'" Exists="[boolPopup]" sap:VirtualizedContainerService.HintSize="510.4,107.2" sap2010:WorkflowViewState.IdRef="UiElementExists_1">
+                    <ui:UiElementExists.Target>
+                      <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="9d249395-ab44-4a48-ba04-74e1b722cf1f" InformativeScreenshot="fb190b4792eff9efd1cd0e66ca895454" Selector="&lt;html app='chrome.exe' title='Yahoo is part of the Yahoo family of brands' /&gt;&lt;webctrl tag='BUTTON' /&gt;">
+                        <ui:Target.TimeoutMS>
+                          <InArgument x:TypeArguments="x:Int32" />
+                        </ui:Target.TimeoutMS>
+                        <ui:Target.WaitForReady>
+                          <InArgument x:TypeArguments="ui:WaitForReady" />
+                        </ui:Target.WaitForReady>
+                      </ui:Target>
+                    </ui:UiElementExists.Target>
+                  </ui:UiElementExists>
+                  <If Condition="[boolPopup]" DisplayName="If bool Pop up" sap:VirtualizedContainerService.HintSize="510.4,462.4" sap2010:WorkflowViewState.IdRef="If_1">
                     <sap:WorkflowViewStateService.ViewState>
                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
                         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
                       </scg:Dictionary>
                     </sap:WorkflowViewStateService.ViewState>
-                    <ui:UiElementExists DisplayName="Element Exists 'Accept All'" Exists="[boolPopup]" sap:VirtualizedContainerService.HintSize="433.6,107.2" sap2010:WorkflowViewState.IdRef="UiElementExists_1">
-                      <ui:UiElementExists.Target>
-                        <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="9d249395-ab44-4a48-ba04-74e1b722cf1f" InformativeScreenshot="fb190b4792eff9efd1cd0e66ca895454" Selector="&lt;html app='chrome.exe' title='Yahoo is part of the Yahoo family of brands' /&gt;&lt;webctrl tag='BUTTON' /&gt;">
-                          <ui:Target.TimeoutMS>
-                            <InArgument x:TypeArguments="x:Int32" />
-                          </ui:Target.TimeoutMS>
-                          <ui:Target.WaitForReady>
-                            <InArgument x:TypeArguments="ui:WaitForReady" />
-                          </ui:Target.WaitForReady>
-                        </ui:Target>
-                      </ui:UiElementExists.Target>
-                    </ui:UiElementExists>
-                    <If Condition="[boolPopup]" sap:VirtualizedContainerService.HintSize="433.6,183.2" sap2010:WorkflowViewState.IdRef="If_1">
-                      <sap:WorkflowViewStateService.ViewState>
-                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                          <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                        </scg:Dictionary>
-                      </sap:WorkflowViewStateService.ViewState>
-                      <If.Then>
-                        <Sequence sap:VirtualizedContainerService.HintSize="376.8,196.8" sap2010:WorkflowViewState.IdRef="Sequence_3">
-                          <sap:WorkflowViewStateService.ViewState>
-                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                            </scg:Dictionary>
-                          </sap:WorkflowViewStateService.ViewState>
-                          <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'BUTTON'" sap:VirtualizedContainerService.HintSize="333.6,107.2" sap2010:WorkflowViewState.IdRef="Click_1" KeyModifiers="None" MouseButton="BTN_LEFT">
-                            <ui:Click.CursorPosition>
-                              <ui:CursorPosition Position="Center">
-                                <ui:CursorPosition.OffsetX>
-                                  <InArgument x:TypeArguments="x:Int32" />
-                                </ui:CursorPosition.OffsetX>
-                                <ui:CursorPosition.OffsetY>
-                                  <InArgument x:TypeArguments="x:Int32" />
-                                </ui:CursorPosition.OffsetY>
-                              </ui:CursorPosition>
-                            </ui:Click.CursorPosition>
-                            <ui:Click.Target>
-                              <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="be5f84e0-779a-485d-b9d4-95578753daca" InformativeScreenshot="fb190b4792eff9efd1cd0e66ca895454" Selector="&lt;html app='chrome.exe' title='Yahoo is part of the Yahoo family of brands' /&gt;&lt;webctrl tag='BUTTON' /&gt;">
-                                <ui:Target.TimeoutMS>
-                                  <InArgument x:TypeArguments="x:Int32" />
-                                </ui:Target.TimeoutMS>
-                                <ui:Target.WaitForReady>
-                                  <InArgument x:TypeArguments="ui:WaitForReady" />
-                                </ui:Target.WaitForReady>
-                              </ui:Target>
-                            </ui:Click.Target>
-                          </ui:Click>
-                        </Sequence>
-                      </If.Then>
-                      <If.Else>
-                        <Sequence sap2010:WorkflowViewState.IdRef="Sequence_4" />
-                      </If.Else>
-                    </If>
-                    <uix:NExtractData AppendResults="False" ContinueOnError="True" DataTable="[dtYahooExchangeRates]" DisplayName="Extract Table Data" ExtractDataSettings="&lt;Table xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns:xsd='http://www.w3.org/2001/XMLSchema' Type='Table' AddCvHeader='true' IsScrollEnabled='false'&gt;&#xA;&#x9;&lt;Column xsi:type='DataColumn' Name='Date' ReferenceName='Date' ReferenceIdx='0'&gt;&#xA;&#x9;&#x9;&lt;IsValidName&gt;true&lt;/IsValidName&gt;&#xA;&#x9;&#x9;&lt;ValidationErrorMessage /&gt;&#xA;&#x9;&#x9;&lt;IsExtra&gt;false&lt;/IsExtra&gt;&#xA;&#x9;&#x9;&lt;CanExtractSimilar&gt;false&lt;/CanExtractSimilar&gt;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xA;&#x9;&lt;/Column&gt;&#xA;&#x9;&lt;Column xsi:type='DataColumn' Name='Open' ReferenceName='Open' ReferenceIdx='1'&gt;&#xA;&#x9;&#x9;&lt;IsValidName&gt;true&lt;/IsValidName&gt;&#xA;&#x9;&#x9;&lt;ValidationErrorMessage /&gt;&#xA;&#x9;&#x9;&lt;IsExtra&gt;false&lt;/IsExtra&gt;&#xA;&#x9;&#x9;&lt;CanExtractSimilar&gt;false&lt;/CanExtractSimilar&gt;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xA;&#x9;&lt;/Column&gt;&#xA;&#x9;&lt;Column xsi:type='DataColumn' Name='High' ReferenceName='High' ReferenceIdx='2'&gt;&#xA;&#x9;&#x9;&lt;IsValidName&gt;true&lt;/IsValidName&gt;&#xA;&#x9;&#x9;&lt;ValidationErrorMessage /&gt;&#xA;&#x9;&#x9;&lt;IsExtra&gt;false&lt;/IsExtra&gt;&#xA;&#x9;&#x9;&lt;CanExtractSimilar&gt;false&lt;/CanExtractSimilar&gt;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xA;&#x9;&lt;/Column&gt;&#xA;&#x9;&lt;Column xsi:type='DataColumn' Name='Low' ReferenceName='Low' ReferenceIdx='3'&gt;&#xA;&#x9;&#x9;&lt;IsValidName&gt;true&lt;/IsValidName&gt;&#xA;&#x9;&#x9;&lt;ValidationErrorMessage /&gt;&#xA;&#x9;&#x9;&lt;IsExtra&gt;false&lt;/IsExtra&gt;&#xA;&#x9;&#x9;&lt;CanExtractSimilar&gt;false&lt;/CanExtractSimilar&gt;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xA;&#x9;&lt;/Column&gt;&#xA;&#x9;&lt;Column xsi:type='DataColumn' Name='Close' ReferenceName='Close' ReferenceIdx='4'&gt;&#xA;&#x9;&#x9;&lt;IsValidName&gt;true&lt;/IsValidName&gt;&#xA;&#x9;&#x9;&lt;ValidationErrorMessage /&gt;&#xA;&#x9;&#x9;&lt;IsExtra&gt;false&lt;/IsExtra&gt;&#xA;&#x9;&#x9;&lt;CanExtractSimilar&gt;false&lt;/CanExtractSimilar&gt;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xA;&#x9;&lt;/Column&gt;&#xA;&#x9;&lt;Column xsi:type='DataColumn' Name='Adj Close' ReferenceName='Adj Close' ReferenceIdx='5'&gt;&#xA;&#x9;&#x9;&lt;IsValidName&gt;true&lt;/IsValidName&gt;&#xA;&#x9;&#x9;&lt;ValidationErrorMessage /&gt;&#xA;&#x9;&#x9;&lt;IsExtra&gt;false&lt;/IsExtra&gt;&#xA;&#x9;&#x9;&lt;CanExtractSimilar&gt;false&lt;/CanExtractSimilar&gt;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xA;&#x9;&lt;/Column&gt;&#xA;&#x9;&lt;Column xsi:type='DataColumn' Name='Volume' ReferenceName='Volume' ReferenceIdx='6'&gt;&#xA;&#x9;&#x9;&lt;IsValidName&gt;true&lt;/IsValidName&gt;&#xA;&#x9;&#x9;&lt;ValidationErrorMessage /&gt;&#xA;&#x9;&#x9;&lt;IsExtra&gt;false&lt;/IsExtra&gt;&#xA;&#x9;&#x9;&lt;CanExtractSimilar&gt;false&lt;/CanExtractSimilar&gt;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xA;&#x9;&lt;/Column&gt;&#xA;&lt;/Table&gt;" ExtractMetadata="&lt;extract-table get_columns_name='1' get_empty_columns='1' columns_name_source='Longest'&gt;&lt;column name='Date' attr='fulltext' /&gt;&lt;column name='Open' attr='fulltext' /&gt;&lt;column name='High' attr='fulltext' /&gt;&lt;column name='Low' attr='fulltext' /&gt;&lt;column name='Close' attr='fulltext' /&gt;&lt;column name='Adj Close' attr='fulltext' /&gt;&lt;column name='Volume' attr='fulltext' /&gt;&lt;/extract-table&gt;" sap:VirtualizedContainerService.HintSize="433.6,157.6" sap2010:WorkflowViewState.IdRef="NExtractData_1" LimitExtractionTo="None" MaximumResults="0" ScopeIdentifier="18c6374b-d2c9-4521-ae76-a3a4ce77e666" Version="V3">
-                      <uix:NExtractData.Target>
-                        <uix:TargetAnchorable BrowserURL="https://finance.yahoo.com/quote/GBPEUR%3DX/history/?guccounter=1" DesignTimeRectangle="240, 787, 1206, 10520" DesignTimeScaleFactor="1.25" FullSelectorArgument="&lt;webctrl tag='TABLE' /&gt;" Guid="a752657b-f678-4f69-9257-4710915e1560" InformativeScreenshot="19ebf4408d984f1094f98afda6e5976d.png" ScopeSelectorArgument="&lt;html app='chrome.exe' title='GBP/EUR (GBPEUR=X) Stock Historical Prices &amp;amp; Data - Yahoo Finance' /&gt;" SearchSteps="Selector" Version="V4" Visibility="Interactive" />
-                      </uix:NExtractData.Target>
-                    </uix:NExtractData>
-                    <ui:InvokeCode ContinueOnError="{x:Null}" Code="Dim lastDayOfMonth As DateTime= New DateTime(in_currentDate.Year, in_currentDate.Month, DateTime.DaysInMonth(in_currentDate.Year, in_currentDate.Month))&#xA;&#xA;out_dateLastFriday = lastDayOfMonth.AddDays(-((lastDayOfMonth.DayOfWeek + 2) Mod 7))" DisplayName="Get last friday of the month" sap:VirtualizedContainerService.HintSize="433.6,164.8" sap2010:WorkflowViewState.IdRef="InvokeCode_1">
-                      <ui:InvokeCode.Arguments>
-                        <InArgument x:TypeArguments="s:DateTime" x:Key="in_currentDate">[convert.ToDateTime(convert.ToDateTime(in_TransactionItem.SpecificContent("periodRun").ToString).AddMonths(-1).ToString)]</InArgument>
-                        <OutArgument x:TypeArguments="s:DateTime" x:Key="out_dateLastFriday">[dateLastFriday]</OutArgument>
-                      </ui:InvokeCode.Arguments>
-                    </ui:InvokeCode>
-                    <Assign sap:VirtualizedContainerService.HintSize="433.6,82.4" sap2010:WorkflowViewState.IdRef="Assign_2">
-                      <Assign.To>
-                        <OutArgument x:TypeArguments="sd:DataTable">[dtYahooExchangeRates]</OutArgument>
-                      </Assign.To>
-                      <Assign.Value>
-                        <InArgument x:TypeArguments="sd:DataTable">[dtYahooExchangeRates.AsEnumerable.Where(function(x) x(0).ToString = dateLastFriday.ToString("MMM dd, yyyy")).CopyToDataTable]</InArgument>
-                      </Assign.Value>
-                    </Assign>
-                    <ui:SetFocus DelayBefore="{x:Null}" DelayMS="{x:Null}" DisplayName="Set Focus 'TD'" sap:VirtualizedContainerService.HintSize="433.6,107.2" sap2010:WorkflowViewState.IdRef="SetFocus_1">
-                      <ui:SetFocus.Target>
-                        <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="60222935-217a-4eab-890b-cb70cf7b95cf" InformativeScreenshot="41449a42c6b463cc26051a08e22de83f" Selector="[&quot;&lt;html app='chrome.exe' title='GBP/EUR (GBPEUR=X) Stock Historical Prices &amp;amp; Data - Yahoo Finance' /&gt;&lt;webctrl tag='TABLE' /&gt;&lt;webctrl tag='TD' aaname='&quot;+dtYahooExchangeRates.rows(0)(0).ToString+&quot;' /&gt;&quot;]">
-                          <ui:Target.TimeoutMS>
-                            <InArgument x:TypeArguments="x:Int32" />
-                          </ui:Target.TimeoutMS>
-                          <ui:Target.WaitForReady>
-                            <InArgument x:TypeArguments="ui:WaitForReady" />
-                          </ui:Target.WaitForReady>
-                        </ui:Target>
-                      </ui:SetFocus.Target>
-                    </ui:SetFocus>
-                    <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" ClickType="CLICK_SINGLE" CursorMotionType="Instant" sap:VirtualizedContainerService.HintSize="433.6,86.4" sap2010:WorkflowViewState.IdRef="Click_2" KeyModifiers="None" MouseButton="BTN_LEFT">
-                      <ui:Click.CursorPosition>
-                        <ui:CursorPosition Position="Center">
-                          <ui:CursorPosition.OffsetX>
-                            <InArgument x:TypeArguments="x:Int32" />
-                          </ui:CursorPosition.OffsetX>
-                          <ui:CursorPosition.OffsetY>
-                            <InArgument x:TypeArguments="x:Int32" />
-                          </ui:CursorPosition.OffsetY>
-                        </ui:CursorPosition>
-                      </ui:Click.CursorPosition>
-                      <ui:Click.Target>
-                        <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="1ef4e584-6dac-4ec4-8fec-f3fe67964bca" Selector="[&quot;&lt;html app='chrome.exe' title='GBP/EUR (GBPEUR=X) Stock Historical Prices &amp;amp; Data - Yahoo Finance' /&gt;&lt;webctrl tag='TABLE' /&gt;&lt;webctrl tag='TD' aaname='&quot;+dtYahooExchangeRates.rows(0)(0).ToString+&quot;' /&gt;&quot;]" WaitForReady="COMPLETE">
-                          <ui:Target.TimeoutMS>
-                            <InArgument x:TypeArguments="x:Int32" />
-                          </ui:Target.TimeoutMS>
-                        </ui:Target>
-                      </ui:Click.Target>
-                    </ui:Click>
-                    <ui:TakeScreenshot WaitBefore="{x:Null}" DisplayName="Take Screenshot" sap:VirtualizedContainerService.HintSize="433.6,86.4" sap2010:WorkflowViewState.IdRef="TakeScreenshot_2" Screenshot="[capture]">
-                      <ui:TakeScreenshot.Target>
-                        <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Selector="{x:Null}" Id="a9ea09af-4ba2-42f5-bd69-85edc2ad2a48" WaitForReady="COMPLETE">
-                          <ui:Target.TimeoutMS>
-                            <InArgument x:TypeArguments="x:Int32" />
-                          </ui:Target.TimeoutMS>
-                        </ui:Target>
-                      </ui:TakeScreenshot.Target>
-                    </ui:TakeScreenshot>
-                    <ui:SaveImage DisplayName="Save Image" FileName="[in_Config(&quot;Royalties_ExchangeRates_CaptureFileName&quot;).ToString]" sap:VirtualizedContainerService.HintSize="433.6,134.4" sap2010:WorkflowViewState.IdRef="SaveImage_1" Image="[capture]" />
-                  </Sequence>
+                    <If.Then>
+                      <Sequence sap:VirtualizedContainerService.HintSize="376.8,196.8" sap2010:WorkflowViewState.IdRef="Sequence_3">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                        <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'BUTTON'" sap:VirtualizedContainerService.HintSize="333.6,107.2" sap2010:WorkflowViewState.IdRef="Click_1" KeyModifiers="None" MouseButton="BTN_LEFT">
+                          <ui:Click.CursorPosition>
+                            <ui:CursorPosition Position="Center">
+                              <ui:CursorPosition.OffsetX>
+                                <InArgument x:TypeArguments="x:Int32" />
+                              </ui:CursorPosition.OffsetX>
+                              <ui:CursorPosition.OffsetY>
+                                <InArgument x:TypeArguments="x:Int32" />
+                              </ui:CursorPosition.OffsetY>
+                            </ui:CursorPosition>
+                          </ui:Click.CursorPosition>
+                          <ui:Click.Target>
+                            <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="be5f84e0-779a-485d-b9d4-95578753daca" InformativeScreenshot="fb190b4792eff9efd1cd0e66ca895454" Selector="&lt;html app='chrome.exe' title='Yahoo is part of the Yahoo family of brands' /&gt;&lt;webctrl tag='BUTTON' /&gt;">
+                              <ui:Target.TimeoutMS>
+                                <InArgument x:TypeArguments="x:Int32" />
+                              </ui:Target.TimeoutMS>
+                              <ui:Target.WaitForReady>
+                                <InArgument x:TypeArguments="ui:WaitForReady" />
+                              </ui:Target.WaitForReady>
+                            </ui:Target>
+                          </ui:Click.Target>
+                        </ui:Click>
+                      </Sequence>
+                    </If.Then>
+                    <If.Else>
+                      <Sequence sap:VirtualizedContainerService.HintSize="300,82.4" sap2010:WorkflowViewState.IdRef="Sequence_4">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                      </Sequence>
+                    </If.Else>
+                  </If>
+                  <uix:NExtractData AppendResults="False" ContinueOnError="True" DataTable="[dtYahooExchangeRates]" DisplayName="Extract Yahoo table" ExtractDataSettings="&lt;Table xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns:xsd='http://www.w3.org/2001/XMLSchema' Type='Table' AddCvHeader='true' IsScrollEnabled='false'&gt;&#xA;&#x9;&lt;Column xsi:type='DataColumn' Name='Date' ReferenceName='Date' ReferenceIdx='0'&gt;&#xA;&#x9;&#x9;&lt;IsValidName&gt;true&lt;/IsValidName&gt;&#xA;&#x9;&#x9;&lt;ValidationErrorMessage /&gt;&#xA;&#x9;&#x9;&lt;IsExtra&gt;false&lt;/IsExtra&gt;&#xA;&#x9;&#x9;&lt;CanExtractSimilar&gt;false&lt;/CanExtractSimilar&gt;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xA;&#x9;&lt;/Column&gt;&#xA;&#x9;&lt;Column xsi:type='DataColumn' Name='Open' ReferenceName='Open' ReferenceIdx='1'&gt;&#xA;&#x9;&#x9;&lt;IsValidName&gt;true&lt;/IsValidName&gt;&#xA;&#x9;&#x9;&lt;ValidationErrorMessage /&gt;&#xA;&#x9;&#x9;&lt;IsExtra&gt;false&lt;/IsExtra&gt;&#xA;&#x9;&#x9;&lt;CanExtractSimilar&gt;false&lt;/CanExtractSimilar&gt;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xA;&#x9;&lt;/Column&gt;&#xA;&#x9;&lt;Column xsi:type='DataColumn' Name='High' ReferenceName='High' ReferenceIdx='2'&gt;&#xA;&#x9;&#x9;&lt;IsValidName&gt;true&lt;/IsValidName&gt;&#xA;&#x9;&#x9;&lt;ValidationErrorMessage /&gt;&#xA;&#x9;&#x9;&lt;IsExtra&gt;false&lt;/IsExtra&gt;&#xA;&#x9;&#x9;&lt;CanExtractSimilar&gt;false&lt;/CanExtractSimilar&gt;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xA;&#x9;&lt;/Column&gt;&#xA;&#x9;&lt;Column xsi:type='DataColumn' Name='Low' ReferenceName='Low' ReferenceIdx='3'&gt;&#xA;&#x9;&#x9;&lt;IsValidName&gt;true&lt;/IsValidName&gt;&#xA;&#x9;&#x9;&lt;ValidationErrorMessage /&gt;&#xA;&#x9;&#x9;&lt;IsExtra&gt;false&lt;/IsExtra&gt;&#xA;&#x9;&#x9;&lt;CanExtractSimilar&gt;false&lt;/CanExtractSimilar&gt;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xA;&#x9;&lt;/Column&gt;&#xA;&#x9;&lt;Column xsi:type='DataColumn' Name='Close' ReferenceName='Close' ReferenceIdx='4'&gt;&#xA;&#x9;&#x9;&lt;IsValidName&gt;true&lt;/IsValidName&gt;&#xA;&#x9;&#x9;&lt;ValidationErrorMessage /&gt;&#xA;&#x9;&#x9;&lt;IsExtra&gt;false&lt;/IsExtra&gt;&#xA;&#x9;&#x9;&lt;CanExtractSimilar&gt;false&lt;/CanExtractSimilar&gt;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xA;&#x9;&lt;/Column&gt;&#xA;&#x9;&lt;Column xsi:type='DataColumn' Name='Adj Close' ReferenceName='Adj Close' ReferenceIdx='5'&gt;&#xA;&#x9;&#x9;&lt;IsValidName&gt;true&lt;/IsValidName&gt;&#xA;&#x9;&#x9;&lt;ValidationErrorMessage /&gt;&#xA;&#x9;&#x9;&lt;IsExtra&gt;false&lt;/IsExtra&gt;&#xA;&#x9;&#x9;&lt;CanExtractSimilar&gt;false&lt;/CanExtractSimilar&gt;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xA;&#x9;&lt;/Column&gt;&#xA;&#x9;&lt;Column xsi:type='DataColumn' Name='Volume' ReferenceName='Volume' ReferenceIdx='6'&gt;&#xA;&#x9;&#x9;&lt;IsValidName&gt;true&lt;/IsValidName&gt;&#xA;&#x9;&#x9;&lt;ValidationErrorMessage /&gt;&#xA;&#x9;&#x9;&lt;IsExtra&gt;false&lt;/IsExtra&gt;&#xA;&#x9;&#x9;&lt;CanExtractSimilar&gt;false&lt;/CanExtractSimilar&gt;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xA;&#x9;&lt;/Column&gt;&#xA;&lt;/Table&gt;" ExtractMetadata="&lt;extract-table get_columns_name='1' get_empty_columns='1' columns_name_source='Longest'&gt;&lt;column name='Date' attr='fulltext' /&gt;&lt;column name='Open' attr='fulltext' /&gt;&lt;column name='High' attr='fulltext' /&gt;&lt;column name='Low' attr='fulltext' /&gt;&lt;column name='Close' attr='fulltext' /&gt;&lt;column name='Adj Close' attr='fulltext' /&gt;&lt;column name='Volume' attr='fulltext' /&gt;&lt;/extract-table&gt;" sap:VirtualizedContainerService.HintSize="510.4,157.6" sap2010:WorkflowViewState.IdRef="NExtractData_1" LimitExtractionTo="None" MaximumResults="0" ScopeIdentifier="18c6374b-d2c9-4521-ae76-a3a4ce77e666" Version="V3">
+                    <uix:NExtractData.Target>
+                      <uix:TargetAnchorable BrowserURL="https://finance.yahoo.com/quote/GBPEUR%3DX/history/?guccounter=1" DesignTimeRectangle="240, 787, 1206, 10520" DesignTimeScaleFactor="1.25" FullSelectorArgument="&lt;webctrl tag='TABLE' /&gt;" Guid="a752657b-f678-4f69-9257-4710915e1560" InformativeScreenshot="19ebf4408d984f1094f98afda6e5976d.png" ScopeSelectorArgument="&lt;html app='chrome.exe' title='GBP/EUR (GBPEUR=X) Stock Historical Prices &amp;amp; Data - Yahoo Finance' /&gt;" SearchSteps="Selector" Version="V4" Visibility="Interactive" />
+                    </uix:NExtractData.Target>
+                  </uix:NExtractData>
+                  <If Condition="[string.IsNullOrWhiteSpace(in_TransactionItem.SpecificContent(&quot;exchangeRateDate&quot;).ToString)]" DisplayName="If exchange rate date provided" sap:VirtualizedContainerService.HintSize="510.4,608.8" sap2010:WorkflowViewState.IdRef="If_3">
+                    <If.Then>
+                      <Sequence sap:VirtualizedContainerService.HintSize="376.8,254.4" sap2010:WorkflowViewState.IdRef="Sequence_12">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                        <ui:InvokeCode ContinueOnError="{x:Null}" Code="Dim lastDayOfMonth As DateTime= New DateTime(in_currentDate.Year, in_currentDate.Month, DateTime.DaysInMonth(in_currentDate.Year, in_currentDate.Month))&#xA;&#xA;out_dateLastFriday = lastDayOfMonth.AddDays(-((lastDayOfMonth.DayOfWeek + 2) Mod 7))" DisplayName="Get last friday of the month" sap:VirtualizedContainerService.HintSize="333.6,164.8" sap2010:WorkflowViewState.IdRef="InvokeCode_1">
+                          <ui:InvokeCode.Arguments>
+                            <InArgument x:TypeArguments="s:DateTime" x:Key="in_currentDate">[convert.ToDateTime(convert.ToDateTime(in_TransactionItem.SpecificContent("periodRun").ToString).AddMonths(-1).ToString)]</InArgument>
+                            <OutArgument x:TypeArguments="s:DateTime" x:Key="out_dateLastFriday">[dateLastFriday]</OutArgument>
+                          </ui:InvokeCode.Arguments>
+                        </ui:InvokeCode>
+                      </Sequence>
+                    </If.Then>
+                    <If.Else>
+                      <Sequence sap:VirtualizedContainerService.HintSize="476.8,171.2" sap2010:WorkflowViewState.IdRef="Sequence_13">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                        <Assign DisplayName="Convert exchangeRateDate to datetime" sap:VirtualizedContainerService.HintSize="433.6,81.6" sap2010:WorkflowViewState.IdRef="Assign_3">
+                          <Assign.To>
+                            <OutArgument x:TypeArguments="s:DateTime">[dateLastFriday]</OutArgument>
+                          </Assign.To>
+                          <Assign.Value>
+                            <InArgument x:TypeArguments="s:DateTime">[DateTime.ParseExact(in_TransactionItem.SpecificContent("exchangeRateDate").ToString,"dd.MM.yyyy",system.Globalization.CultureInfo.InvariantCulture)]</InArgument>
+                          </Assign.Value>
+                        </Assign>
+                      </Sequence>
+                    </If.Else>
+                  </If>
+                  <Assign DisplayName="Extract exchange rate date from table" sap:VirtualizedContainerService.HintSize="510.4,82.4" sap2010:WorkflowViewState.IdRef="Assign_2">
+                    <Assign.To>
+                      <OutArgument x:TypeArguments="sd:DataTable">[dtYahooExchangeRates]</OutArgument>
+                    </Assign.To>
+                    <Assign.Value>
+                      <InArgument x:TypeArguments="sd:DataTable">[dtYahooExchangeRates.AsEnumerable.Where(function(x) x(0).ToString = dateLastFriday.ToString("MMM dd, yyyy")).CopyToDataTable]</InArgument>
+                    </Assign.Value>
+                  </Assign>
+                  <ui:SetFocus DelayBefore="{x:Null}" DelayMS="{x:Null}" DisplayName="Set Focus on exchange rate date" sap:VirtualizedContainerService.HintSize="510.4,107.2" sap2010:WorkflowViewState.IdRef="SetFocus_1">
+                    <ui:SetFocus.Target>
+                      <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="60222935-217a-4eab-890b-cb70cf7b95cf" InformativeScreenshot="41449a42c6b463cc26051a08e22de83f" Selector="[&quot;&lt;html app='chrome.exe' title='GBP/EUR (GBPEUR=X) Stock Historical Prices &amp;amp; Data - Yahoo Finance' /&gt;&lt;webctrl tag='TABLE' /&gt;&lt;webctrl tag='TD' aaname='&quot;+dtYahooExchangeRates.rows(0)(0).ToString+&quot;' /&gt;&quot;]">
+                        <ui:Target.TimeoutMS>
+                          <InArgument x:TypeArguments="x:Int32" />
+                        </ui:Target.TimeoutMS>
+                        <ui:Target.WaitForReady>
+                          <InArgument x:TypeArguments="ui:WaitForReady" />
+                        </ui:Target.WaitForReady>
+                      </ui:Target>
+                    </ui:SetFocus.Target>
+                  </ui:SetFocus>
+                  <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" ClickType="CLICK_SINGLE" CursorMotionType="Instant" DisplayName="Click on exchange rate date" sap:VirtualizedContainerService.HintSize="510.4,86.4" sap2010:WorkflowViewState.IdRef="Click_2" KeyModifiers="None" MouseButton="BTN_LEFT">
+                    <ui:Click.CursorPosition>
+                      <ui:CursorPosition Position="Center">
+                        <ui:CursorPosition.OffsetX>
+                          <InArgument x:TypeArguments="x:Int32" />
+                        </ui:CursorPosition.OffsetX>
+                        <ui:CursorPosition.OffsetY>
+                          <InArgument x:TypeArguments="x:Int32" />
+                        </ui:CursorPosition.OffsetY>
+                      </ui:CursorPosition>
+                    </ui:Click.CursorPosition>
+                    <ui:Click.Target>
+                      <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="1ef4e584-6dac-4ec4-8fec-f3fe67964bca" Selector="[&quot;&lt;html app='chrome.exe' title='GBP/EUR (GBPEUR=X) Stock Historical Prices &amp;amp; Data - Yahoo Finance' /&gt;&lt;webctrl tag='TABLE' /&gt;&lt;webctrl tag='TD' aaname='&quot;+dtYahooExchangeRates.rows(0)(0).ToString+&quot;' /&gt;&quot;]" WaitForReady="COMPLETE">
+                        <ui:Target.TimeoutMS>
+                          <InArgument x:TypeArguments="x:Int32" />
+                        </ui:Target.TimeoutMS>
+                      </ui:Target>
+                    </ui:Click.Target>
+                  </ui:Click>
+                  <ui:TakeScreenshot WaitBefore="{x:Null}" DisplayName="Take Screenshot or table" sap:VirtualizedContainerService.HintSize="510.4,86.4" sap2010:WorkflowViewState.IdRef="TakeScreenshot_2" Screenshot="[capture]">
+                    <ui:TakeScreenshot.Target>
+                      <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Selector="{x:Null}" Id="a9ea09af-4ba2-42f5-bd69-85edc2ad2a48" WaitForReady="COMPLETE">
+                        <ui:Target.TimeoutMS>
+                          <InArgument x:TypeArguments="x:Int32" />
+                        </ui:Target.TimeoutMS>
+                      </ui:Target>
+                    </ui:TakeScreenshot.Target>
+                  </ui:TakeScreenshot>
+                  <ui:SaveImage DisplayName="Save Image of exchange rate table" FileName="[in_Config(&quot;Royalties_ExchangeRates_CaptureFileName&quot;).ToString]" sap:VirtualizedContainerService.HintSize="510.4,134.4" sap2010:WorkflowViewState.IdRef="SaveImage_1" Image="[capture]" />
                 </Sequence>
               </ActivityAction>
             </uix:NApplicationCard.Body>
@@ -289,12 +317,12 @@
             </uix:NApplicationCard.TargetApp>
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                 <x:Boolean x:Key="IsPinned">False</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
           </uix:NApplicationCard>
-          <ui:ExcelApplicationScope Password="{x:Null}" DisplayName="Excel Application Scope" sap:VirtualizedContainerService.HintSize="333.6,52.8" sap2010:WorkflowViewState.IdRef="ExcelApplicationScope_1" InstanceCachePeriod="3000" WorkbookPath="[in_TransactionItem.SpecificContent(&quot;currentMasterRoyaltyFilePath&quot;).ToString]">
+          <ui:ExcelApplicationScope Password="{x:Null}" DisplayName="Open current master royalty file" sap:VirtualizedContainerService.HintSize="606.4,821.6" sap2010:WorkflowViewState.IdRef="ExcelApplicationScope_1" InstanceCachePeriod="3000" WorkbookPath="[in_TransactionItem.SpecificContent(&quot;currentMasterRoyaltyFilePath&quot;).ToString]">
             <ui:ExcelApplicationScope.Body>
               <ActivityAction x:TypeArguments="ui:WorkbookApplication">
                 <ActivityAction.Argument>
@@ -309,41 +337,8 @@
                   <ui:ExcelWriteCell Cell="[string.Format(in_Config(&quot;Royalties_ExchangeRatesTab_CellRange1&quot;).ToString,(cint(convert.ToDateTime(in_TransactionItem.SpecificContent(&quot;periodRun&quot;).ToString).AddMonths(-1).ToString(&quot;MM&quot;))+3).ToString)]" DisplayName="Write C[month-1]" sap:VirtualizedContainerService.HintSize="387.2,88" sap2010:WorkflowViewState.IdRef="ExcelWriteCell_1" SheetName="[in_Config(&quot;Royalties_ExchangeRatesTab&quot;).ToString]" Text="[dtYahooExchangeRates.Rows(0)(4).ToString]" />
                   <ui:ExcelWriteCell Cell="[in_Config(&quot;Royalties_ExchangeRatesTab_CellRange2&quot;).ToString]" DisplayName="Write G20" sap:VirtualizedContainerService.HintSize="387.2,88" sap2010:WorkflowViewState.IdRef="ExcelWriteCell_2" SheetName="[in_Config(&quot;Royalties_ExchangeRatesTab&quot;).ToString]" Text="[string.Format(in_Config(&quot;Royalties_ExchangeRatesTab_Value1&quot;).ToString,convert.ToDateTime(in_TransactionItem.SpecificContent(&quot;periodRun&quot;).ToString).AddMonths(-4).ToString(&quot;MM&quot;),convert.ToDateTime(in_TransactionItem.SpecificContent(&quot;periodRun&quot;).ToString).AddMonths(-1).ToString(&quot;MMMM yy&quot;))]" />
                   <ui:ExcelWriteCell Cell="[in_Config(&quot;Royalties_ExchangeRatesTab_CellRange3&quot;).ToString]" DisplayName="Write H20" sap:VirtualizedContainerService.HintSize="387.2,88" sap2010:WorkflowViewState.IdRef="ExcelWriteCell_3" SheetName="[in_Config(&quot;Royalties_ExchangeRatesTab&quot;).ToString]" Text="[now.ToString(&quot;M/d/yyyy&quot;)]" />
-                  <ui:ExcelWriteCell Cell="[in_Config(&quot;Royalties_ExchangeRatesTab_CellRange4&quot;).ToString]" DisplayName="Write I20" sap:VirtualizedContainerService.HintSize="387.2,88" sap2010:WorkflowViewState.IdRef="ExcelWriteCell_4" SheetName="[in_Config(&quot;Royalties_ExchangeRatesTab&quot;).ToString]" Text="[now.ToString(&quot;hh:mm a&quot;)]" />
+                  <ui:ExcelWriteCell Cell="[in_Config(&quot;Royalties_ExchangeRatesTab_CellRange4&quot;).ToString]" DisplayName="Write I20" sap:VirtualizedContainerService.HintSize="387.2,88" sap2010:WorkflowViewState.IdRef="ExcelWriteCell_4" SheetName="[in_Config(&quot;Royalties_ExchangeRatesTab&quot;).ToString]" Text="[now.ToString(&quot;hh:mmtt&quot;).ToLower]" />
                   <ui:InvokeVBA OutputValue="{x:Null}" CodeFilePath="[in_Config(&quot;Royalties_VBACodes&quot;).ToString]" DisplayName="Invoke InsertPicture" EntryMethodName="[in_Config(&quot;Royalties_VBAFunction_InsertPicture&quot;).ToString]" EntryMethodParameters="[{in_Config(&quot;Royalties_ExchangeRatesTab&quot;).ToString,in_Config(&quot;Royalties_ExchangeRatesTab_CellRange5&quot;).ToString,Directory.GetCurrentDirectory+&quot;\&quot;+in_Config(&quot;Royalties_ExchangeRates_CaptureFileName&quot;).ToString}]" sap:VirtualizedContainerService.HintSize="387.2,88" sap2010:WorkflowViewState.IdRef="InvokeVBA_1" />
-                </Sequence>
-              </ActivityAction>
-            </ui:ExcelApplicationScope.Body>
-            <sap:WorkflowViewStateService.ViewState>
-              <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                <x:Boolean x:Key="IsExpanded">False</x:Boolean>
-                <x:Boolean x:Key="IsPinned">False</x:Boolean>
-              </scg:Dictionary>
-            </sap:WorkflowViewStateService.ViewState>
-          </ui:ExcelApplicationScope>
-          <ui:DeleteFileX DisplayName="Delete File" sap:VirtualizedContainerService.HintSize="333.6,80.8" sap2010:WorkflowViewState.IdRef="DeleteFileX_1" Path="[in_Config(&quot;Royalties_ExchangeRates_CaptureFileName&quot;).ToString]" />
-        </Sequence>
-      </If.Then>
-      <If.Else>
-        <Sequence sap:VirtualizedContainerService.HintSize="526.4,399.2" sap2010:WorkflowViewState.IdRef="Sequence_9">
-          <sap:WorkflowViewStateService.ViewState>
-            <scg:Dictionary x:TypeArguments="x:String, x:Object">
-              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-            </scg:Dictionary>
-          </sap:WorkflowViewStateService.ViewState>
-          <ui:ExcelApplicationScope Password="{x:Null}" DisplayName="Excel Application Scope" sap:VirtualizedContainerService.HintSize="483.2,309.6" sap2010:WorkflowViewState.IdRef="ExcelApplicationScope_2" InstanceCachePeriod="3000" WorkbookPath="[in_TransactionItem.SpecificContent(&quot;currentMasterRoyaltyFilePath&quot;).ToString]">
-            <ui:ExcelApplicationScope.Body>
-              <ActivityAction x:TypeArguments="ui:WorkbookApplication">
-                <ActivityAction.Argument>
-                  <DelegateInArgument x:TypeArguments="ui:WorkbookApplication" Name="ExcelWorkbookScope" />
-                </ActivityAction.Argument>
-                <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="449.6,200" sap2010:WorkflowViewState.IdRef="Sequence_10">
-                  <sap:WorkflowViewStateService.ViewState>
-                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                    </scg:Dictionary>
-                  </sap:WorkflowViewStateService.ViewState>
-                  <ui:ExcelWriteCell Cell="[string.Format(in_Config(&quot;Royalties_ExchangeRatesTab_CellRange1&quot;).ToString,(cint(convert.ToDateTime(in_TransactionItem.SpecificContent(&quot;periodRun&quot;).ToString).AddMonths(-1).ToString(&quot;MM&quot;))+3).ToString)]" DisplayName="Write C[month-1]" sap:VirtualizedContainerService.HintSize="387.2,88" sap2010:WorkflowViewState.IdRef="ExcelWriteCell_5" SheetName="[in_Config(&quot;Royalties_ExchangeRatesTab&quot;).ToString]" Text="[in_TransactionItem.SpecificContent(&quot;exchangeRate&quot;).ToString]" />
                 </Sequence>
               </ActivityAction>
             </ui:ExcelApplicationScope.Body>
@@ -354,6 +349,42 @@
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
           </ui:ExcelApplicationScope>
+          <ui:DeleteFileX DisplayName="Delete capture" sap:VirtualizedContainerService.HintSize="606.4,80.8" sap2010:WorkflowViewState.IdRef="DeleteFileX_1" Path="[in_Config(&quot;Royalties_ExchangeRates_CaptureFileName&quot;).ToString]" />
+        </Sequence>
+      </If.Then>
+      <If.Else>
+        <Sequence sap:VirtualizedContainerService.HintSize="526.4,848" sap2010:WorkflowViewState.IdRef="Sequence_9">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <ui:ExcelApplicationScope Password="{x:Null}" DisplayName="Open current master royalty file" sap:VirtualizedContainerService.HintSize="483.2,637.6" sap2010:WorkflowViewState.IdRef="ExcelApplicationScope_2" InstanceCachePeriod="3000" WorkbookPath="[in_TransactionItem.SpecificContent(&quot;currentMasterRoyaltyFilePath&quot;).ToString]">
+            <ui:ExcelApplicationScope.Body>
+              <ActivityAction x:TypeArguments="ui:WorkbookApplication">
+                <ActivityAction.Argument>
+                  <DelegateInArgument x:TypeArguments="ui:WorkbookApplication" Name="ExcelWorkbookScope" />
+                </ActivityAction.Argument>
+                <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="449.6,528" sap2010:WorkflowViewState.IdRef="Sequence_10">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <ui:ExcelWriteCell Cell="[string.Format(in_Config(&quot;Royalties_ExchangeRatesTab_CellRange1&quot;).ToString,(cint(convert.ToDateTime(in_TransactionItem.SpecificContent(&quot;periodRun&quot;).ToString).AddMonths(-1).ToString(&quot;MM&quot;))+3).ToString)]" DisplayName="Write C[month-1]" sap:VirtualizedContainerService.HintSize="387.2,88" sap2010:WorkflowViewState.IdRef="ExcelWriteCell_5" SheetName="[in_Config(&quot;Royalties_ExchangeRatesTab&quot;).ToString]" Text="[in_TransactionItem.SpecificContent(&quot;exchangeRate&quot;).ToString]" />
+                  <ui:MoveFile ContinueOnError="{x:Null}" DestinationResource="{x:Null}" PathResource="{x:Null}" Destination="[Path.Combine(Environment.CurrentDirectory, in_Config(&quot;Royalties_VBAFunction_InsertPicture&quot;).ToString)]" DisplayName="Move capture" sap:VirtualizedContainerService.HintSize="387.2,160" sap2010:WorkflowViewState.IdRef="MoveFile_1" Overwrite="True" Path="[in_TransactionItem.SpecificContent(&quot;exchangeRateImage&quot;).ToString]" />
+                  <ui:InvokeVBA OutputValue="{x:Null}" CodeFilePath="[in_Config(&quot;Royalties_VBACodes&quot;).ToString]" DisplayName="Invoke InsertPicture" EntryMethodName="[in_Config(&quot;Royalties_VBAFunction_InsertPicture&quot;).ToString]" EntryMethodParameters="[{in_Config(&quot;Royalties_ExchangeRatesTab&quot;).ToString,in_Config(&quot;Royalties_ExchangeRatesTab_CellRange5&quot;).ToString,Directory.GetCurrentDirectory+&quot;\&quot;+in_Config(&quot;Royalties_ExchangeRates_CaptureFileName&quot;).ToString}]" sap:VirtualizedContainerService.HintSize="387.2,88" sap2010:WorkflowViewState.IdRef="InvokeVBA_3" />
+                </Sequence>
+              </ActivityAction>
+            </ui:ExcelApplicationScope.Body>
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+          </ui:ExcelApplicationScope>
+          <ui:DeleteFileX DisplayName="Delete capture" sap:VirtualizedContainerService.HintSize="483.2,80.8" sap2010:WorkflowViewState.IdRef="DeleteFileX_4" Path="[in_Config(&quot;Royalties_VBAFunction_InsertPicture&quot;).ToString]" />
         </Sequence>
       </If.Else>
     </If>

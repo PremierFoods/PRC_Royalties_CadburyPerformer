@@ -20,3 +20,7 @@ Public Sub InsertPicture(strWorksheet as string,strRange as string,strImgPath as
                                      Width:=-1, _
                                      Height:=-1)
 End Sub
+
+Public Sub ActivateFirstWorksheet()
+    ThisWorkbook.Sheets(1).Activate
+End Sub

@@ -164,7 +164,7 @@
               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
-          <Throw Exception="[new BusinessRuleException(in_Config(&quot;Royalties_BE008&quot;).ToString)]" sap:VirtualizedContainerService.HintSize="334.4,90.4" sap2010:WorkflowViewState.IdRef="Throw_1" />
+          <Throw DisplayName="Throw BE008" Exception="[new BusinessRuleException(in_Config(&quot;Royalties_BE008&quot;).ToString)]" sap:VirtualizedContainerService.HintSize="334.4,90.4" sap2010:WorkflowViewState.IdRef="Throw_1" />
         </Sequence>
       </If.Then>
       <If.Else>
