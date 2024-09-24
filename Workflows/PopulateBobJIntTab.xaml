@@ -6,7 +6,7 @@
   <VisualBasic.Settings>
     <x:Null />
   </VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>1130.4,3644</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1130.4,5003.2</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>PopulateBobJIntTab_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -103,7 +103,7 @@
       <AssemblyReference>System.Linq.Queryable</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="PopulateBobJIntTab" sap:VirtualizedContainerService.HintSize="622.4,3579.2" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="PopulateBobJIntTab" sap:VirtualizedContainerService.HintSize="622.4,4938.4" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="sd:DataTable" Name="dtBobJIIReport" />
       <Variable x:TypeArguments="sd:DataTable" Name="dtBrandHL4ReclassTemplate" />
@@ -132,7 +132,7 @@
         </ActivityAction>
       </ui:ExcelApplicationScope.Body>
     </ui:ExcelApplicationScope>
-    <ui:InvokeCode ContinueOnError="{x:Null}" Code="'If number of columns from BobJ I&amp;I Actuals report &lt;&gt; 5 + (periodRun-1)&#xD;&#xA;If io_dtBobJIIReport.Columns.Count &lt;&gt; 5 + CInt(Convert.ToDateTime(in_TransactionItem.SpecificContent(&quot;periodRun&quot;).ToString).AddMonths(-1).ToString(&quot;MM&quot;))&#xD;&#xA; &#x9;Dim difference As Integer = If(io_dtBobJIIReport.Columns.Count &gt; 5 + CInt(Convert.ToDateTime(in_TransactionItem.SpecificContent(&quot;periodRun&quot;).ToString).ToString(&quot;MM&quot;)), io_dtBobJIIReport.Columns.Count - (5 + CInt(Convert.ToDateTime(in_TransactionItem.SpecificContent(&quot;periodRun&quot;).ToString).ToString(&quot;MM&quot;))), (5 + CInt(Convert.ToDateTime(in_TransactionItem.SpecificContent(&quot;periodRun&quot;).ToString).ToString(&quot;MM&quot;))) - io_dtBobJIIReport.Columns.Count)&#xD;&#xA;&#x9;While difference &lt;&gt; 0&#xD;&#xA;&#x9;&#x9; io_dtBobJIIReport.Columns.RemoveAt(io_dtBobJIIReport.columns.Count - 1)&#xD;&#xA;&#x9;&#x9;difference = difference - 1&#xD;&#xA;&#x9;End While&#xD;&#xA;End If&#xD;&#xA;" DisplayName="Remove last row if necesssary" sap:VirtualizedContainerService.HintSize="560,164.8" sap2010:WorkflowViewState.IdRef="InvokeCode_1">
+    <ui:InvokeCode ContinueOnError="{x:Null}" Code="'If number of columns from BobJ I&amp;I Actuals report &lt;&gt; 5 + (periodRun-1)&#xA;If io_dtBobJIIReport.Columns.Count &lt;&gt; 5 + CInt(Convert.ToDateTime(in_TransactionItem.SpecificContent(&quot;periodRun&quot;).ToString).AddMonths(-1).ToString(&quot;MM&quot;))&#xA; &#x9;Dim difference As Integer = If(io_dtBobJIIReport.Columns.Count &gt; 5 + CInt(Convert.ToDateTime(in_TransactionItem.SpecificContent(&quot;periodRun&quot;).ToString).ToString(&quot;MM&quot;)), io_dtBobJIIReport.Columns.Count - (5 + CInt(Convert.ToDateTime(in_TransactionItem.SpecificContent(&quot;periodRun&quot;).ToString).ToString(&quot;MM&quot;))), (5 + CInt(Convert.ToDateTime(in_TransactionItem.SpecificContent(&quot;periodRun&quot;).ToString).ToString(&quot;MM&quot;))) - io_dtBobJIIReport.Columns.Count)&#xA;&#x9;While difference &lt;&gt; 0&#xA;&#x9;&#x9; io_dtBobJIIReport.Columns.RemoveAt(io_dtBobJIIReport.columns.Count - 1)&#xA;&#x9;&#x9;difference = difference - 1&#xA;&#x9;End While&#xA;End If&#xA;" DisplayName="Remove last row if necesssary" sap:VirtualizedContainerService.HintSize="560,164.8" sap2010:WorkflowViewState.IdRef="InvokeCode_1">
       <ui:InvokeCode.Arguments>
         <InOutArgument x:TypeArguments="sd:DataTable" x:Key="io_dtBobJIIReport">[dtBobJIIReport]</InOutArgument>
         <InArgument x:TypeArguments="ui:QueueItem" x:Key="in_TransactionItem">[in_TransactionItem]</InArgument>
@@ -194,10 +194,10 @@
         <InArgument x:TypeArguments="sd:DataTable">[dtBrandHL4Reclass.AsEnumerable.Where(function(x) x(0).ToString &lt;&gt; "0").CopyToDataTable]</InArgument>
       </Assign.Value>
     </Assign>
-    <If Condition="[dtBrandHL4Reclass.AsEnumerable.Where(Function(x) x(0).ToString.Contains(in_Config(&quot;Royalties_BobJInt_NAValue1&quot;).ToString)).Any = true]" DisplayName="If nf values found on column A" sap:VirtualizedContainerService.HintSize="560,52.8" sap2010:WorkflowViewState.IdRef="If_1">
+    <If Condition="[dtBrandHL4Reclass.AsEnumerable.Where(Function(x) x(0).ToString.Contains(in_Config(&quot;Royalties_BobJInt_NAValue1&quot;).ToString)).Any = true]" DisplayName="If nf values found on column A" sap:VirtualizedContainerService.HintSize="560,1412" sap2010:WorkflowViewState.IdRef="If_1">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
-          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           <x:Boolean x:Key="IsPinned">False</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
@@ -213,7 +213,7 @@
               <OutArgument x:TypeArguments="sd:DataTable">[dtBrandHL4Reclass]</OutArgument>
             </Assign.To>
             <Assign.Value>
-              <InArgument x:TypeArguments="sd:DataTable">[dtBrandHL4Reclass.AsEnumerable.Where(function(x) x(0).ToString = in_Config("Royalties_BobJInt_NAValue1").ToString).CopyToDataTable]</InArgument>
+              <InArgument x:TypeArguments="sd:DataTable">[dtBrandHL4Reclass.AsEnumerable.Where(function(x) x(0).ToString = in_Config("Royalties_BobJInt_NAValue1").ToString).Distinct.CopyToDataTable]</InArgument>
             </Assign.Value>
           </Assign>
           <Assign DisplayName="Keep unique lines" sap:VirtualizedContainerService.HintSize="483.2,81.6" sap2010:WorkflowViewState.IdRef="Assign_3">
@@ -236,7 +236,7 @@
                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                     </scg:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
-                  <ui:AddDataRow DataRow="{x:Null}" ArrayRow="[{&quot;&quot;,CurrentRow(0).ToString}]" DataTable="[dtBrandHL4ReclassTemplate]" DisplayName="Add Data Row to Brand HL4 Reclass" sap:VirtualizedContainerService.HintSize="387.2,188" sap2010:WorkflowViewState.IdRef="AddDataRow_1" />
+                  <ui:AddDataRow DataRow="{x:Null}" ArrayRow="[{CurrentRow(0).ToString,&quot;'&quot;}]" DataTable="[dtBrandHL4ReclassTemplate]" DisplayName="Add Data Row to Brand HL4 Reclass" sap:VirtualizedContainerService.HintSize="387.2,188" sap2010:WorkflowViewState.IdRef="AddDataRow_1" />
                 </Sequence>
               </ActivityAction>
             </ui:ForEachRow.Body>

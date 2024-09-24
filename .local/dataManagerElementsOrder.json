@@ -150,6 +150,9 @@
       "Path": "Workflows/Check2Errors.xaml",
       "SortBy": 0,
       "VariablesSectionElementsOrder": [
+        "colToAdd&Sequence_7",
+        "arrColNames&Sequence_1",
+        "dtPrevTotalPremierFoods&Sequence_1",
         "dtTotalPremierFoods&Sequence_1",
         "dtCheck2&Sequence_1",
         "boolDifferencesFound&Sequence_1"
