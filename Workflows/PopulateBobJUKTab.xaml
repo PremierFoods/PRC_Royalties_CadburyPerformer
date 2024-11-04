@@ -6,7 +6,7 @@
   <VisualBasic.Settings>
     <x:Null />
   </VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>1130.4,3008</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1055.2,3136</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>PopulateBobJUKTab_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -103,7 +103,7 @@
       <AssemblyReference>System.Linq.Queryable</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="PopulateBobJUKTab" sap:VirtualizedContainerService.HintSize="622.4,2943.2" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="PopulateBobJUKTab" sap:VirtualizedContainerService.HintSize="622.4,3071.2" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="sd:DataTable" Name="dtBobJUKReport" />
       <Variable x:TypeArguments="sd:DataTable" Name="dtBrandHL4ReclassTemplate" />
@@ -137,25 +137,26 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:ExcelApplicationScope>
-    <ui:InvokeCode ContinueOnError="{x:Null}" Code="'If number of columns from BobJ I&amp;I Actuals report &lt;&gt; 6 + (periodRun-1)&#xD;&#xA;If io_dtBobJUKReport.Columns.Count &lt;&gt; 6 + CInt(Convert.ToDateTime(in_TransactionItem.SpecificContent(&quot;periodRun&quot;).ToString).AddMonths(-1).ToString(&quot;MM&quot;))&#xD;&#xA; &#x9;Dim difference As Integer = If(io_dtBobJUKReport.Columns.Count &gt; 6 + CInt(Convert.ToDateTime(in_TransactionItem.SpecificContent(&quot;periodRun&quot;).ToString).ToString(&quot;MM&quot;)), io_dtBobJUKReport.Columns.Count - (6 + CInt(Convert.ToDateTime(in_TransactionItem.SpecificContent(&quot;periodRun&quot;).ToString).ToString(&quot;MM&quot;))), (6 + CInt(Convert.ToDateTime(in_TransactionItem.SpecificContent(&quot;periodRun&quot;).ToString).ToString(&quot;MM&quot;))) - io_dtBobJUKReport.Columns.Count)&#xD;&#xA;&#x9;While difference &lt;&gt; 0&#xD;&#xA;&#x9;&#x9; io_dtBobJUKReport.Columns.RemoveAt(io_dtBobJUKReport.columns.Count - 1)&#xD;&#xA;&#x9;&#x9;difference = difference - 1&#xD;&#xA;&#x9;End While&#xD;&#xA;End If&#xD;&#xA;" DisplayName="Remove last row if necesssary" sap:VirtualizedContainerService.HintSize="560,164.8" sap2010:WorkflowViewState.IdRef="InvokeCode_1">
+    <ui:InvokeCode ContinueOnError="{x:Null}" Code="'If number of columns from BobJ I&amp;I Actuals report &lt;&gt; 6 + (periodRun-1)&#xA;If io_dtBobJUKReport.Columns.Count &lt;&gt; 6 + CInt(Convert.ToDateTime(in_TransactionItem.SpecificContent(&quot;periodRun&quot;).ToString).AddMonths(-1).ToString(&quot;MM&quot;))&#xA; &#x9;Dim difference As Integer = If(io_dtBobJUKReport.Columns.Count &gt; 6 + CInt(Convert.ToDateTime(in_TransactionItem.SpecificContent(&quot;periodRun&quot;).ToString).ToString(&quot;MM&quot;)), io_dtBobJUKReport.Columns.Count - (6 + CInt(Convert.ToDateTime(in_TransactionItem.SpecificContent(&quot;periodRun&quot;).ToString).ToString(&quot;MM&quot;))), (6 + CInt(Convert.ToDateTime(in_TransactionItem.SpecificContent(&quot;periodRun&quot;).ToString).ToString(&quot;MM&quot;))) - io_dtBobJUKReport.Columns.Count)&#xA;&#x9;While difference &lt;&gt; 0&#xA;&#x9;&#x9; io_dtBobJUKReport.Columns.RemoveAt(io_dtBobJUKReport.columns.Count - 1)&#xA;&#x9;&#x9;difference = difference - 1&#xA;&#x9;End While&#xA;End If&#xA;" DisplayName="Remove last row if necesssary" sap:VirtualizedContainerService.HintSize="560,164.8" sap2010:WorkflowViewState.IdRef="InvokeCode_1">
       <ui:InvokeCode.Arguments>
         <InOutArgument x:TypeArguments="sd:DataTable" x:Key="io_dtBobJUKReport">[dtBobJUKReport]</InOutArgument>
         <InArgument x:TypeArguments="ui:QueueItem" x:Key="in_TransactionItem">[in_TransactionItem]</InArgument>
       </ui:InvokeCode.Arguments>
     </ui:InvokeCode>
-    <ui:ExcelApplicationScope Password="{x:Null}" DisplayName="Open Current Master Royalty file" sap:VirtualizedContainerService.HintSize="560,409.6" sap2010:WorkflowViewState.IdRef="ExcelApplicationScope_2" InstanceCachePeriod="3000" WorkbookPath="[in_TransactionItem.SpecificContent(&quot;currentMasterRoyaltyFilePath&quot;).ToString]">
+    <ui:ExcelApplicationScope Password="{x:Null}" DisplayName="Open Current Master Royalty file" sap:VirtualizedContainerService.HintSize="560,537.6" sap2010:WorkflowViewState.IdRef="ExcelApplicationScope_2" InstanceCachePeriod="3000" WorkbookPath="[in_TransactionItem.SpecificContent(&quot;currentMasterRoyaltyFilePath&quot;).ToString]">
       <ui:ExcelApplicationScope.Body>
         <ActivityAction x:TypeArguments="ui:WorkbookApplication">
           <ActivityAction.Argument>
             <DelegateInArgument x:TypeArguments="ui:WorkbookApplication" Name="ExcelWorkbookScope" />
           </ActivityAction.Argument>
-          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="449.6,300" sap2010:WorkflowViewState.IdRef="Sequence_3">
+          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="449.6,428" sap2010:WorkflowViewState.IdRef="Sequence_3">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
             <ui:ExcelWriteRange AddHeaders="False" DataTable="[dtBobJUKReport]" DisplayName="Write BobJ UK Analysis Tab" sap:VirtualizedContainerService.HintSize="387.2,88" sap2010:WorkflowViewState.IdRef="ExcelWriteRange_1" SheetName="[in_Config(&quot;Royalties_RoyaltyMaster_BobJUKTab&quot;).ToString]" StartingCell="[in_Config(&quot;Royalties_RoyaltyMaster_BobJUKTab_CellRange1&quot;).ToString]" />
+            <ui:InvokeVBA OutputValue="{x:Null}" CodeFilePath="[in_Config(&quot;Royalties_VBACodes&quot;).ToString]" DisplayName="Invoke VBA" EntryMethodName="[in_Config(&quot;Royalties_VBAFunction_ExtendFormula&quot;).ToString]" EntryMethodParameters="[{in_Config(&quot;Royalties_RoyaltyMaster_BobJUKTab&quot;).ToString,dtBobJUKReport.Rows.Count.ToString}]" sap:VirtualizedContainerService.HintSize="387.2,88" sap2010:WorkflowViewState.IdRef="InvokeVBA_1" />
             <ui:ExcelReadRange AddHeaders="True" DataTable="[dtBrandHL4Reclass]" DisplayName="Read A:C range in BobJ UK Tab" sap:VirtualizedContainerService.HintSize="387.2,60" sap2010:WorkflowViewState.IdRef="ExcelReadRange_2" Range="[in_Config(&quot;Royalties_RoyaltyMaster_BobJUKTab_CellRange2&quot;).ToString]" SheetName="[in_Config(&quot;Royalties_RoyaltyMaster_BobJUKTab&quot;).ToString]" />
           </Sequence>
         </ActivityAction>

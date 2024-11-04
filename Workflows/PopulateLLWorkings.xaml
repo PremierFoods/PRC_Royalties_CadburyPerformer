@@ -6,7 +6,7 @@
   <VisualBasic.Settings>
     <x:Null />
   </VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>1130.4,1532</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1055.2,1532</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>PopulateLLWorkings_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -191,7 +191,7 @@
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
-            <ui:ExcelWriteCell Cell="[in_Config(&quot;Royalties_LLWorkings_CellRangeTNV&quot;).ToString]" DisplayName="Write TNV in cell J82" sap:VirtualizedContainerService.HintSize="387.2,88" sap2010:WorkflowViewState.IdRef="ExcelWriteCell_1" SheetName="[in_Config(&quot;Royalties_LLWorkings_Check&quot;).ToString]" Text="[dtTotalPremierFoods.Rows(dtTotalPremierFoods.Rows.Count-7)(2+cint(Convert.ToDateTime(in_TransactionItem.SpecificContent(&quot;periodRun&quot;).ToString).ToString(&quot;MM&quot;))).ToString]">
+            <ui:ExcelWriteCell Cell="[in_Config(&quot;Royalties_LLWorkings_CellRangeTNV&quot;).ToString]" DisplayName="Write TNV in cell J82" sap:VirtualizedContainerService.HintSize="387.2,88" sap2010:WorkflowViewState.IdRef="ExcelWriteCell_1" SheetName="[in_Config(&quot;Royalties_LLWorkings_Check&quot;).ToString]" Text="[(CDbl(dtTotalPremierFoods.Rows(dtTotalPremierFoods.Rows.Count-7)(2+CInt(Convert.ToDateTime(&quot;10 2024&quot;).ToString(&quot;MM&quot;))).ToString)*1000).ToString]">
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                   <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -199,7 +199,7 @@
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
             </ui:ExcelWriteCell>
-            <ui:ExcelWriteCell Cell="[in_Config(&quot;Royalties_LLWorkings_CellRangeRoyalty&quot;).ToString]" DisplayName="Write Royalty in cell K82" sap:VirtualizedContainerService.HintSize="387.2,88" sap2010:WorkflowViewState.IdRef="ExcelWriteCell_2" SheetName="[in_Config(&quot;Royalties_LLWorkings_Check&quot;).ToString]" Text="[dtTotalPremierFoods.Rows(dtTotalPremierFoods.rows.Count-5)(2+cint(Convert.ToDateTime(in_TransactionItem.SpecificContent(&quot;periodRun&quot;).ToString).ToString(&quot;MM&quot;))).ToString]">
+            <ui:ExcelWriteCell Cell="[in_Config(&quot;Royalties_LLWorkings_CellRangeRoyalty&quot;).ToString]" DisplayName="Write Royalty in cell K82" sap:VirtualizedContainerService.HintSize="387.2,88" sap2010:WorkflowViewState.IdRef="ExcelWriteCell_2" SheetName="[in_Config(&quot;Royalties_LLWorkings_Check&quot;).ToString]" Text="[(cdbl(dtTotalPremierFoods.Rows(dtTotalPremierFoods.rows.Count-5)(2+cint(Convert.ToDateTime(&quot;10 2024&quot;).ToString(&quot;MM&quot;))).ToString)*1000).ToString]">
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                   <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -222,7 +222,7 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:ExcelApplicationScope>
-    <If Condition="[CDbl(objVariance) &lt;&gt; 0]" DisplayName="If variance &lt;&gt; 0" sap:VirtualizedContainerService.HintSize="483.2,363.2" sap2010:WorkflowViewState.IdRef="If_1">
+    <If Condition="[CDbl(objVariance.ToString.Replace(&quot;,&quot;,&quot;&quot;))/1000 &lt;= -5 AND cdbl(objVariance.ToString.Replace(&quot;,&quot;,&quot;&quot;))/1000 &gt;= 5]" DisplayName="If variance &lt;&gt; 0" sap:VirtualizedContainerService.HintSize="483.2,363.2" sap2010:WorkflowViewState.IdRef="If_1">
       <If.Then>
         <Sequence sap:VirtualizedContainerService.HintSize="377.6,180" sap2010:WorkflowViewState.IdRef="Sequence_5">
           <sap:WorkflowViewStateService.ViewState>

@@ -24,3 +24,36 @@ End Sub
 Public Sub ActivateFirstWorksheet()
     ThisWorkbook.Sheets(1).Activate
 End Sub
+
+Sub ExtendFormula(worksheet as String, lastRow as Long)
+    Dim formulaCell As Range
+    Dim sourceValue As Variant
+    Dim cell As Range
+
+    ' Set the worksheet
+    Set ws = ThisWorkbook.Sheets(worksheet)
+
+    if ws.Name = "Bobj - INT" Then
+ 	' Set the cell that contains the initial formula
+    	Set formulaCell = ws.Range("A6")
+    	' Extend the formula down to the last row
+    	formulaCell.AutoFill Destination:=ws.Range("A6:A" & lastRow)
+
+	' Set the cell that contains the initial formula
+    	Set formulaCell = ws.Range("B6")
+    	' Extend the formula down to the last row
+    	formulaCell.AutoFill Destination:=ws.Range("B6:B" & lastRow)
+
+  	' Set the cell that contains the initial formula
+    	Set formulaCell = ws.Range("C6")
+    	' Extend the formula down to the last row
+    	formulaCell.AutoFill Destination:=ws.Range("C6:C" & lastRow)
+    End if
+    if ws.Name = "BobJ - UK" Then
+    	' Set the cell that contains the initial formula
+    	Set formulaCell = ws.Range("A5")
+    	' Extend the formula down to the last row
+    	formulaCell.AutoFill Destination:=ws.Range("A5:A" & lastRow)
+    End if
+
+End Sub

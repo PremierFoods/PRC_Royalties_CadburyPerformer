@@ -6,7 +6,7 @@
   <VisualBasic.Settings>
     <x:Null />
   </VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>1130.4,5003.2</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1055.2,5131.2</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>PopulateBobJIntTab_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -103,7 +103,7 @@
       <AssemblyReference>System.Linq.Queryable</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="PopulateBobJIntTab" sap:VirtualizedContainerService.HintSize="622.4,4938.4" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="PopulateBobJIntTab" sap:VirtualizedContainerService.HintSize="622.4,5066.4" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="sd:DataTable" Name="dtBobJIIReport" />
       <Variable x:TypeArguments="sd:DataTable" Name="dtBrandHL4ReclassTemplate" />
@@ -138,13 +138,13 @@
         <InArgument x:TypeArguments="ui:QueueItem" x:Key="in_TransactionItem">[in_TransactionItem]</InArgument>
       </ui:InvokeCode.Arguments>
     </ui:InvokeCode>
-    <ui:ExcelApplicationScope Password="{x:Null}" DisplayName="Open Current Master Royalty file" sap:VirtualizedContainerService.HintSize="560,409.6" sap2010:WorkflowViewState.IdRef="ExcelApplicationScope_2" InstanceCachePeriod="3000" WorkbookPath="[in_TransactionItem.SpecificContent(&quot;currentMasterRoyaltyFilePath&quot;).ToString]">
+    <ui:ExcelApplicationScope Password="{x:Null}" DisplayName="Open Current Master Royalty file" sap:VirtualizedContainerService.HintSize="560,537.6" sap2010:WorkflowViewState.IdRef="ExcelApplicationScope_2" InstanceCachePeriod="3000" WorkbookPath="[in_TransactionItem.SpecificContent(&quot;currentMasterRoyaltyFilePath&quot;).ToString]">
       <ui:ExcelApplicationScope.Body>
         <ActivityAction x:TypeArguments="ui:WorkbookApplication">
           <ActivityAction.Argument>
             <DelegateInArgument x:TypeArguments="ui:WorkbookApplication" Name="ExcelWorkbookScope" />
           </ActivityAction.Argument>
-          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="449.6,300" sap2010:WorkflowViewState.IdRef="Sequence_3">
+          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="449.6,428" sap2010:WorkflowViewState.IdRef="Sequence_3">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -152,6 +152,7 @@
             </sap:WorkflowViewStateService.ViewState>
             <ui:ExcelWriteRange AddHeaders="False" DataTable="[dtBobJIIReport]" DisplayName="Write BobJ Int Analysis Tab" sap:VirtualizedContainerService.HintSize="387.2,88" sap2010:WorkflowViewState.IdRef="ExcelWriteRange_1" SheetName="[in_Config(&quot;Royalties_RoyaltyMaster_BobJIntTab&quot;).ToString]" StartingCell="[in_Config(&quot;Royalties_RoyaltyMaster_BobJIntTab_CellRange1&quot;).ToString]" />
             <ui:ExcelReadRange AddHeaders="True" DataTable="[dtBrandHL4Reclass]" DisplayName="Read A:F range in BobJ Int Tab" sap:VirtualizedContainerService.HintSize="387.2,60" sap2010:WorkflowViewState.IdRef="ExcelReadRange_2" Range="[in_Config(&quot;Royalties_RoyaltyMaster_BobJIntTab_CellRange2&quot;).ToString]" SheetName="[in_Config(&quot;Royalties_RoyaltyMaster_BobJIntTab&quot;).ToString]" />
+            <ui:InvokeVBA OutputValue="{x:Null}" CodeFilePath="[in_Config(&quot;Royalties_VBACodes&quot;).ToString]" DisplayName="Invoke VBA" EntryMethodName="[in_Config(&quot;Royalties_VBAFunction_ExtendFormula&quot;).ToString]" EntryMethodParameters="[{in_Config(&quot;Royalties_RoyaltyMaster_BobJIntTab&quot;).ToString,(dtBrandHL4Reclass.asenumerable.where(function(x) not string.IsNullOrWhiteSpace(x(3).ToString)).CopyToDataTable.Rows.Count+3).ToString}]" sap:VirtualizedContainerService.HintSize="387.2,88" sap2010:WorkflowViewState.IdRef="InvokeVBA_1" />
           </Sequence>
         </ActivityAction>
       </ui:ExcelApplicationScope.Body>
