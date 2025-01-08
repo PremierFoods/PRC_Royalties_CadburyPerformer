@@ -6,7 +6,7 @@
   <VisualBasic.Settings>
     <x:Null />
   </VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>1055.2,1532</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1055.2,2044.8000000000002</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>PopulateLLWorkings_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -97,66 +97,20 @@
       <AssemblyReference>System.Collections</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="PopulateLLWorkings" sap:VirtualizedContainerService.HintSize="545.6,1467.2" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="PopulateLLWorkings" sap:VirtualizedContainerService.HintSize="592,1980" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="sd:DataTable" Name="dtBobjLL" />
       <Variable x:TypeArguments="sd:DataTable" Name="dtTotalPremierFoods" />
       <Variable x:TypeArguments="x:Object" Name="objVariance" />
+      <Variable x:TypeArguments="sd:DataTable" Name="dtAnalysis" />
+      <Variable x:TypeArguments="x:Int32" Name="intLinesToOverallResult" />
     </Sequence.Variables>
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="483.2,52.8" sap2010:WorkflowViewState.IdRef="CommentOut_1">
-      <ui:CommentOut.Body>
-        <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="592,515.2" sap2010:WorkflowViewState.IdRef="Sequence_7">
-          <sap:WorkflowViewStateService.ViewState>
-            <scg:Dictionary x:TypeArguments="x:String, x:Object">
-              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-            </scg:Dictionary>
-          </sap:WorkflowViewStateService.ViewState>
-          <ui:ExcelApplicationScope Password="{x:Null}" DisplayName="Open BobJ LL Workings report" sap:VirtualizedContainerService.HintSize="529.6,403.2" sap2010:WorkflowViewState.IdRef="ExcelApplicationScope_1" InstanceCachePeriod="3000" WorkbookPath="[in_TransactionItem.SpecificContent(&quot;bobjLLReportPath&quot;).ToString]">
-            <ui:ExcelApplicationScope.Body>
-              <ActivityAction x:TypeArguments="ui:WorkbookApplication">
-                <ActivityAction.Argument>
-                  <DelegateInArgument x:TypeArguments="ui:WorkbookApplication" Name="ExcelWorkbookScope" />
-                </ActivityAction.Argument>
-                <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="496,293.6" sap2010:WorkflowViewState.IdRef="Sequence_2">
-                  <sap:WorkflowViewStateService.ViewState>
-                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                    </scg:Dictionary>
-                  </sap:WorkflowViewStateService.ViewState>
-                  <ui:ExcelReadRange AddHeaders="False" DataTable="[dtBobjLL]" DisplayName="Read BobJ LL report" sap:VirtualizedContainerService.HintSize="433.6,60" sap2010:WorkflowViewState.IdRef="ExcelReadRange_1" Range="[in_Config(&quot;Royalties_BobJLL_CheckTab_CellRange&quot;).ToString]" SheetName="[in_Config(&quot;Royalties_BobJLL_CheckTab&quot;).ToString]" />
-                  <Assign DisplayName="Filter table on populated fields" sap:VirtualizedContainerService.HintSize="433.6,81.6" sap2010:WorkflowViewState.IdRef="Assign_1">
-                    <Assign.To>
-                      <OutArgument x:TypeArguments="sd:DataTable">[dtBobjLL]</OutArgument>
-                    </Assign.To>
-                    <Assign.Value>
-                      <InArgument x:TypeArguments="sd:DataTable">[dtBobjLL.AsEnumerable.Where(function(x) not string.IsNullOrWhiteSpace(x(2).ToString)).CopyToDataTable]</InArgument>
-                    </Assign.Value>
-                  </Assign>
-                </Sequence>
-              </ActivityAction>
-            </ui:ExcelApplicationScope.Body>
-            <sap:WorkflowViewStateService.ViewState>
-              <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                <x:Boolean x:Key="IsPinned">False</x:Boolean>
-              </scg:Dictionary>
-            </sap:WorkflowViewStateService.ViewState>
-          </ui:ExcelApplicationScope>
-        </Sequence>
-      </ui:CommentOut.Body>
-      <sap:WorkflowViewStateService.ViewState>
-        <scg:Dictionary x:TypeArguments="x:String, x:Object">
-          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
-          <x:Boolean x:Key="IsPinned">False</x:Boolean>
-        </scg:Dictionary>
-      </sap:WorkflowViewStateService.ViewState>
-    </ui:CommentOut>
-    <ui:ExcelApplicationScope Password="{x:Null}" DisplayName="Open Current Master Royalty file" sap:VirtualizedContainerService.HintSize="483.2,281.6" sap2010:WorkflowViewState.IdRef="ExcelApplicationScope_3" InstanceCachePeriod="3000" WorkbookPath="[in_TransactionItem.SpecificContent(&quot;currentMasterRoyaltyFilePath&quot;).ToString]">
+    <ui:ExcelApplicationScope Password="{x:Null}" DisplayName="Open Current Master Royalty file" sap:VirtualizedContainerService.HintSize="529.6,281.6" sap2010:WorkflowViewState.IdRef="ExcelApplicationScope_3" InstanceCachePeriod="3000" WorkbookPath="[in_TransactionItem.SpecificContent(&quot;currentMasterRoyaltyFilePath&quot;).ToString]">
       <ui:ExcelApplicationScope.Body>
         <ActivityAction x:TypeArguments="ui:WorkbookApplication">
           <ActivityAction.Argument>
@@ -179,19 +133,31 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:ExcelApplicationScope>
-    <ui:ExcelApplicationScope Password="{x:Null}" DisplayName="Open LL Workings report" sap:VirtualizedContainerService.HintSize="483.2,537.6" sap2010:WorkflowViewState.IdRef="ExcelApplicationScope_2" InstanceCachePeriod="3000" WorkbookPath="[in_TransactionItem.SpecificContent(&quot;bobjLLReportPath&quot;).ToString]">
+    <ui:ExcelApplicationScope Password="{x:Null}" DisplayName="Open LL Workings report" sap:VirtualizedContainerService.HintSize="529.6,1143.2" sap2010:WorkflowViewState.IdRef="ExcelApplicationScope_2" InstanceCachePeriod="3000" WorkbookPath="[in_TransactionItem.SpecificContent(&quot;bobjLLReportPath&quot;).ToString]">
       <ui:ExcelApplicationScope.Body>
         <ActivityAction x:TypeArguments="ui:WorkbookApplication">
           <ActivityAction.Argument>
             <DelegateInArgument x:TypeArguments="ui:WorkbookApplication" Name="ExcelWorkbookScope" />
           </ActivityAction.Argument>
-          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="449.6,428" sap2010:WorkflowViewState.IdRef="Sequence_3">
+          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="496,1033.6" sap2010:WorkflowViewState.IdRef="Sequence_3">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
-            <ui:ExcelWriteCell Cell="[in_Config(&quot;Royalties_LLWorkings_CellRangeTNV&quot;).ToString]" DisplayName="Write TNV in cell J82" sap:VirtualizedContainerService.HintSize="387.2,88" sap2010:WorkflowViewState.IdRef="ExcelWriteCell_1" SheetName="[in_Config(&quot;Royalties_LLWorkings_Check&quot;).ToString]" Text="[(CDbl(dtTotalPremierFoods.Rows(dtTotalPremierFoods.Rows.Count-7)(2+CInt(Convert.ToDateTime(&quot;10 2024&quot;).ToString(&quot;MM&quot;))).ToString)*1000).ToString]">
+            <ui:ExcelReadRange AddHeaders="True" DataTable="[dtAnalysis]" DisplayName="Read Range Analysis" sap:VirtualizedContainerService.HintSize="433.6,60" sap2010:WorkflowViewState.IdRef="ExcelReadRange_3" Range="[in_Config(&quot;Royalties_LLWorkings_CellRange&quot;).ToString]" SheetName="[in_Config(&quot;Royalties_LLWorkings_Check&quot;).ToString]" />
+            <Assign DisplayName="Assign get number of lines until overall result" sap:VirtualizedContainerService.HintSize="433.6,81.6" sap2010:WorkflowViewState.IdRef="Assign_2">
+              <Assign.To>
+                <OutArgument x:TypeArguments="x:Int32">[intLinesToOverallResult]</OutArgument>
+              </Assign.To>
+              <Assign.Value>
+                <InArgument x:TypeArguments="x:Int32">[dtAnalysis.AsEnumerable().TakeWhile(Function(row) row(1).ToString() &lt;&gt; "Overall Result").Count()]</InArgument>
+              </Assign.Value>
+            </Assign>
+            <ui:InvokeVBA OutputValue="{x:Null}" CodeFilePath="[in_Config(&quot;Royalties_VBACodes&quot;).ToString]" DisplayName="Invoke VBA Extend Formula" EntryMethodName="[in_Config(&quot;Royalties_VBAFunction_ExtendFormula&quot;).ToString]" EntryMethodParameters="[{in_Config(&quot;Royalties_LLWorkings_Check&quot;).ToString,(intLinesToOverallResult+9).ToString}]" sap:VirtualizedContainerService.HintSize="433.6,88" sap2010:WorkflowViewState.IdRef="InvokeVBA_1" />
+            <ui:InvokeVBA OutputValue="{x:Null}" CodeFilePath="[in_Config(&quot;Royalties_VBACodes&quot;).ToString]" DisplayName="Invoke VBA Write formula" EntryMethodName="[in_Config(&quot;Royalties_VBAFunction_WriteFormula&quot;).ToString]" EntryMethodParameters="[{in_Config(&quot;Royalties_LLWorkings_Check&quot;).ToString,(dtAnalysis.rows.Count+8).ToString,(intLinesToOverallResult+8).ToString}]" sap:VirtualizedContainerService.HintSize="433.6,88" sap2010:WorkflowViewState.IdRef="InvokeVBA_2" />
+            <ui:InvokeVBA OutputValue="{x:Null}" CodeFilePath="[in_Config(&quot;Royalties_VBACodes&quot;).ToString]" DisplayName="Invoke VBA Copy Formatting" EntryMethodName="[in_Config(&quot;Royalties_VBAFunction_CopyFormatting&quot;).ToString]" EntryMethodParameters="[{in_Config(&quot;Royalties_LLWorkings_Check&quot;).ToString,(intLinesToOverallResult+9).ToString}]" sap:VirtualizedContainerService.HintSize="433.6,88" sap2010:WorkflowViewState.IdRef="InvokeVBA_3" />
+            <ui:ExcelWriteCell Cell="[in_Config(&quot;Royalties_LLWorkings_CellRangeTNV&quot;).ToString]" DisplayName="Write TNV in cell J82" sap:VirtualizedContainerService.HintSize="433.6,88" sap2010:WorkflowViewState.IdRef="ExcelWriteCell_1" SheetName="[in_Config(&quot;Royalties_LLWorkings_Check&quot;).ToString]" Text="[(CDbl(dtTotalPremierFoods.Rows(dtTotalPremierFoods.Rows.Count-7)(2+CInt(Convert.ToDateTime(in_TransactionItem.SpecificContent(&quot;periodRun&quot;).ToString.Trim).ToString(&quot;MM&quot;))).ToString)*1000).ToString]">
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                   <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -199,7 +165,7 @@
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
             </ui:ExcelWriteCell>
-            <ui:ExcelWriteCell Cell="[in_Config(&quot;Royalties_LLWorkings_CellRangeRoyalty&quot;).ToString]" DisplayName="Write Royalty in cell K82" sap:VirtualizedContainerService.HintSize="387.2,88" sap2010:WorkflowViewState.IdRef="ExcelWriteCell_2" SheetName="[in_Config(&quot;Royalties_LLWorkings_Check&quot;).ToString]" Text="[(cdbl(dtTotalPremierFoods.Rows(dtTotalPremierFoods.rows.Count-5)(2+cint(Convert.ToDateTime(&quot;10 2024&quot;).ToString(&quot;MM&quot;))).ToString)*1000).ToString]">
+            <ui:ExcelWriteCell Cell="[in_Config(&quot;Royalties_LLWorkings_CellRangeRoyalty&quot;).ToString]" DisplayName="Write Royalty in cell K82" sap:VirtualizedContainerService.HintSize="433.6,88" sap2010:WorkflowViewState.IdRef="ExcelWriteCell_2" SheetName="[in_Config(&quot;Royalties_LLWorkings_Check&quot;).ToString]" Text="[(cdbl(dtTotalPremierFoods.Rows(dtTotalPremierFoods.rows.Count-5)(2+cint(Convert.ToDateTime(in_TransactionItem.SpecificContent(&quot;periodRun&quot;).ToString.Trim).ToString(&quot;MM&quot;))).ToString)*1000).ToString]">
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                   <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -207,7 +173,7 @@
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
             </ui:ExcelWriteCell>
-            <ui:ExcelReadCell Cell="[in_Config(&quot;Royalties_LLWorkings_CellRangeRoyaltyVariance&quot;).ToString]" DisplayName="Read Royalty Variance" sap:VirtualizedContainerService.HintSize="387.2,60" sap2010:WorkflowViewState.IdRef="ExcelReadCell_1" SheetName="[in_Config(&quot;Royalties_LLWorkings_Check&quot;).ToString]">
+            <ui:ExcelReadCell Cell="[in_Config(&quot;Royalties_LLWorkings_CellRangeRoyaltyVariance&quot;).ToString]" DisplayName="Read Royalty Variance" sap:VirtualizedContainerService.HintSize="433.6,60" sap2010:WorkflowViewState.IdRef="ExcelReadCell_1" SheetName="[in_Config(&quot;Royalties_LLWorkings_Check&quot;).ToString]">
               <ui:ExcelReadCell.Result>
                 <OutArgument x:TypeArguments="x:Object">[objVariance]</OutArgument>
               </ui:ExcelReadCell.Result>
@@ -222,7 +188,7 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:ExcelApplicationScope>
-    <If Condition="[CDbl(objVariance.ToString.Replace(&quot;,&quot;,&quot;&quot;))/1000 &lt;= -5 AND cdbl(objVariance.ToString.Replace(&quot;,&quot;,&quot;&quot;))/1000 &gt;= 5]" DisplayName="If variance &lt;&gt; 0" sap:VirtualizedContainerService.HintSize="483.2,363.2" sap2010:WorkflowViewState.IdRef="If_1">
+    <If Condition="[CDbl(objVariance.ToString.Replace(&quot;,&quot;,&quot;&quot;))/1000 &lt;= -5 or cdbl(objVariance.ToString.Replace(&quot;,&quot;,&quot;&quot;))/1000 &gt;= 5]" DisplayName="If variance &lt;&gt; 0" sap:VirtualizedContainerService.HintSize="529.6,363.2" sap2010:WorkflowViewState.IdRef="If_1">
       <If.Then>
         <Sequence sap:VirtualizedContainerService.HintSize="377.6,180" sap2010:WorkflowViewState.IdRef="Sequence_5">
           <sap:WorkflowViewStateService.ViewState>

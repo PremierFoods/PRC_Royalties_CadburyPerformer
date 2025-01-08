@@ -1,0 +1,148 @@
+Public Sub DeleteSheet(strWorksheet as string)
+	ThisWorkbook.Sheets(strWorksheet).Delete
+End Sub
+
+Public Sub InsertPicture(strWorksheet as string,strRange as string,strImgPath as string)
+    Dim ws As Worksheet
+    Dim rng As Range
+    Dim shape As Shape
+    
+    ' Set the worksheet and range
+    Set ws = ThisWorkbook.Sheets(strWorksheet)
+    Set rng = ws.Range(strRange)
+    
+    ' Insert the picture and set the shape object
+    Set shape = ws.Shapes.AddPicture(Filename:=strImgPath, _
+                                     LinkToFile:=msoFalse, _
+                                     SaveWithDocument:=msoCTrue, _
+                                     Left:=rng.Left, _
+                                     Top:=rng.Top, _
+                                     Width:=-1, _
+                                     Height:=-1)
+End Sub
+
+Public Sub ActivateFirstWorksheet()
+    ThisWorkbook.Sheets(1).Activate
+End Sub
+
+Sub ExtendFormula(worksheet as String, lastRow as Long)
+    Dim formulaCell As Range
+    Dim sourceValue As Variant
+    Dim cell As Range
+
+    ' Set the worksheet
+    Set ws = ThisWorkbook.Sheets(worksheet)
+
+    if ws.Name = "Bobj - INT" Then
+ 	' Set the cell that contains the initial formula
+    	Set formulaCell = ws.Range("A6")
+    	' Extend the formula down to the last row
+    	formulaCell.AutoFill Destination:=ws.Range("A6:A" & lastRow)
+
+	' Set the cell that contains the initial formula
+    	Set formulaCell = ws.Range("B6")
+    	' Extend the formula down to the last row
+    	formulaCell.AutoFill Destination:=ws.Range("B6:B" & lastRow)
+
+  	' Set the cell that contains the initial formula
+    	Set formulaCell = ws.Range("C6")
+    	' Extend the formula down to the last row
+    	formulaCell.AutoFill Destination:=ws.Range("C6:C" & lastRow)
+    End if
+    if ws.Name = "BobJ - UK" Then
+    	' Set the cell that contains the initial formula
+    	Set formulaCell = ws.Range("A5")
+    	' Extend the formula down to the last row
+    	formulaCell.AutoFill Destination:=ws.Range("A5:A" & lastRow)
+    End if
+
+    if ws.Name = "Analysis" Then
+      For i = 9 To lastRow - 1
+	ws.Cells(i, "A").Formula = "=IF(C" & i & "=""International"",""Int"",IF(C" & i & "=""Ireland"",""Int"",""""))"
+      Next i    	
+
+      For i = 9 To lastRow
+	ws.Cells(i, "I").Formula = "=SUM(G" & i & ":H" & i & ")"
+      Next i  
+    End if
+End Sub
+
+Sub WriteFormula(worksheet As String, lastRow As Long, lastRowOverallResult As Long)
+    Dim category As String
+    Dim i As Long
+    Dim ws As Worksheet
+    
+    ' Set the worksheet
+    Set ws = ThisWorkbook.Sheets(worksheet)
+    
+    ' Loop through each row from row 9 to lastRow
+    For i = 9 To lastRow
+        ' Check the value in column D
+        Select Case ws.Cells(i, "D").Value
+            Case "UK"
+                category = "UK"
+                MsgBox "Row " & i & ": category set to UK"
+            Case "INT"
+                category = "INT"
+                MsgBox "Row " & i & ": category set to INT"
+            Case "TOTAL"
+                category = "TOTAL"
+                MsgBox "Row " & i & ": category set to TOTAL"
+            Case "check", "Sweet Treats", "Desserts", "Home Baking"
+                ' Apply formulas based on category
+                MsgBox "Row " & i & ": category = " & category & vbCrLf & _
+                       "Applying formulas based on this category."
+                ApplyFormulas ws, category, i, lastRowOverallResult
+            Case Else
+                ' Skip rows without relevant categories
+                MsgBox "Row " & i & ": No relevant category. Skipping."
+        End Select
+    Next i
+End Sub
+
+' Helper function to apply formulas based on the category
+Sub ApplyFormulas(ws As Worksheet, category As String, rowIndex As Long, lastRowOverallResult As Long)
+    Select Case category
+        Case "UK"
+            ws.Cells(rowIndex, "E").Formula = "=SUMIFS($E$9:$E$" & lastRowOverallResult & ", $A$9:$A$" & lastRowOverallResult & ", """", $B$9:$B$" & lastRowOverallResult & ", D" & rowIndex & ")"
+            MsgBox "UK Formula applied to E" & rowIndex
+            ws.Cells(rowIndex, "F").Formula = "=SUMIFS($F$9:$F$" & lastRowOverallResult & ", $A$9:$A$" & lastRowOverallResult & ", """", $B$9:$B$" & lastRowOverallResult & ", D" & rowIndex & ")"
+            ws.Cells(rowIndex, "G").Formula = "=SUMIFS($G$9:$G$" & lastRowOverallResult & ", $A$9:$A$" & lastRowOverallResult & ", """", $B$9:$B$" & lastRowOverallResult & ", D" & rowIndex & ")"
+            ws.Cells(rowIndex, "H").Formula = "=SUMIFS($H$9:$H$" & lastRowOverallResult & ", $A$9:$A$" & lastRowOverallResult & ", """", $B$9:$B$" & lastRowOverallResult & ", D" & rowIndex & ")"
+            ws.Cells(rowIndex, "I").Formula = "=SUMIFS($I$9:$I$" & lastRowOverallResult & ", $A$9:$A$" & lastRowOverallResult & ", """", $B$9:$B$" & lastRowOverallResult & ", D" & rowIndex & ")"
+        
+        Case "INT"
+            ws.Cells(rowIndex, "E").Formula = "=SUMIFS($E$9:$E$" & lastRowOverallResult & ", $A$9:$A$" & lastRowOverallResult & ", ""Int"", $B$9:$B$" & lastRowOverallResult & ", D" & rowIndex & ")"
+            MsgBox "INT Formula applied to E" & rowIndex
+            ws.Cells(rowIndex, "F").Formula = "=SUMIFS($F$9:$F$" & lastRowOverallResult & ", $A$9:$A$" & lastRowOverallResult & ", ""Int"", $B$9:$B$" & lastRowOverallResult & ", D" & rowIndex & ")"
+            ws.Cells(rowIndex, "G").Formula = "=SUMIFS($G$9:$G$" & lastRowOverallResult & ", $A$9:$A$" & lastRowOverallResult & ", ""Int"", $B$9:$B$" & lastRowOverallResult & ", D" & rowIndex & ")"
+            ws.Cells(rowIndex, "H").Formula = "=SUMIFS($H$9:$H$" & lastRowOverallResult & ", $A$9:$A$" & lastRowOverallResult & ", ""Int"", $B$9:$B$" & lastRowOverallResult & ", D" & rowIndex & ")"
+            ws.Cells(rowIndex, "I").Formula = "=SUMIFS($I$9:$I$" & lastRowOverallResult & ", $A$9:$A$" & lastRowOverallResult & ", ""Int"", $B$9:$B$" & lastRowOverallResult & ", D" & rowIndex & ")"
+        
+        Case "TOTAL"
+            ws.Cells(rowIndex, "E").Formula = "=SUM(E9:E" & lastRowOverallResult & ") - E" & rowIndex - 1
+            MsgBox "TOTAL Formula applied to E" & rowIndex
+            ws.Cells(rowIndex, "F").Formula = "=SUM(F9:F" & lastRowOverallResult & ") - F" & rowIndex - 1
+            ws.Cells(rowIndex, "G").Formula = "=SUM(G9:G" & lastRowOverallResult & ") - G" & rowIndex - 1
+            ws.Cells(rowIndex, "H").Formula = "=SUM(H9:H" & lastRowOverallResult & ") - H" & rowIndex - 1
+            ws.Cells(rowIndex, "I").Formula = "=SUM(I9:I" & lastRowOverallResult & ") - I" & rowIndex - 1
+    End Select
+End Sub
+
+
+
+Sub CopyFormatting(worksheet as string,lastRow as long)
+    Dim ws As Worksheet
+    Dim sourceCell As Range
+    Dim targetCell As Range
+    
+    Set ws = ThisWorkbook.Sheets(worksheet)
+    ws.Cells(lastRow, "H").Copy
+    ws.Cells(lastRow, "I").PasteSpecial Paste:=xlPasteFormats
+    ws.Cells(lastRow - 2, "I").Copy
+    ws.Cells(lastRow - 1, "I").PasteSpecial Paste:=xlPasteFormats
+
+
+End Sub
+
+

@@ -224,6 +224,8 @@
       "Path": "Workflows/PopulateLLWorkings.xaml",
       "SortBy": 0,
       "VariablesSectionElementsOrder": [
+        "intLinesToOverallResult&Sequence_1",
+        "dtAnalysis&Sequence_1",
         "objVariance&Sequence_1",
         "dtTotalPremierFoods&Sequence_1",
         "dtBobjLL&Sequence_1"
@@ -255,6 +257,8 @@
       "Path": "test.xaml",
       "SortBy": 0,
       "VariablesSectionElementsOrder": [
+        "intLinesToOverallResult&Sequence_1",
+        "dtAnalysis&Sequence_1",
         "objVariance&Sequence_1",
         "dtTotalPremierFoods&Sequence_1",
         "dtBobJIIReport&Sequence_1",

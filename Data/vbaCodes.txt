@@ -56,4 +56,70 @@ Sub ExtendFormula(worksheet as String, lastRow as Long)
     	formulaCell.AutoFill Destination:=ws.Range("A5:A" & lastRow)
     End if
 
+    if ws.Name = "Analysis" Then
+      For i = 9 To lastRow - 1
+	ws.Cells(i, "A").Formula = "=IF(C" & i & "=""International"",""Int"",IF(C" & i & "=""Ireland"",""Int"",""""))"
+      Next i    	
+
+      For i = 9 To lastRow
+	ws.Cells(i, "I").Formula = "=SUM(G" & i & ":H" & i & ")"
+      Next i  
+    End if
 End Sub
+Sub WriteFormula(worksheet as string, lastRow as long, lastRowOverallResult as long)
+    Dim category as string
+    Dim i As Long
+      ' Set the worksheet
+       Set ws = ThisWorkbook.Sheets(worksheet)
+
+      For i = 9 To lastRow
+        If ws.Cells(i, "D").Value = "UK" Then
+            category = "UK"
+        ElseIf ws.Cells(i, "D").Value = "INT" Then
+            category = "INT"
+	ElseIf ws.Cells(i, "D").Value = "TOTAL" Then
+	    category = "TOTAL"
+        ElseIf ws.Cells(i, "D").Value = "check" Or _
+	       ws.Cells(i, "D").Value = "Sweet Treats" Or _
+               ws.Cells(i, "D").Value = "Desserts" Or _
+               ws.Cells(i, "D").Value = "Home Baking" Then
+
+            ' Check for UK or INT category and apply the formula accordingly
+            If category = "UK" Then
+                ws.Cells(i, "E").Formula = "=SUMIFS($E$9:$E$" & lastRowOverallResult & ", $A$9:$A$" & lastRowOverallResult & ", """", $B$9:$B$" & lastRowOverallResult & ", D" & i & ")"
+		ws.Cells(i, "F").Formula = "=SUMIFS($F$9:$F$" & lastRowOverallResult & ", $A$9:$A$" & lastRowOverallResult & ", """", $B$9:$B$" & lastRowOverallResult & ", D" & i & ")"
+		ws.Cells(i, "G").Formula = "=SUMIFS($G$9:$G$" & lastRowOverallResult & ", $A$9:$A$" & lastRowOverallResult & ", """", $B$9:$B$" & lastRowOverallResult & ", D" & i & ")"
+		ws.Cells(i, "H").Formula = "=SUMIFS($H$9:$H$" & lastRowOverallResult & ", $A$9:$A$" & lastRowOverallResult & ", """", $B$9:$B$" & lastRowOverallResult & ", D" & i & ")"
+		ws.Cells(i, "I").Formula = "=SUMIFS($I$9:$I$" & lastRowOverallResult & ", $A$9:$A$" & lastRowOverallResult & ", """", $B$9:$B$" & lastRowOverallResult & ", D" & i & ")"
+            ElseIf category = "INT" Then
+                ws.Cells(i, "E").Formula = "=SUMIFS($E$9:$E$" & lastRowOverallResult & ", $A$9:$A$" & lastRowOverallResult & ", ""Int"", $B$9:$B$" & lastRowOverallResult & ", D" & i & ")"
+		ws.Cells(i, "F").Formula = "=SUMIFS($F$9:$F$" & lastRowOverallResult & ", $A$9:$A$" & lastRowOverallResult & ", ""Int"", $B$9:$B$" & lastRowOverallResult & ", D" & i & ")"
+		ws.Cells(i, "G").Formula = "=SUMIFS($G$9:$G$" & lastRowOverallResult & ", $A$9:$A$" & lastRowOverallResult & ", ""Int"", $B$9:$B$" & lastRowOverallResult & ", D" & i & ")"
+		ws.Cells(i, "H").Formula = "=SUMIFS($H$9:$H$" & lastRowOverallResult & ", $A$9:$A$" & lastRowOverallResult & ", ""Int"", $B$9:$B$" & lastRowOverallResult & ", D" & i & ")"
+		ws.Cells(i, "I").Formula = "=SUMIFS($I$9:$I$" & lastRowOverallResult & ", $A$9:$A$" & lastRowOverallResult & ", ""Int"", $B$9:$B$" & lastRowOverallResult & ", D" & i & ")"
+	    ElseIf category = "TOTAL" Then
+		ws.Cells(i, "E").Formula = "=SUM(E9:E" & lastRowOverallResult & ") - E" & i-1
+        	ws.Cells(i, "F").Formula = "=SUM(F9:F" & lastRowOverallResult & ") - F" & i-1
+        	ws.Cells(i, "G").Formula = "=SUM(G9:G" & lastRowOverallResult & ") - G" & i-1
+        	ws.Cells(i, "H").Formula = "=SUM(H9:H" & lastRowOverallResult & ") - H" & i-1
+        	ws.Cells(i, "I").Formula = "=SUM(I9:I" & lastRowOverallResult & ") - I" & i-1
+            End If
+        End If
+      Next i
+End Sub
+
+Sub CopyFormatting(worksheet as string,lastRow as long)
+    Dim ws As Worksheet
+    Dim sourceCell As Range
+    Dim targetCell As Range
+    
+    Set ws = ThisWorkbook.Sheets(worksheet)
+    ws.Cells(lastRow, "H").Copy
+    ws.Cells(lastRow, "I").PasteSpecial Paste:=xlPasteFormats
+    ws.Cells(lastRow - 2, "I").Copy
+    ws.Cells(lastRow - 1, "I").PasteSpecial Paste:=xlPasteFormats
+
+
+End Sub
+
+
