@@ -6,7 +6,7 @@
   <VisualBasic.Settings>
     <x:Null />
   </VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>735.2,5431.2</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1370.4,5956.8</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>Check2Errors_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -105,7 +105,7 @@
       <AssemblyReference>Microsoft.VisualBasic.Core</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="Check2Errors" sap:VirtualizedContainerService.HintSize="745.6,5366.4" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="Check2Errors" sap:VirtualizedContainerService.HintSize="764.8,5892" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="sd:DataTable" Name="dtCheck2" />
       <Variable x:TypeArguments="x:Boolean" Name="boolDifferencesFound" />
@@ -118,7 +118,7 @@
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:ExcelApplicationScope Password="{x:Null}" DisplayName="Open Prev Master Royalty file" sap:VirtualizedContainerService.HintSize="683.2,281.6" sap2010:WorkflowViewState.IdRef="ExcelApplicationScope_4" InstanceCachePeriod="3000" Visible="False" WorkbookPath="[in_TransactionItem.SpecificContent(&quot;previousMasterRoyaltyFilePath&quot;).ToString]">
+    <ui:ExcelApplicationScope Password="{x:Null}" DisplayName="Open Prev Master Royalty file" sap:VirtualizedContainerService.HintSize="702.4,281.6" sap2010:WorkflowViewState.IdRef="ExcelApplicationScope_4" InstanceCachePeriod="3000" Visible="False" WorkbookPath="[in_TransactionItem.SpecificContent(&quot;previousMasterRoyaltyFilePath&quot;).ToString]">
       <ui:ExcelApplicationScope.Body>
         <ActivityAction x:TypeArguments="ui:WorkbookApplication">
           <ActivityAction.Argument>
@@ -141,13 +141,13 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:ExcelApplicationScope>
-    <ui:ExcelApplicationScope Password="{x:Null}" DisplayName="Open Current Master Royalty file" sap:VirtualizedContainerService.HintSize="683.2,4529.6" sap2010:WorkflowViewState.IdRef="ExcelApplicationScope_3" InstanceCachePeriod="3000" Visible="False" WorkbookPath="[in_TransactionItem.SpecificContent(&quot;currentMasterRoyaltyFilePath&quot;).ToString]">
+    <ui:ExcelApplicationScope Password="{x:Null}" DisplayName="Open Current Master Royalty file" sap:VirtualizedContainerService.HintSize="702.4,5055.2" sap2010:WorkflowViewState.IdRef="ExcelApplicationScope_3" InstanceCachePeriod="3000" Visible="False" WorkbookPath="[in_TransactionItem.SpecificContent(&quot;currentMasterRoyaltyFilePath&quot;).ToString]">
       <ui:ExcelApplicationScope.Body>
         <ActivityAction x:TypeArguments="ui:WorkbookApplication">
           <ActivityAction.Argument>
             <DelegateInArgument x:TypeArguments="ui:WorkbookApplication" Name="ExcelWorkbookScope" />
           </ActivityAction.Argument>
-          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="649.6,4420" sap2010:WorkflowViewState.IdRef="Sequence_7">
+          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="668.8,4945.6" sap2010:WorkflowViewState.IdRef="Sequence_7">
             <Sequence.Variables>
               <Variable x:TypeArguments="x:String" Name="colToAdd" />
             </Sequence.Variables>
@@ -156,16 +156,16 @@
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
-            <ui:ExcelReadRange AddHeaders="True" DataTable="[dtTotalPremierFoods]" DisplayName="Read Total Premier Foods tab" sap:VirtualizedContainerService.HintSize="587.2,60" sap2010:WorkflowViewState.IdRef="ExcelReadRange_4" Range="[in_Config(&quot;Royalties_RoyaltyMaster_TotalPremierFoodsTab_CellRange&quot;).ToString]" SheetName="[in_Config(&quot;Royalties_RoyaltyMaster_TotalPremierFoodsTab&quot;).ToString]" />
-            <Assign sap:VirtualizedContainerService.HintSize="587.2,81.6" sap2010:WorkflowViewState.IdRef="Assign_5">
+            <ui:ExcelReadRange AddHeaders="True" DataTable="[dtTotalPremierFoods]" DisplayName="Read Total Premier Foods tab" sap:VirtualizedContainerService.HintSize="606.4,60" sap2010:WorkflowViewState.IdRef="ExcelReadRange_4" Range="[in_Config(&quot;Royalties_RoyaltyMaster_TotalPremierFoodsTab_CellRange&quot;).ToString]" SheetName="[in_Config(&quot;Royalties_RoyaltyMaster_TotalPremierFoodsTab&quot;).ToString]" />
+            <Assign DisplayName="Assign To Add" sap:VirtualizedContainerService.HintSize="606.4,81.6" sap2010:WorkflowViewState.IdRef="Assign_5">
               <Assign.To>
                 <OutArgument x:TypeArguments="x:String">[colToAdd]</OutArgument>
               </Assign.To>
               <Assign.Value>
-                <InArgument x:TypeArguments="x:String">[convert.ToDateTime(in_TransactionItem.SpecificContent("periodRun").ToString).ToString("MM")]</InArgument>
+                <InArgument x:TypeArguments="x:String">[If(convert.ToDateTime(in_TransactionItem.SpecificContent("periodRun").ToString).ToString("MM").startswith("0"),convert.ToDateTime(in_TransactionItem.SpecificContent("periodRun").ToString).ToString("MM").replace("0",""),convert.ToDateTime(in_TransactionItem.SpecificContent("periodRun").ToString).ToString("MM"))]</InArgument>
               </Assign.Value>
             </Assign>
-            <Assign sap:VirtualizedContainerService.HintSize="587.2,81.6" sap2010:WorkflowViewState.IdRef="Assign_3">
+            <Assign DisplayName="Assign Col Nammes" sap:VirtualizedContainerService.HintSize="606.4,81.6" sap2010:WorkflowViewState.IdRef="Assign_3">
               <Assign.To>
                 <OutArgument x:TypeArguments="s:String[]">[arrColNames]</OutArgument>
               </Assign.To>
@@ -173,31 +173,59 @@
                 <InArgument x:TypeArguments="s:String[]">[(From c in dtTotalPremierFoods.Columns.Cast(Of DataColumn) Where colToAdd = c.ColumnName Select c.ColumnName).toArray]</InArgument>
               </Assign.Value>
             </Assign>
-            <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" DataTable="[dtPrevTotalPremierFoods]" DisplayName="For Each Row in Data Table" sap:VirtualizedContainerService.HintSize="587.2,309.6" sap2010:WorkflowViewState.IdRef="ForEachRow_1">
-              <ui:ForEachRow.Body>
-                <ActivityAction x:TypeArguments="sd:DataRow">
-                  <ActivityAction.Argument>
-                    <DelegateInArgument x:TypeArguments="sd:DataRow" Name="CurrentRow" />
-                  </ActivityAction.Argument>
-                  <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="496,193.6" sap2010:WorkflowViewState.IdRef="Sequence_14">
-                    <sap:WorkflowViewStateService.ViewState>
-                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                      </scg:Dictionary>
-                    </sap:WorkflowViewStateService.ViewState>
-                    <Assign sap:VirtualizedContainerService.HintSize="433.6,81.6" sap2010:WorkflowViewState.IdRef="Assign_7">
-                      <Assign.To>
-                        <OutArgument x:TypeArguments="x:Object">[currentrow(arrColNames(0))]</OutArgument>
-                      </Assign.To>
-                      <Assign.Value>
-                        <InArgument x:TypeArguments="x:Object">[dtTotalPremierFoods.Rows(dtPrevTotalPremierFoods.Rows.IndexOf(CurrentRow))(arrColNames(0))]</InArgument>
-                      </Assign.Value>
-                    </Assign>
-                  </Sequence>
-                </ActivityAction>
-              </ui:ForEachRow.Body>
-            </ui:ForEachRow>
-            <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="587.2,419.2" sap2010:WorkflowViewState.IdRef="TryCatch_1">
+            <If Condition="[colToAdd=&quot;1&quot;]" sap:VirtualizedContainerService.HintSize="606.4,753.6" sap2010:WorkflowViewState.IdRef="If_3">
+              <If.Then>
+                <Sequence sap:VirtualizedContainerService.HintSize="476.8,171.2" sap2010:WorkflowViewState.IdRef="Sequence_15">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <Assign sap:VirtualizedContainerService.HintSize="433.6,81.6" sap2010:WorkflowViewState.IdRef="Assign_8">
+                    <Assign.To>
+                      <OutArgument x:TypeArguments="sd:DataTable">[dtPrevTotalPremierFoods]</OutArgument>
+                    </Assign.To>
+                    <Assign.Value>
+                      <InArgument x:TypeArguments="sd:DataTable">[dtTotalPremierFoods]</InArgument>
+                    </Assign.Value>
+                  </Assign>
+                </Sequence>
+              </If.Then>
+              <If.Else>
+                <Sequence sap:VirtualizedContainerService.HintSize="572.8,399.2" sap2010:WorkflowViewState.IdRef="Sequence_16">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" DataTable="[dtPrevTotalPremierFoods]" DisplayName="For Each Row in Data Table" sap:VirtualizedContainerService.HintSize="529.6,309.6" sap2010:WorkflowViewState.IdRef="ForEachRow_1">
+                    <ui:ForEachRow.Body>
+                      <ActivityAction x:TypeArguments="sd:DataRow">
+                        <ActivityAction.Argument>
+                          <DelegateInArgument x:TypeArguments="sd:DataRow" Name="CurrentRow" />
+                        </ActivityAction.Argument>
+                        <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="496,193.6" sap2010:WorkflowViewState.IdRef="Sequence_14">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                          <Assign sap:VirtualizedContainerService.HintSize="433.6,81.6" sap2010:WorkflowViewState.IdRef="Assign_7">
+                            <Assign.To>
+                              <OutArgument x:TypeArguments="x:Object">[currentrow(arrColNames(0))]</OutArgument>
+                            </Assign.To>
+                            <Assign.Value>
+                              <InArgument x:TypeArguments="x:Object">[dtTotalPremierFoods.Rows(dtPrevTotalPremierFoods.Rows.IndexOf(CurrentRow))(arrColNames(0))]</InArgument>
+                            </Assign.Value>
+                          </Assign>
+                        </Sequence>
+                      </ActivityAction>
+                    </ui:ForEachRow.Body>
+                  </ui:ForEachRow>
+                </Sequence>
+              </If.Else>
+            </If>
+            <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="606.4,419.2" sap2010:WorkflowViewState.IdRef="TryCatch_1">
               <TryCatch.Try>
                 <ui:RemoveDataColumn Column="{x:Null}" ColumnIndex="{x:Null}" ColumnName="Column1" DataTable="[dtPrevTotalPremierFoods]" DisplayName="Remove Data Column" sap:VirtualizedContainerService.HintSize="334.4,188" sap2010:WorkflowViewState.IdRef="RemoveDataColumn_2" />
               </TryCatch.Try>
@@ -218,7 +246,7 @@
                 </Catch>
               </TryCatch.Catches>
             </TryCatch>
-            <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="587.2,419.2" sap2010:WorkflowViewState.IdRef="TryCatch_2">
+            <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="606.4,419.2" sap2010:WorkflowViewState.IdRef="TryCatch_2">
               <TryCatch.Try>
                 <ui:RemoveDataColumn Column="{x:Null}" ColumnIndex="{x:Null}" ColumnName="Column1" DataTable="[dtPrevTotalPremierFoods]" DisplayName="Remove Data Column" sap:VirtualizedContainerService.HintSize="334.4,188" sap2010:WorkflowViewState.IdRef="RemoveDataColumn_3" />
               </TryCatch.Try>
@@ -239,7 +267,7 @@
                 </Catch>
               </TryCatch.Catches>
             </TryCatch>
-            <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="587.2,419.2" sap2010:WorkflowViewState.IdRef="TryCatch_3">
+            <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="606.4,419.2" sap2010:WorkflowViewState.IdRef="TryCatch_3">
               <TryCatch.Try>
                 <ui:RemoveDataColumn Column="{x:Null}" ColumnIndex="{x:Null}" ColumnName="Column3" DataTable="[dtPrevTotalPremierFoods]" DisplayName="Remove Data Column" sap:VirtualizedContainerService.HintSize="334.4,188" sap2010:WorkflowViewState.IdRef="RemoveDataColumn_4" />
               </TryCatch.Try>
@@ -260,7 +288,7 @@
                 </Catch>
               </TryCatch.Catches>
             </TryCatch>
-            <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="587.2,419.2" sap2010:WorkflowViewState.IdRef="TryCatch_4">
+            <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="606.4,419.2" sap2010:WorkflowViewState.IdRef="TryCatch_4">
               <TryCatch.Try>
                 <ui:RemoveDataColumn Column="{x:Null}" ColumnIndex="{x:Null}" ColumnName="Column4" DataTable="[dtPrevTotalPremierFoods]" DisplayName="Remove Data Column" sap:VirtualizedContainerService.HintSize="334.4,188" sap2010:WorkflowViewState.IdRef="RemoveDataColumn_5" />
               </TryCatch.Try>
@@ -281,7 +309,7 @@
                 </Catch>
               </TryCatch.Catches>
             </TryCatch>
-            <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="587.2,419.2" sap2010:WorkflowViewState.IdRef="TryCatch_5">
+            <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="606.4,419.2" sap2010:WorkflowViewState.IdRef="TryCatch_5">
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                   <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -308,7 +336,7 @@
                 </Catch>
               </TryCatch.Catches>
             </TryCatch>
-            <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="587.2,419.2" sap2010:WorkflowViewState.IdRef="TryCatch_6">
+            <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="606.4,419.2" sap2010:WorkflowViewState.IdRef="TryCatch_6">
               <TryCatch.Try>
                 <ui:RemoveDataColumn Column="{x:Null}" ColumnIndex="{x:Null}" ColumnName="Column6" DataTable="[dtPrevTotalPremierFoods]" DisplayName="Remove Data Column" sap:VirtualizedContainerService.HintSize="334.4,188" sap2010:WorkflowViewState.IdRef="RemoveDataColumn_7" />
               </TryCatch.Try>
@@ -329,21 +357,21 @@
                 </Catch>
               </TryCatch.Catches>
             </TryCatch>
-            <ui:ExcelWriteRange AddHeaders="True" DataTable="[dtPrevTotalPremierFoods]" DisplayName="Write Check 2 tab" sap:VirtualizedContainerService.HintSize="587.2,88" sap2010:WorkflowViewState.IdRef="ExcelWriteRange_1" SheetName="[in_Config(&quot;Royalties_Check2Tab&quot;).ToString]" StartingCell="A2" />
-            <ui:ForEach x:TypeArguments="x:String" CurrentIndex="{x:Null}" DisplayName="For Each cell range" sap:VirtualizedContainerService.HintSize="587.2,732" sap2010:WorkflowViewState.IdRef="ForEach`1_1" Values="[in_Config(&quot;Royalties_Check2Tab_CellRange&quot;).ToString.Split(&quot;,&quot;)]">
+            <ui:ExcelWriteRange AddHeaders="True" DataTable="[dtPrevTotalPremierFoods]" DisplayName="Write Check 2 tab" sap:VirtualizedContainerService.HintSize="606.4,88" sap2010:WorkflowViewState.IdRef="ExcelWriteRange_1" SheetName="[in_Config(&quot;Royalties_Check2Tab&quot;).ToString]" StartingCell="A2" />
+            <ui:ForEach x:TypeArguments="x:String" CurrentIndex="{x:Null}" DisplayName="For Each cell range" sap:VirtualizedContainerService.HintSize="606.4,813.6" sap2010:WorkflowViewState.IdRef="ForEach`1_1" Values="[in_Config(&quot;Royalties_Check2Tab_CellRange&quot;).ToString.Split(&quot;,&quot;)]">
               <ui:ForEach.Body>
                 <ActivityAction x:TypeArguments="x:String">
                   <ActivityAction.Argument>
                     <DelegateInArgument x:TypeArguments="x:String" Name="currentText" />
                   </ActivityAction.Argument>
-                  <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="553.6,544" sap2010:WorkflowViewState.IdRef="Sequence_5">
+                  <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="553.6,625.6" sap2010:WorkflowViewState.IdRef="Sequence_5">
                     <sap:WorkflowViewStateService.ViewState>
                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
                         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                       </scg:Dictionary>
                     </sap:WorkflowViewStateService.ViewState>
                     <ui:ExcelReadRange AddHeaders="False" DataTable="[dtCheck2]" DisplayName="Read Check 2 cell range" sap:VirtualizedContainerService.HintSize="510.4,60" sap2010:WorkflowViewState.IdRef="ExcelReadRange_1" Range="[currentText]" SheetName="[in_Config(&quot;Royalties_Check2Tab&quot;).ToString]" />
-                    <If Condition="[not dtCheck2.Rows(0).ItemArray.All(Function(item) (item.ToString() = &quot;0&quot; OrElse item.ToString() = &quot;-&quot; OrElse item.ToString() = &quot;1&quot; OrElse item.ToString() = &quot;-1&quot;) OrElse (isNumeric(item.ToString()) andAlso cdbl(item.ToString()) &gt;= -5 And cdbl(item.ToString()) &lt;= 5)) = true]" DisplayName="If Values different than 0 found in specific cell range" sap:VirtualizedContainerService.HintSize="510.4,354.4" sap2010:WorkflowViewState.IdRef="If_1">
+                    <If Condition="[not dtCheck2.Rows(0).ItemArray.All(Function(item) (item.ToString() = &quot;0&quot; OrElse item.ToString() = &quot;-&quot; OrElse item.ToString() = &quot;1&quot; OrElse item.ToString() = &quot;-1&quot;) OrElse (isNumeric(item.ToString()) andAlso cdbl(item.ToString()) &gt;= -5 And cdbl(item.ToString()) &lt;= 5)) = true]" DisplayName="If Values different than 0 found in specific cell range" sap:VirtualizedContainerService.HintSize="510.4,436" sap2010:WorkflowViewState.IdRef="If_1">
                       <sap:WorkflowViewStateService.ViewState>
                         <scg:Dictionary x:TypeArguments="x:String, x:Object">
                           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -351,13 +379,13 @@
                         </scg:Dictionary>
                       </sap:WorkflowViewStateService.ViewState>
                       <If.Then>
-                        <Sequence sap:VirtualizedContainerService.HintSize="476.8,171.2" sap2010:WorkflowViewState.IdRef="Sequence_3">
+                        <Sequence sap:VirtualizedContainerService.HintSize="476.8,170.4" sap2010:WorkflowViewState.IdRef="Sequence_3">
                           <sap:WorkflowViewStateService.ViewState>
                             <scg:Dictionary x:TypeArguments="x:String, x:Object">
                               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                             </scg:Dictionary>
                           </sap:WorkflowViewStateService.ViewState>
-                          <Assign DisplayName="Set boolDifferencesFound = True" sap:VirtualizedContainerService.HintSize="433.6,81.6" sap2010:WorkflowViewState.IdRef="Assign_1">
+                          <Assign DisplayName="Set boolDifferencesFound = True" sap:VirtualizedContainerService.HintSize="433.6,80.8" sap2010:WorkflowViewState.IdRef="Assign_1">
                             <Assign.To>
                               <OutArgument x:TypeArguments="x:Boolean">[boolDifferencesFound]</OutArgument>
                             </Assign.To>
@@ -397,7 +425,7 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:ExcelApplicationScope>
-    <If Condition="[boolDifferencesFound]" DisplayName="If Differences found" sap:VirtualizedContainerService.HintSize="683.2,363.2" sap2010:WorkflowViewState.IdRef="If_2">
+    <If Condition="[boolDifferencesFound]" DisplayName="If Differences found" sap:VirtualizedContainerService.HintSize="702.4,363.2" sap2010:WorkflowViewState.IdRef="If_2">
       <If.Then>
         <Sequence sap:VirtualizedContainerService.HintSize="377.6,180" sap2010:WorkflowViewState.IdRef="Sequence_9">
           <sap:WorkflowViewStateService.ViewState>

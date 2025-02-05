@@ -20753,15 +20753,15 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\alexandra.x.marcu\\.nuget\\packages\\": {}
+    "C:\\Users\\vpn.x.tquila\\.nuget\\packages\\": {}
   },
   "project": {
     "restore": {
       "projectUniqueName": "PRC_Royalties_CadburyPerformer",
       "projectName": "PRC_Royalties_CadburyPerformer",
-      "projectPath": "I:\\Group\\RPA\\Ui Path Code\\Alexandra\\PRC_Royalties_CadburyPerformer\\.local",
-      "packagesPath": "C:\\Users\\alexandra.x.marcu\\.nuget\\packages\\",
-      "outputPath": "I:\\Group\\RPA\\Ui Path Code\\Alexandra\\PRC_Royalties_CadburyPerformer\\.local"
+      "projectPath": "\\\\premierfoods.co.uk\\premierdfs\\idrive\\Group\\RPA\\Ui Path Code\\Alexandra\\PRC_Royalties_CadburyPerformer\\.local",
+      "packagesPath": "C:\\Users\\vpn.x.tquila\\.nuget\\packages\\",
+      "outputPath": "\\\\premierfoods.co.uk\\premierdfs\\idrive\\Group\\RPA\\Ui Path Code\\Alexandra\\PRC_Royalties_CadburyPerformer\\.local"
     },
     "frameworks": {
       "net6.0-windows7.0": {
